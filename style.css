@@ -1,0 +1,44 @@
+/* COLORS */
+/* Green #cec93f
+Black #000
+White #fff */
+
+/*FONTS*/
+/* Headings "Russo One", sans-serif;
+Body Text "  font-family: "Oswald", sans-serif;" */
+
+/* Generic Styling for Page */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  font-family: "Oswald", sans-serif;"  
+}
+
+/* Mobile first styling */
+.header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 10%;
+  background-color: #cec93f;
+  font-family: "Russo One", sans-serif;
+  font-size: 24px;
+  padding: 10px;
+}
+
+.header__img{
+    width: 300px;
+}
+
+
+/* Styling for desktop */
+@media only screen and (min-width: 768px){
+.header__img{
+    width: 400px;
+}
+}
+
+
