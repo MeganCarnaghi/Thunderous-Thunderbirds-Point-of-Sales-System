@@ -127,9 +127,10 @@ h2 {
 
 /* MAIN CONTENT FOR CHECKOUT.HTML */
 
-.cartItems__div {
+.cartItems__div,
+.subtotal__div {
   background-color: rgba(205, 200, 63, 0.9);
-  margin: 0px 20px;
+  margin: 30px 20px;
   border-radius: 5px;
   padding: 20px;
 }
@@ -206,7 +207,8 @@ h2 {
     width: 33%;
   }
 
-  .cartItems__div {
+  .cartItems__div,
+  .subtotal__div {
     margin: 40px;
   }
 }
