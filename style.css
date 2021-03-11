@@ -14,25 +14,72 @@ Body Text "  font-family: "Oswald", sans-serif;" */
 }
 
 p {
-  font-family: "Oswald", sans-serif;"  
+  font-family: "Oswald", sans-serif;
+}
+
+body {
+  background-image: url("images/shutterstock_271040717.jpg");
+  height: 100vh;
+}
+
+button {
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+  font-size: 16px;
 }
 
 /* Mobile first styling */
 .header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
-  height: 10%;
+  height: 15%;
   background-color: #cec93f;
   font-family: "Russo One", sans-serif;
   font-size: 24px;
   padding: 10px;
 }
 
-
-/* Styling for desktop */
-@media only screen and (min-width: 768px){
-
+.header__img {
+  width: 60%;
 }
 
+.header__button {
+  padding: 25px 35px;
+  border: none;
+  background: url(images/dogbone.png);
+  background-size: 150px;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #000000;
+  margin: 0 20px;
+}
 
+.checkoutPage__h1 {
+  font-family: "Russo One", sans-serif;
+  padding: 10px 20px;
+}
+
+.checkout__button {
+  background-color: #cec93f;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 2px solid #000000;
+}
+
+/* Styling for desktop */
+@media only screen and (min-width: 768px) {
+  button {
+    font-size: 16px;
+  }
+  .header__img {
+    width: 400px;
+  }
+
+  .header__button {
+    margin: 0 20px;
+    background-size: 175px;
+    padding: 40px 50px;
+  }
+}
