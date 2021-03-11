@@ -2,6 +2,12 @@
 const loadedCart = JSON.parse(window.localStorage.getItem("cart"));
 // variable for cart items
 let cartTotal = 0;
+// function to check cartTotal and display message if = 0
+function checkCartTotal() {
+  if (cartTotal === 0) {
+    document.querySelector(".emptyCart__div").classList.remove("hide");
+  }
+}
 
 // On page load, add items from local storage to cart.
 for (let item of loadedCart) {
@@ -47,6 +53,8 @@ for (let item of loadedCart) {
   cartTotal++;
 }
 
+checkCartTotal();
+
 // Add event listener to the parent container for the cart items
 document.querySelector(".cartItems__div").addEventListener("click", (event) => {
   // removes div from page
@@ -63,13 +71,10 @@ document.querySelector(".cartItems__div").addEventListener("click", (event) => {
     }
     // subtract from cartTotal
     cartTotal--;
+    // If cartTotal = 0, display message
+    checkCartTotal();
   }
 });
-
-// If cartTotal = 0, display message
-if (cartTotal === 0) {
-  document.querySelector(".emptyCart__div").classList.remove("hide");
-}
 
 // function to checkout and reveal payment and input div:
 const checkoutButton = document.getElementById("checkout-button");
