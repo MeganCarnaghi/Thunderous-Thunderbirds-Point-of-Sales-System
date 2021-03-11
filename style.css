@@ -211,4 +211,12 @@ h2 {
   .subtotal__div {
     margin: 40px;
   }
+
+  .cartItem__img {
+    width: 200px;
+    border-radius: 50%;
+    margin-right: 40px;
+    border: 5px solid #000000;
+    box-shadow: 2px 2px 8px #000000;
+  }
 }
