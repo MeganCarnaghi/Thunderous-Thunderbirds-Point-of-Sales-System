@@ -31,8 +31,14 @@ document
       // Get the src attribute of the imgElement, store in variable
       const imgSrc = imgElement.getAttribute("src");
 
-      // add items to shopping cart array
-      shoppingCart.push({ name: name, price: price, imgSrc: imgSrc });
-      window.localStorage.setItem("cart", JSON.stringify(shoppingCart));
+      // add items to local storage
+      if (localStorage.getItem("cart") === null) {
+        shoppingCart.push({ name: name, price: price, imgSrc: imgSrc });
+        window.localStorage.setItem("cart", JSON.stringify(shoppingCart));
+      }
+
+      const loadedCart = JSON.parse(localStorage.getItem("cart"));
+      loadedCart.push({ name: name, price: price, imgSrc: imgSrc });
+      window.localStorage.setItem("cart", JSON.stringify(loadedCart));
     }
   });

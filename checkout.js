@@ -1,6 +1,5 @@
 // // Retrieving items from local storage and adding them to page on page load
 const loadedCart = JSON.parse(window.localStorage.getItem("cart"));
-console.log(loadedCart);
 
 // On page load, add items from local storage to cart.
 for (let item of loadedCart) {
@@ -34,7 +33,33 @@ for (let item of loadedCart) {
   newh3.textContent = `Price: $${item.price}`;
   // append new h2 to new div
   subDiv.appendChild(newh3);
+  // Create a button to remove item from cart
+  const newBtn = document.createElement("button");
+  // Set text content for new button
+  newBtn.textContent = "Remove Item";
+  // Add .cartItemsRemove__button class to button
+  newBtn.classList.add(".cartItemsRemove__button");
+  // append new h2 to new div
+  subDiv.appendChild(newBtn);
 }
+
+//// Add event listener to the parent container for the cart items
+document.querySelector(".cartItems__div").addEventListener("click", (event) => {
+  // removes div from page
+  if (event.target.classList.contains(".cartItemsRemove__button")) {
+    // remove from local storage...
+    const itemName = event.target.parentNode.firstChild.textContent;
+    for (let item of loadedCart) {
+      if (item.name === itemName) {
+        loadedCart.splice(loadedCart.indexOf(item), 1);
+        console.log(loadedCart);
+        window.localStorage.setItem("cart", JSON.stringify(loadedCart));
+      }
+      // removes div from page
+      event.target.parentNode.parentNode.remove();
+    }
+  }
+});
 
 // function to checkout and reveal payment and input div:
 const checkoutButton = document.getElementById("checkout-button");
