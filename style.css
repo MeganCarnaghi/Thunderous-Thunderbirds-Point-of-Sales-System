@@ -7,13 +7,14 @@ White #fff */
 /* Headings "Russo One", sans-serif;
 Body Text "  font-family: "Oswald", sans-serif;" */
 
-/* Generic Styling for Page */
+/* Generic Styling for both pages */
 * {
   margin: 0;
   padding: 0;
 }
 
-p {
+p,
+h3 {
   font-family: "Oswald", sans-serif;
 }
 
@@ -35,6 +36,10 @@ h2 {
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
+}
+
+.main {
+  margin-top: 200px;
 }
 
 /* Mobile first styling */
@@ -59,24 +64,39 @@ h2 {
   width: 60%;
 }
 
-.header__link {
-  text-decoration: none;
-  padding: 25px 35px;
+.headerLink__div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   border: none;
-  font-family: "Oswald", sans-serif;
-  text-transform: uppercase;
-  font-size: 16px;
   background: url(images/dogbone.png);
   background-size: 150px;
   background-position: center;
   background-repeat: no-repeat;
-  color: #000000;
   margin: 0 20px;
+  height: 100%;
+  width: 100%;
 }
 
-/* MAIN CONTENT */
+.header__link {
+  text-decoration: none;
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+  font-size: 16px;
+  color: #000000;
+}
+
+#viewCart__link {
+  padding: 25px 35px;
+}
+
+#keepShop__link {
+  padding: 25px 25px;
+}
+
+/* MAIN CONTENT FOR INDEX.HTML */
 .itemsContainer__div {
-  margin-top: 40%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -101,8 +121,26 @@ h2 {
   font-style: italic;
 }
 
-.checkoutPage__h1 {
-  padding: 10px 20px;
+/* MAIN CONTENT FOR CHECKOUT.HTML */
+.cartItems__div {
+  background-color: rgba(205, 200, 63, 0.9);
+  margin: 0px 20px;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.cartItem__div {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.cartItem__img {
+  width: 125px;
+  border-radius: 50%;
+  margin-right: 40px;
+  border: 2px solid #000000;
+  box-shadow: 2px 2px 5px #000000;
 }
 
 .checkout__button {
@@ -117,18 +155,17 @@ h2 {
   button {
     font-size: 16px;
   }
+
   .header__img {
     width: 400px;
   }
 
-  .header__link {
-    margin: 0 20px;
+  .headerLink__div {
     background-size: 175px;
-    padding: 40px 50px;
-    font-size: 20px;
+    width: 200px;
   }
+
   .itemsContainer__div {
-    margin-top: 15%;
     display: flex;
     flex-direction: row;
     justify-content: center;
