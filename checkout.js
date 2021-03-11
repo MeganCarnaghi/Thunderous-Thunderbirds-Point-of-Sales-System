@@ -68,7 +68,7 @@ document.querySelector(".cartItems__div").addEventListener("click", (event) => {
 
 // If cartTotal = 0, display message
 if (cartTotal === 0) {
-  document.querySelector(".emptyCart__div").classList.remove("hidden");
+  document.querySelector(".emptyCart__div").classList.remove("hide");
 }
 
 // function to checkout and reveal payment and input div:
