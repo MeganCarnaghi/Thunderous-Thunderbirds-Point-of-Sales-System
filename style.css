@@ -54,9 +54,13 @@ button {
   width: 60%;
 }
 
-.header__button {
+.header__link {
+  text-decoration: none;
   padding: 25px 35px;
   border: none;
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+  font-size: 16px;
   background: url(images/dogbone.png);
   background-size: 150px;
   background-position: center;
@@ -86,9 +90,10 @@ button {
     width: 400px;
   }
 
-  .header__button {
+  .header__link {
     margin: 0 20px;
     background-size: 175px;
     padding: 40px 50px;
+    font-size: 20px;
   }
 }
