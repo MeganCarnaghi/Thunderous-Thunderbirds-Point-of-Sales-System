@@ -18,6 +18,10 @@ h3 {
   font-family: "Oswald", sans-serif;
 }
 
+p {
+  font-size: 18px;
+}
+
 button {
   font-family: "Oswald", sans-serif;
   text-transform: uppercase;
@@ -122,6 +126,7 @@ h2 {
 }
 
 /* MAIN CONTENT FOR CHECKOUT.HTML */
+
 .cartItems__div {
   background-color: rgba(205, 200, 63, 0.9);
   margin: 0px 20px;
@@ -129,10 +134,35 @@ h2 {
   padding: 20px;
 }
 
+.emptyCart__div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+.emptyCart__h2 {
+  margin: 20px 0 10px 0;
+}
+
 .cartItem__div {
   display: flex;
   align-items: center;
   margin: 20px 0;
+}
+
+.emptyCart__link {
+  text-decoration: none;
+}
+
+.emptyCart__link:hover {
+  text-decoration: underline;
+  color: #ffffff;
 }
 
 .cartItem__img {
@@ -174,5 +204,9 @@ h2 {
 
   .item__div {
     width: 33%;
+  }
+
+  .cartItems__div {
+    margin: 40px;
   }
 }

@@ -1,5 +1,7 @@
-// // Retrieving items from local storage and adding them to page on page load
+// Retrieving items from local storage and adding them to page on page load
 const loadedCart = JSON.parse(window.localStorage.getItem("cart"));
+// variable for cart items
+let cartTotal = 0;
 
 // On page load, add items from local storage to cart.
 for (let item of loadedCart) {
@@ -41,9 +43,11 @@ for (let item of loadedCart) {
   newBtn.classList.add(".cartItemsRemove__button");
   // append new h2 to new div
   subDiv.appendChild(newBtn);
+  // Add to cart total
+  cartTotal++;
 }
 
-//// Add event listener to the parent container for the cart items
+// Add event listener to the parent container for the cart items
 document.querySelector(".cartItems__div").addEventListener("click", (event) => {
   // removes div from page
   if (event.target.classList.contains(".cartItemsRemove__button")) {
@@ -52,14 +56,20 @@ document.querySelector(".cartItems__div").addEventListener("click", (event) => {
     for (let item of loadedCart) {
       if (item.name === itemName) {
         loadedCart.splice(loadedCart.indexOf(item), 1);
-        console.log(loadedCart);
         window.localStorage.setItem("cart", JSON.stringify(loadedCart));
       }
       // removes div from page
       event.target.parentNode.parentNode.remove();
     }
+    // subtract from cartTotal
+    cartTotal--;
   }
 });
+
+// If cartTotal = 0, display message
+if (cartTotal === 0) {
+  document.querySelector(".emptyCart__div").classList.remove("hidden");
+}
 
 // function to checkout and reveal payment and input div:
 const checkoutButton = document.getElementById("checkout-button");

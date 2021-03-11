@@ -1,7 +1,5 @@
 // Select all the Add to Cart buttons
 const addToCartButton = document.querySelectorAll(".item__button");
-// Initialize an empty object for the cart item added
-const cartItem = {};
 // Initialize an empty array for the shopping cart items
 const shoppingCart = [];
 
