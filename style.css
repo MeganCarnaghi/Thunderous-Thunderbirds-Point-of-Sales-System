@@ -17,27 +17,28 @@ p {
   font-family: "Oswald", sans-serif;
 }
 
-body {
-  background-image: url("images/shutterstock_271040717.jpg");
-  height: 100vh;
-}
-
 button {
   font-family: "Oswald", sans-serif;
   text-transform: uppercase;
   font-size: 16px;
 }
 
-.item__div {
-  background-color: #cec93f;
-  margin: 20px;
+h1 {
+  font-family: "Russo One", sans-serif;
 }
 
-.item__img {
-  border-radius: 50%;
+.parallax {
+  background-image: url("images/shutterstock_271040717.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
 }
 
 /* Mobile first styling */
+
+/* HEADER CONTENT */
 .header {
   display: flex;
   align-items: center;
@@ -48,6 +49,9 @@ button {
   font-family: "Russo One", sans-serif;
   font-size: 24px;
   padding: 10px;
+  position: fixed;
+  top: 0;
+  border-bottom: 5px solid #000000;
 }
 
 .header__img {
@@ -69,13 +73,39 @@ button {
   margin: 0 20px;
 }
 
+/* MAIN CONTENT */
+.itemsContainer__div {
+  margin-top: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.item__div {
+  background-color: rgba(205, 200, 63, 0.9);
+  border-radius: 5px;
+  margin: 20px;
+  text-align: center;
+  padding: 20px;
+}
+
+.item__img {
+  border-radius: 50%;
+  border: 8px solid #000000;
+  width: 75%;
+  box-shadow: 5px 5px 10px #000000;
+}
+
+.itemCat__p {
+  font-style: italic;
+}
+
 .checkoutPage__h1 {
-  font-family: "Russo One", sans-serif;
   padding: 10px 20px;
 }
 
 .checkout__button {
-  background-color: #cec93f;
+  background-color: #cdc83f;
   padding: 5px 10px;
   border-radius: 8px;
   border: 2px solid #000000;
@@ -95,5 +125,16 @@ button {
     background-size: 175px;
     padding: 40px 50px;
     font-size: 20px;
+  }
+  .itemsContainer__div {
+    margin-top: 15%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .item__div {
+    width: 33%;
   }
 }
