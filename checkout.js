@@ -101,16 +101,19 @@ function checkout() {
   totalSection.classList.remove("hide");
   inputSection.classList.remove("hide");
   paymentSection.classList.remove("hide");
+
 }
 
 // function calculate sales tax and return it to the sales tax line
 function calculateTax(subtotal) {
-  let salesTax = (subtotal = 0.06);
-  return salesTax;
+  let salesTax = (subtotal * 0.06);
+  const taxP = document.querySelector(".tax__p");
+  taxP.textContent = `Sales tax: $${salesTax.toFixed([2])}`;
+    
 }
 
 // event listeners
-checkoutButton.addEventListener("click", checkout, calculateTax);
+checkoutButton.addEventListener("click", checkout, calculateTax(subtotal));
 
 // invoking functions
 updateSubtotals();
