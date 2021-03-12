@@ -2,6 +2,8 @@
 const loadedCart = JSON.parse(window.localStorage.getItem("cart"));
 // variable for cart items
 let cartTotal = 0;
+// variable for subtotal
+let subtotal = 0;
 // function to check cartTotal and display message if = 0
 function checkCartTotal() {
   if (cartTotal === 0) {
@@ -39,6 +41,8 @@ for (let item of loadedCart) {
   const newh3 = document.createElement("h3");
   // Set text content for new h3
   newh3.textContent = `Price: $${item.price}`;
+  const itemPrice = parseInt(item.price);
+  subtotal += itemPrice;
   // append new h2 to new div
   subDiv.appendChild(newh3);
   // Create a button to remove item from cart
@@ -53,7 +57,14 @@ for (let item of loadedCart) {
   cartTotal++;
 }
 
-checkCartTotal();
+// function to update subtotals
+function updateSubtotals() {
+  console.log(subtotal);
+  const subtotalh1 = document.querySelector(".checkoutPageSubtotal__h1");
+  subtotalh1.textContent = `Subtotal: $${subtotal}.00`;
+  const subtotalP = document.querySelector(".subtotal__p");
+  subtotalP.textContent = `Subtotal: $${subtotal}.00`;
+}
 
 // Add event listener to the parent container for the cart items
 document.querySelector(".cartItems__div").addEventListener("click", (event) => {
@@ -65,6 +76,9 @@ document.querySelector(".cartItems__div").addEventListener("click", (event) => {
       if (item.name === itemName) {
         loadedCart.splice(loadedCart.indexOf(item), 1);
         window.localStorage.setItem("cart", JSON.stringify(loadedCart));
+        // subtract from subtotal
+        subtotal -= item.price;
+        updateSubtotals();
       }
       // removes div from page
       event.target.parentNode.parentNode.remove();
@@ -77,11 +91,26 @@ document.querySelector(".cartItems__div").addEventListener("click", (event) => {
 });
 
 // function to checkout and reveal payment and input div:
-const checkoutButton = document.getElementById("checkout-button");
+const checkoutButton = document.querySelector(".checkout__button");
 function checkout() {
-  // declare variable for total and input divs here
-  // [name of variable here].display = "block";
-  // declare subtotal variable here
-  // declare sales tax variable here
-  // decalre total variable here
+  // get the divs for the total, input and payment sections:
+  let totalSection = document.querySelector(".total__div");
+  let inputSection = document.querySelector(".inputForm__div");
+  let paymentSection = document.querySelector(".paymentForm__div");
+  // change the total, input, and payment sections to be visible:
+  totalSection.classList.remove("hide");
+  inputSection.classList.remove("hide");
+  paymentSection.classList.remove("hide");
 }
+
+// function calculate sales tax and return it to the sales tax line
+function calculateTax(subtotal) {
+  let salesTax = (subtotal = 0.06);
+  return salesTax;
+}
+
+// event listeners
+checkoutButton.addEventListener("click", checkout, calculateTax);
+
+// invoking functions
+updateSubtotals();
