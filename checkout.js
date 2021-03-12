@@ -42,7 +42,7 @@ for (let item of loadedCart) {
   // Set text content for new h3
   newh3.textContent = `Price: $${item.price}`;
   const itemPrice = parseInt(item.price);
-  subtotal += itemPrice
+  subtotal += itemPrice;
   // append new h2 to new div
   subDiv.appendChild(newh3);
   // Create a button to remove item from cart
@@ -57,7 +57,14 @@ for (let item of loadedCart) {
   cartTotal++;
 }
 
-checkCartTotal();
+// function to update subtotals
+function updateSubtotals() {
+  console.log(subtotal);
+  const subtotalh1 = document.querySelector(".checkoutPageSubtotal__h1");
+  subtotalh1.textContent = `Subtotal: $${subtotal}.00`;
+  const subtotalP = document.querySelector(".subtotal__p");
+  subtotalP.textContent = `Subtotal: $${subtotal}.00`;
+}
 
 // Add event listener to the parent container for the cart items
 document.querySelector(".cartItems__div").addEventListener("click", (event) => {
@@ -69,11 +76,12 @@ document.querySelector(".cartItems__div").addEventListener("click", (event) => {
       if (item.name === itemName) {
         loadedCart.splice(loadedCart.indexOf(item), 1);
         window.localStorage.setItem("cart", JSON.stringify(loadedCart));
+        // subtract from subtotal
+        subtotal -= item.price;
+        updateSubtotals();
       }
       // removes div from page
       event.target.parentNode.parentNode.remove();
-      // subtract from subtotal
-      subtotal -= item.price;
     }
     // subtract from cartTotal
     cartTotal--;
@@ -93,15 +101,16 @@ function checkout() {
   totalSection.classList.remove("hide");
   inputSection.classList.remove("hide");
   paymentSection.classList.remove("hide");
-  // put the subtotal variable in the subtotal p:
-  let subtotalP = document.querySelector(".subtotal__p");
-  subtotalP.textContent = `Subtotal: $${subtotal}.00`;
-
 }
-checkoutButton.addEventListener("click", checkout);
 
+// function calculate sales tax and return it to the sales tax line
+function calculateTax(subtotal) {
+  let salesTax = (subtotal = 0.06);
+  return salesTax;
+}
 
+// event listeners
+checkoutButton.addEventListener("click", checkout, calculateTax);
 
-
-  // declare sales tax variable here
-  // decalre total variable here
+// invoking functions
+updateSubtotals();
