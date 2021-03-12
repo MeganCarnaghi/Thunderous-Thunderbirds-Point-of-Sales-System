@@ -42,7 +42,7 @@ for (let item of loadedCart) {
   // Set text content for new h3
   newh3.textContent = `Price: $${item.price}`;
   const itemPrice = parseInt(item.price);
-  subtotal =+ itemPrice
+  subtotal += itemPrice
   // append new h2 to new div
   subDiv.appendChild(newh3);
   // Create a button to remove item from cart
@@ -72,6 +72,8 @@ document.querySelector(".cartItems__div").addEventListener("click", (event) => {
       }
       // removes div from page
       event.target.parentNode.parentNode.remove();
+      // subtract from subtotal
+      subtotal -= item.price;
     }
     // subtract from cartTotal
     cartTotal--;
@@ -91,13 +93,15 @@ function checkout() {
   totalSection.classList.remove("hide");
   inputSection.classList.remove("hide");
   paymentSection.classList.remove("hide");
+  // put the subtotal variable in the subtotal p:
+  let subtotalP = document.querySelector(".subtotal__p");
+  subtotalP.textContent = `Subtotal: $${subtotal}.00`;
 
 }
-
 checkoutButton.addEventListener("click", checkout);
 
-  // declare subtotal variable here
+
+
+
   // declare sales tax variable here
   // decalre total variable here
-
-  // .itemPrice__span
