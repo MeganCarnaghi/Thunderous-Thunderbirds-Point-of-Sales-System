@@ -13,135 +13,173 @@
     <!-- Link to CSS -->
     <link rel="stylesheet" href="style.css" type="text/css" />
   </head>
-  <body>
+  <body class="parallax">
     <header class="header">
       <img class="header__img" src="images/logo.jpg" alt="logo" />
-      <button class="header__button" id="viewCart__button">View Cart</button>
+      <div class="headerLink__div">
+        <a class="header__link" href="checkout.html">View Cart</a>
+      </div>
     </header>
-    <main>
-      <!-- item 1  -->
-      <div class="item__div">
-        <h1 class="item__h1" id="item1-name">Gus's Tank Top</h1>
-        <p class="item__p" id="item1-cat"><em>Category: Streetwear</em></p>
-        <img class="item__img" id="item1-img" src="images/gus-brotank.jpg" />
-        <p class="item__p" id="item1-des">
-          Gus's Hulk themed tanktop is perfect for the spring and summer. The
-          colors are vibrant and are guranteed to be a headturner at the dog
-          park.
-        </p>
-        <div class="itemPrice__div">
-          <h2 class="item__h2" id="item1-price">Item Price: $20</h2>
-          <button class="item__button" id="item1-button">Add to Cart</button>
+    <main class="main">
+      <div class="itemsContainer__div">
+        <!-- item 1  -->
+        <div class="item__div">
+          <h1 class="itemName__h1">Gus's Tank Top</h1>
+          <p class="itemCat__p">Category: Streetwear</p>
+          <img class="item__img" src="images/gus-brotank.jpg" />
+          <p class="itemDes__p">
+            Gus's Hulk themed tanktop is perfect for spring and summer. The
+            colors are vibrant and this tank is guaranteed to be a headturner at
+            the dog park.
+          </p>
+          <div class="itemPrice__div">
+            <h2 class="itemPrice__h2">
+              Item Price:&nbsp;$<span class="itemPrice__span">20</span>
+            </h2>
+            <button class="item__button">Add to Cart</button>
+          </div>
         </div>
-      </div>
-      <!-- item 2  -->
-      <div class="item__div">
-        <h1 class="item__h1" id="item2-name">Gus's Shirt & Tie</h1>
-        <p class="item__p" id="item2-cat">Category: Casual</p>
-        <img
-          class="item__img"
-          id="item2-img"
-          src="images/gus-colarshirtandtie.jpg"
-        />
-        <p class="item__p" id="item2-des">
-          Gus's Shirt and Tie is perfect for a day at the office or a day out on
-          the town.
-        </p>
-        <div class="itemPrice__div">
-          <h2 class="item__h2" id="item2-price">Item Price: $35</h2>
-          <button class="item__button" id="item2-button">Add to Cart</button>
+        <!-- item 2  -->
+        <div class="item__div">
+          <h1 class="itemName__h1">Gus's Shirt & Tie</h1>
+          <p class="itemCat__p">Category: Casual</p>
+          <img class="item__img" src="images/gus-colarshirtandtie.jpg" />
+          <p class="itemDes__p">
+            Gus's Shirt and Tie is perfect for a day at the office or a day out
+            on the town.
+          </p>
+          <div class="itemPrice__div">
+            <h2 class="itemPrice__h2">
+              Item Price:&nbsp;$<span class="itemPrice__span">20</span>
+            </h2>
+            <button class="item__button">Add to Cart</button>
+          </div>
         </div>
-      </div>
-      <!-- item 3  -->
-      <div class="item__div">
-        <h1 class="item__h1" id="item3-name">Gus's Hoodie</h1>
-        <p class="item__p" id="item3-cat">Category: Streetwear</p>
-        <img class="item__img" id="item3-img" src="images/gus-hoodie.jpg" />
-        <p class="item__p" id="item3-des">add description here Kayla</p>
-        <div class="itemPrice__div">
-          <h2 class="item__h2" id="item3-price">Item Price: $15</h2>
-          <button class="item__button" id="item3-button">Add to Cart</button>
+        <!-- item 3  -->
+        <div class="item__div">
+          <h1 class="itemName__h1">Bad Dog Hoodie</h1>
+          <p class="itemCat__p">Category: Streetwear</p>
+          <img class="item__img" src="images/gus-hoodie.jpg" />
+          <p class="itemDes__p">
+            Gus's Hoodie is fit for the baddest dog in the yard & even more
+            fitting for the dogs who make it out the yard.
+          </p>
+          <div class="itemPrice__div">
+            <h2 class="itemPrice__h2">
+              Item Price:&nbsp;$<span class="itemPrice__span">20</span>
+            </h2>
+            <button class="item__button">Add to Cart</button>
+          </div>
         </div>
-      </div>
-      <!-- item 4  -->
-      <div class="item__div">
-        <h1 class="item__h1" id="item4-name">Gus's Jacket</h1>
-        <p class="item__p" id="item4-cat">Category: Casual</p>
-        <img class="item__img" id="item4-img" src="images/gus-jacket.jpg" />
-        <p class="item__p" id="item4-des">description goes here Kayla</p>
-        <div class="itemPrice__div">
-          <h2 class="item__h2" id="item4-price">Item Price $20</h2>
-          <button class="item__button" id="item4-button">Add to Cart</button>
+        <!-- item 4  -->
+        <div class="item__div">
+          <h1 class="itemName__h1">Gus's Jacket</h1>
+          <p class="itemCat__p">Category: Casual</p>
+          <img class="item__img" src="images/gus-jacket.jpg" />
+          <p class="itemDes__p">
+            Great jacket to have for a long walk on a breezy day. Jacket has
+            padding to keep warm with access to collar for easy attacthment of
+            leash.
+          </p>
+          <div class="itemPrice__div">
+            <h2 class="itemPrice__h2">
+              Item Price:&nbsp;$<span class="itemPrice__span">20</span>
+            </h2>
+            <button class="item__button">Add to Cart</button>
+          </div>
         </div>
-      </div>
-      <!-- item 5  -->
-      <div class="item__div">
-        <h1 class="item__h1" id="item5-name">Gus The Lobster</h1>
-        <p class="item__p" id="item5-cat">Category: Costume</p>
-        <img class="item__img" id="item5-img" src="images/gus-lobster.jpg" />
-        <p class="item__p" id="item5-des">description goes here</p>
-        <div class="itemPrice__div">
-          <h2 class="item__h2" id="item5-price">Item Price: $40</h2>
-          <button class="item__button" id="item5-button">Add to Cart</button>
+        <!-- item 5  -->
+        <div class="item__div">
+          <h1 class="itemName__h1">Gus The Lobster</h1>
+          <p class="itemCat__p">Category: Costume</p>
+          <img class="item__img" src="images/gus-lobster.jpg" />
+          <p class="itemDes__p">The cutest lobster on the block.</p>
+          <div class="itemPrice__div">
+            <h2 class="itemPrice__h2">
+              Item Price:&nbsp;$<span class="itemPrice__span">20</span>
+            </h2>
+            <button class="item__button">Add to Cart</button>
+          </div>
         </div>
-      </div>
-      <!-- item 6  -->
-      <div class="item__div">
-        <h1 class="item__h1" id="item6-name">Gus The Minion</h1>
-        <p class="item__p" id="item6-cat">Category: Costume</p>
-        <img class="item__img" id="item6-img" src="images/gus-minion.jpg" />
-        <p class="item__p" id="item6-des">description goes here</p>
-        <div class="itemPrice__div">
-          <h2 class="item__h2" id="item6-price">Item Price: $50</h2>
-          <button class="item__button" id="item6-button">Add to Cart</button>
+        <!-- item 6  -->
+        <div class="item__div">
+          <h1 class="itemName__h1">Gus The Minion</h1>
+          <p class="itemCat__p">Category: Costume</p>
+          <img class="item__img" src="images/gus-minion.jpg" />
+          <p class="itemDes__p">
+            The dog turned minion. The most despicable thing ever.
+          </p>
+          <div class="itemPrice__div">
+            <h2 class="itemPrice__h2">
+              Item Price:&nbsp;$<span class="itemPrice__span">20</span>
+            </h2>
+            <button class="item__button">Add to Cart</button>
+          </div>
         </div>
-      </div>
-      <!-- item 7  -->
-      <div class="item__div">
-        <h1 class="item__h1" id="item7-name">Gus's PJs</h1>
-        <p class="item__p" id="item7-cat">Category: Sleepwear</p>
-        <img class="item__img" id="item7-img" src="images/gus-pajamas.jpg" />
-        <p class="item__p" id="item7-des">description goes here</p>
-        <div class="itemPrice__div">
-          <h2 class="item__h2" id="item7-price">Item Price: $25</h2>
-          <button class="item__button" id="item7-button">Add to Cart</button>
+        <!-- item 7  -->
+        <div class="item__div">
+          <h1 class="itemName__h1">Nap Time</h1>
+          <p class="itemCat__p">Category: Sleepwear</p>
+          <img class="item__img" src="images/gus-pajamas.jpg" />
+          <p class="itemDes__p">
+            Want to sleep like Gus? Try his favorite pj's and see if it has your
+            tail wagging in the morning.
+          </p>
+          <div class="itemPrice__div">
+            <h2 class="itemPrice__h2">
+              Item Price:&nbsp;$<span class="itemPrice__span">20</span>
+            </h2>
+            <button class="item__button">Add to Cart</button>
+          </div>
         </div>
-      </div>
-      <!-- item 8  -->
-      <div class="item__div">
-        <h1 class="item__h1" id="item8-name">Gus's Plaid Shirt</h1>
-        <p class="item__p" id="item8-cat">Category: Casual</p>
-        <img class="item__img" id="item8-img" src="images/gus-plaidshirt.jpg" />
-        <p class="item__p" id="item8-des">description goes here</p>
-        <div class="itemPrice__div">
-          <h2 class="item__h2" id="item8-price">Item Price: $40</h2>
-          <button class="item__button" id="item8-button">Add to Cart</button>
+        <!-- item 8  -->
+        <div class="item__div">
+          <h1 class="itemName__h1">Thee Plaid Shirt</h1>
+          <p class="itemCat__p">Category: Casual</p>
+          <img class="item__img" src="images/gus-plaidshirt.jpg" />
+          <p class="itemDes__p">
+            Thee plaid shirt will take your wardrobe to the next level. It feels
+            comfortable and its stylish enough to get some tails wagging.
+          </p>
+          <div class="itemPrice__div">
+            <h2 class="itemPrice__h2">
+              Item Price:&nbsp;$<span class="itemPrice__span">20</span>
+            </h2>
+            <button class="item__button">Add to Cart</button>
+          </div>
         </div>
-      </div>
-      <!-- item 9  -->
-      <div class="item__div">
-        <img
-          class="item__img"
-          id="item9-img"
-          src="images/gus-redwhite-blue.jpg"
-        />
-        <h1 class="item__h1" id="item9-name"></h1>
-        <p class="item__p" id="item9-cat"></p>
-        <p class="item__p" id="item9-des"></p>
-        <div class="itemPrice__div">
-          <h2 class="item__h2" id="item9-price"></h2>
-          <button class="item__button" id="item9-button">Add to Cart</button>
+        <!-- item 9  -->
+        <div class="item__div">
+          <h1 class="itemName__h1">Picnic Looks</h1>
+          <p class="itemCat__p">Category: Casual</p>
+          <img class="item__img" src="images/gus-redwhite-blue.jpg" />
+          <p class="itemDes__p">
+            Open field, hot dogs on the grill, and a favorite shirt sounds like
+            all a dog needs to have a great day outside.
+          </p>
+          <div class="itemPrice__div">
+            <h2 class="itemPrice__h2">
+              Item Price:&nbsp;$<span class="itemPrice__span">20</span>
+            </h2>
+            <button class="item__button">Add to Cart</button>
+          </div>
         </div>
-      </div>
-      <!-- item 10  -->
-      <div class="item__div">
-        <h1 class="item__h1" id="item10-name">Gus The Snowman</h1>
-        <p class="item__p" id="item10-cat">Category: Costume</p>
-        <img class="item__img" id="item10-img" src="images/gus-snowsuit.jpg" />
-        <p class="item__p" id="item10-des">description goes here..</p>
-        <div class="itemPrice__div">
-          <h2 class="item__h2" id="item10-price">Item Price: $50</h2>
-          <button class="item__button" id="item10-button">Add to Cart</button>
+        <!-- item 10  -->
+        <div class="item__div">
+          <h1 class="itemName__h1">Night on the Town</h1>
+          <p class="itemCat__p">Category: Date Night</p>
+          <img class="item__img" src="images/gus-tuxedo.jpg" />
+          <p class="itemDes__p">
+            Dress to impress with this Tuxedo tailored with you in mind. Grab
+            some wine and slick your whiskers down and let this suit do the
+            talking for you.
+          </p>
+          <div class="itemPrice__div">
+            <h2 class="itemPrice__h2">
+              Item Price:&nbsp;$<span class="itemPrice__span">20</span>
+            </h2>
+            <button class="item__button">Add to Cart</button>
+          </div>
         </div>
       </div>
     </main>

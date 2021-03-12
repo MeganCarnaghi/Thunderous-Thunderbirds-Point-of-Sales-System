@@ -7,19 +7,19 @@ White #fff */
 /* Headings "Russo One", sans-serif;
 Body Text "  font-family: "Oswald", sans-serif;" */
 
-/* Generic Styling for Page */
+/* Generic Styling for both pages */
 * {
   margin: 0;
   padding: 0;
 }
 
-p {
+p,
+h3 {
   font-family: "Oswald", sans-serif;
 }
 
-body {
-  background-image: url("images/shutterstock_271040717.jpg");
-  height: 100vh;
+p {
+  font-size: 18px;
 }
 
 button {
@@ -28,16 +28,27 @@ button {
   font-size: 16px;
 }
 
-.item__div {
-  background-color: #cec93f;
-  margin: 20px;
+h1,
+h2 {
+  font-family: "Russo One", sans-serif;
 }
 
-.item__img {
-  border-radius: 50%;
+.parallax {
+  background-image: url("images/shutterstock_271040717.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+.main {
+  margin-top: 200px;
 }
 
 /* Mobile first styling */
+
+/* HEADER CONTENT */
 .header {
   display: flex;
   align-items: center;
@@ -48,30 +59,143 @@ button {
   font-family: "Russo One", sans-serif;
   font-size: 24px;
   padding: 10px;
+  position: fixed;
+  top: 0;
+  border-bottom: 5px solid #000000;
 }
 
 .header__img {
   width: 60%;
 }
 
-.header__button {
-  padding: 25px 35px;
+.headerLink__div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   border: none;
   background: url(images/dogbone.png);
   background-size: 150px;
   background-position: center;
   background-repeat: no-repeat;
-  color: #000000;
   margin: 0 20px;
+  height: 100%;
+  width: 100%;
 }
 
-.checkoutPage__h1 {
-  font-family: "Russo One", sans-serif;
-  padding: 10px 20px;
+.header__link {
+  text-decoration: none;
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+  font-size: 16px;
+  color: #000000;
+}
+
+.header__link:hover {
+  color: #000000;
+}
+
+.header__link:visited {
+  color: #000000;
+}
+
+.header__link:active {
+  color: #000000;
+}
+
+#viewCart__link {
+  padding: 25px 35px;
+}
+
+#keepShop__link {
+  padding: 25px 25px;
+}
+
+/* MAIN CONTENT FOR INDEX.HTML */
+.itemsContainer__div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.item__div {
+  background-color: rgba(205, 200, 63, 0.9);
+  border-radius: 5px;
+  margin: 20px;
+  text-align: center;
+  padding: 20px;
+}
+
+.item__img {
+  border-radius: 50%;
+  border: 8px solid #000000;
+  width: 75%;
+  box-shadow: 5px 5px 10px #000000;
+}
+
+.itemCat__p {
+  font-style: italic;
+}
+
+/* MAIN CONTENT FOR CHECKOUT.HTML */
+
+.cartItems__div,
+.subtotal__div {
+  background-color: rgba(205, 200, 63, 0.9);
+  margin: 30px 20px;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.emptyCart__div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px 10px;
+}
+
+.hide {
+  display: none;
+}
+
+.emptyCart__h2 {
+  margin: 20px 0 10px 0;
+}
+
+.cartItem__div {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.emptyCart__link {
+  text-decoration: none;
+}
+
+.emptyCart__link:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.emptyCart__link:visited {
+  color: #ffffff;
+}
+
+.emptyCart__link:active {
+  color: #ffffff;
+}
+
+.cartItem__img {
+  width: 125px;
+  border-radius: 50%;
+  margin-right: 40px;
+  border: 2px solid #000000;
+  box-shadow: 2px 2px 5px #000000;
 }
 
 .checkout__button {
-  background-color: #cec93f;
+  background-color: #cdc83f;
   padding: 5px 10px;
   border-radius: 8px;
   border: 2px solid #000000;
@@ -82,13 +206,37 @@ button {
   button {
     font-size: 16px;
   }
+
   .header__img {
     width: 400px;
   }
 
-  .header__button {
-    margin: 0 20px;
+  .headerLink__div {
     background-size: 175px;
-    padding: 40px 50px;
+    width: 200px;
+  }
+
+  .itemsContainer__div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .item__div {
+    width: 33%;
+  }
+
+  .cartItems__div,
+  .subtotal__div {
+    margin: 40px;
+  }
+
+  .cartItem__img {
+    width: 200px;
+    border-radius: 50%;
+    margin-right: 40px;
+    border: 5px solid #000000;
+    box-shadow: 2px 2px 8px #000000;
   }
 }

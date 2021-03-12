@@ -13,25 +13,92 @@
     <!-- Link to CSS -->
     <link rel="stylesheet" href="style.css" type="text/css" />
   </head>
-  <body>
+  <body class="parallax">
     <header class="header">
       <img class="header__img" src="images/logo.jpg" alt="logo" />
-      <button class="header__button" id="keepShop__button">
-        Keep Shopping
-      </button>
+      <div class="headerLink__div">
+        <a class="header__link" href="index.html">Keep Shopping</a>
+      </div>
     </header>
     <main class="main">
       <!-- Cart Items Section -->
       <div class="cartItems__div">
         <h1 class="checkoutPage__h1">Cart Items</h1>
+        <!-- Empty Cart Div (hidden if items in cart)-->
+      <div class="emptyCart__div hide">
+          <img src="images/sadpuppy.png" alt="sad puppy">
+     <h2 class="emptyCart__h2">Ruh roh! It looks like your cart is empty!</h2>
+          <p class="emptyCart__p">Go back to the <a class="emptyCart__link" href="index.html"><strong>homepage</strong></a> and add some items.</p>
+      </div>
+        </div>
+        </div>
       </div>
       <!-- Subtotal Section -->
       <div class="subtotal__div">
         <h1 class="checkoutPage__h1">Subtotal</h1>
         <button class="checkout__button">Checkout</button>
       </div>
+      <!-- Total Section -->
+      <div class="total__div hidden">
+        <p class="subtotal__p">Subtotal</p>
+        <p class="tax__p">Sales Tax</p>
+        <p class="total__p">Total</p>
+      </div>
+      <!-- The User Input Form -->
+      <div class="inputForm__div hidden">
+        <form id="input__form">
+          <label for="fullName">Please enter your full name: </label>
+          <input name="fullName" type="text" />
+          <label for="email">Please enter your email address: </label>
+          <input name="email" type="email" />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+      <!-- The Payment Method Form -->
+      <div class="paymentForm__div hidden">
+        <form id="payment__form">
+          <p class="checkout__p">Please select your method of payment:</p>
+          <label for="cash">Cash</label>
+          <input type="radio" id="cash" value="Cash" />
+          <label for="credit">Credit</label>
+          <input type="radio" id="credit" value="Credit" />
+          <button type="submit">Submit</button>
+        </form>
+        <!-- This is the cash payment section -->
+        <div class="cashForm__div hidden">
+          <form id="cash__form">
+            <label for="tender">Please enter amount tendered: </label>
+            <input name="tender" type="text" />
+            <button type="submit">Submit</button>
+            <!-- submitting will create a pop up alert in JS -->
+          </form>
+        </div>
+        <!-- This is the credit payment section -->
+        <div class="creditForm__div hidden">
+          <form id="credit__form">
+            <p class="checkout__p">
+              Please enter your credit card information below:
+            </p>
+            <label for="card-number">Card number: </label>
+            <input name="card-number" type="text" />
+            <label for="card-exp">Expiration date: </label>
+            <input name="card-exp" type="text" />
+            <label for="card-cvv">CVV: </label>
+            <input name="card-cvv" type="text" />
+            <label for="card-zip">Billing ZIP: </label>
+            <input name="card-zip" type="text" />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+      <!-- Order complete section -->
+      <div class="checkoutComplete__div hidden">
+        <p class="checkout__p">Thank you! Your order is complete.</p>
+        <button type="submit" id="email-receipt">Email Receipt</button>
+        <button type="submit" id="download-receipt">Download Receipt</button>
+      </div>
     </main>
     <!-- Link to JavaScript -->
-    <script src="script.js"></script>
+    <script src="checkout.js"></script>
   </body>
 </html>
