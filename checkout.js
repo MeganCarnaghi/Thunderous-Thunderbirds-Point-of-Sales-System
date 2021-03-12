@@ -39,12 +39,22 @@ for (let item of loadedCart) {
   newh2.textContent = item.name;
   // append new h2 to new div
   subDiv.appendChild(newh2);
+  // Create a new p element for the item ID
+  const newP = document.createElement("p");
+  // set text content for new P to item id
+  newP.textContent = `Item ID: ${item.id}`;
+  // Add class to new P
+  newP.classList.add("cartItemsId__p");
+  // Append new P to subDiv
+  subDiv.appendChild(newP);
   // Create a new input for the quantity
   const newInput = document.createElement("input");
   // Set type attribute as number
   newInput.setAttribute("type", "number");
   // Set text content for input
   newInput.value = item.quantity;
+  // add class to the input
+  newInput.classList.add("cartItemsQty__input");
   // append type input to sub div
   subDiv.appendChild(newInput);
   // create new h3 for the price
@@ -66,6 +76,9 @@ for (let item of loadedCart) {
   // Add to cart total
   cartTotal++;
 }
+
+// function to update price based on quantity and update local storage quantity
+function updateQuantity() {}
 
 // function to update subtotals
 function updateSubtotals() {
