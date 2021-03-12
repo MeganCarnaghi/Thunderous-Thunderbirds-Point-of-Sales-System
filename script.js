@@ -8,7 +8,9 @@ document
   .querySelector(".itemsContainer__div")
   .addEventListener("click", (event) => {
     if (event.target.classList.contains("item__button")) {
-      console.log(event.target.parentNode.parentNode);
+      // select the data-id attribute of the item selected, store it in a variable
+      const itemId = event.target.parentNode.parentNode.getAttribute("data-id");
+
       // Select the name element of the cart item selected, store in variable
       const nameElement = event.target.parentNode.parentNode.querySelector(
         ".itemName__h1"
@@ -32,12 +34,17 @@ document
 
       // add items to local storage
       if (localStorage.getItem("cart") === null) {
-        shoppingCart.push({ name: name, price: price, imgSrc: imgSrc });
+        shoppingCart.push({
+          id: itemId,
+          name: name,
+          price: price,
+          imgSrc: imgSrc,
+        });
         window.localStorage.setItem("cart", JSON.stringify(shoppingCart));
       }
 
       const loadedCart = JSON.parse(localStorage.getItem("cart"));
-      loadedCart.push({ name: name, price: price, imgSrc: imgSrc });
+      loadedCart.push({ id: itemId, name: name, price: price, imgSrc: imgSrc });
       window.localStorage.setItem("cart", JSON.stringify(loadedCart));
     }
   });
