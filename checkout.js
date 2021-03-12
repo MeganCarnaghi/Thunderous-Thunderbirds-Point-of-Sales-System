@@ -4,6 +4,8 @@ const loadedCart = JSON.parse(window.localStorage.getItem("cart"));
 let cartTotal = 0;
 // variable for subtotal
 let subtotal = 0;
+// variable for sales tax
+let salesTax = 0;
 // function to check cartTotal and display message if = 0
 function checkCartTotal() {
   if (cartTotal === 0) {
@@ -59,7 +61,6 @@ for (let item of loadedCart) {
 
 // function to update subtotals
 function updateSubtotals() {
-  console.log(subtotal);
   const subtotalh1 = document.querySelector(".checkoutPageSubtotal__h1");
   subtotalh1.textContent = `Subtotal: $${subtotal}.00`;
   const subtotalP = document.querySelector(".subtotal__p");
@@ -101,16 +102,21 @@ function checkout() {
   totalSection.classList.remove("hide");
   inputSection.classList.remove("hide");
   paymentSection.classList.remove("hide");
+  // update total:
+  
 
 }
 
 // function calculate sales tax and return it to the sales tax line
 function calculateTax(subtotal) {
-  let salesTax = (subtotal * 0.06);
+  let salesTax = subtotal * 0.06;
   const taxP = document.querySelector(".tax__p");
   taxP.textContent = `Sales tax: $${salesTax.toFixed([2])}`;
     
 }
+
+let totalP = document.querySelector(".total__p");
+  totalP.textContent = `Total: $${(subtotal + salesTax).toFixed([2])}`;
 
 // event listeners
 checkoutButton.addEventListener("click", checkout, calculateTax(subtotal));
