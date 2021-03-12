@@ -4,6 +4,7 @@ const addToCartButton = document.querySelectorAll(".item__button");
 const shoppingCart = [];
 // Create a variable for pulling the array from local storage
 const loadedCart = JSON.parse(localStorage.getItem("cart"));
+console.log(loadedCart);
 
 // Add event listener to the parent container for the items divs
 document
@@ -33,25 +34,22 @@ document
       );
       // Get the src attribute of the imgElement, store in variable
       const imgSrc = imgElement.getAttribute("src");
+      // create a variable for the new item
+      const newItem = {
+        id: itemId,
+        name: name,
+        price: price,
+        imgSrc: imgSrc,
+        quantity: 1,
+      };
 
       // add items to local storage
       if (localStorage.getItem("cart") === null) {
-        shoppingCart.push({
-          id: itemId,
-          name: name,
-          price: price,
-          imgSrc: imgSrc,
-        });
+        shoppingCart.push(newItem);
         window.localStorage.setItem("cart", JSON.stringify(shoppingCart));
       } else {
-        loadedCart.push({
-          id: itemId,
-          name: name,
-          price: price,
-          imgSrc: imgSrc,
-        });
+        loadedCart.push(newItem);
         window.localStorage.setItem("cart", JSON.stringify(loadedCart));
-        console.log(loadedCart);
       }
     }
   });

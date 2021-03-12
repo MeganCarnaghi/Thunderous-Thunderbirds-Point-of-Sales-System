@@ -8,7 +8,7 @@ let subtotal = 0;
 let salesTax = 0;
 // function to check cartTotal and display message if = 0
 function checkCartTotal() {
-  if (cartTotal === 0) {
+  if (loadedCart === null || cartTotal === 0) {
     document.querySelector(".emptyCart__div").classList.remove("hide");
   }
 }
@@ -113,8 +113,8 @@ function calculateTax(subtotal) {
 }
 // could not get total to update with just changing textContent to subtotal + salesTax.
 // Attempting to write it as a function and store total in a variable.
-// still not working!!! Can't even get it to console log anything. 
-function calculateTotal(subtotal, salesTax){
+// still not working!!! Can't even get it to console log anything.
+function calculateTotal(subtotal, salesTax) {
   let finalTotal = subtotal + salesTax;
   const totalP = document.querySelector(".total__p");
   totalP.textContent = `Total: $${finalTotal.toFixed([2])}`;
@@ -122,7 +122,12 @@ function calculateTotal(subtotal, salesTax){
 }
 
 // event listeners
-checkoutButton.addEventListener("click", checkout, calculateTax(subtotal), calculateTotal(subtotal, salesTax));
+checkoutButton.addEventListener(
+  "click",
+  checkout,
+  calculateTax(subtotal),
+  calculateTotal(subtotal, salesTax)
+);
 
 // invoking functions
 updateSubtotals();
