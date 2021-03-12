@@ -8,6 +8,7 @@ document
   .querySelector(".itemsContainer__div")
   .addEventListener("click", (event) => {
     if (event.target.classList.contains("item__button")) {
+      console.log(event.target.parentNode.parentNode);
       // Select the name element of the cart item selected, store in variable
       const nameElement = event.target.parentNode.parentNode.querySelector(
         ".itemName__h1"
