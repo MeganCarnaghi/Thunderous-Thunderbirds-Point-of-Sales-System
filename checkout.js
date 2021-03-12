@@ -8,7 +8,7 @@ let subtotal = 0;
 let salesTax = 0;
 // function to check cartTotal and display message if = 0
 function checkCartTotal() {
-  if (loadedCart === null || cartTotal === 0) {
+  if (cartTotal === 0) {
     document.querySelector(".emptyCart__div").classList.remove("hide");
   }
 }
@@ -29,7 +29,7 @@ for (let item of loadedCart) {
   newImg.classList.add("cartItem__img");
   // Add image to the new div
   newDiv.appendChild(newImg);
-  // Create a subdiv for the name and price
+  // Create a subdiv for the name, price and quantity
   const subDiv = document.createElement("div");
   // Append the sub div to the new div
   newDiv.append(subDiv);
@@ -39,12 +39,20 @@ for (let item of loadedCart) {
   newh2.textContent = item.name;
   // append new h2 to new div
   subDiv.appendChild(newh2);
+  // Create a new input for the quantity
+  const newInput = document.createElement("input");
+  // Set type attribute as number
+  newInput.setAttribute("type", "number");
+  // Set text content for input
+  newInput.value = item.quantity;
+  // append type input to sub div
+  subDiv.appendChild(newInput);
   // create new h3 for the price
   const newh3 = document.createElement("h3");
   // Set text content for new h3
-  newh3.textContent = `Price: $${item.price}`;
-  const itemPrice = parseInt(item.price);
-  subtotal += itemPrice;
+  newh3.textContent = `Price: $${item.price * item.quantity}`;
+  // const itemPrice = parseInt(item.price);
+  // subtotal += itemPrice;
   // append new h2 to new div
   subDiv.appendChild(newh3);
   // Create a button to remove item from cart
