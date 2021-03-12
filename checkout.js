@@ -103,8 +103,6 @@ function checkout() {
   inputSection.classList.remove("hide");
   paymentSection.classList.remove("hide");
   // update total:
-  
-
 }
 
 // function calculate sales tax and return it to the sales tax line
@@ -112,14 +110,14 @@ function calculateTax(subtotal) {
   let salesTax = subtotal * 0.06;
   const taxP = document.querySelector(".tax__p");
   taxP.textContent = `Sales tax: $${salesTax.toFixed([2])}`;
-    
 }
 
 let totalP = document.querySelector(".total__p");
-  totalP.textContent = `Total: $${(subtotal + salesTax).toFixed([2])}`;
+totalP.textContent = `Total: $${(subtotal + salesTax).toFixed([2])}`;
 
 // event listeners
 checkoutButton.addEventListener("click", checkout, calculateTax(subtotal));
 
 // invoking functions
 updateSubtotals();
+checkCartTotal();
