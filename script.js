@@ -2,6 +2,8 @@
 const addToCartButton = document.querySelectorAll(".item__button");
 // Initialize an empty array for the shopping cart items
 const shoppingCart = [];
+// Create a variable for pulling the array from local storage
+const loadedCart = JSON.parse(localStorage.getItem("cart"));
 
 // Add event listener to the parent container for the items divs
 document
@@ -41,10 +43,15 @@ document
           imgSrc: imgSrc,
         });
         window.localStorage.setItem("cart", JSON.stringify(shoppingCart));
+      } else {
+        loadedCart.push({
+          id: itemId,
+          name: name,
+          price: price,
+          imgSrc: imgSrc,
+        });
+        window.localStorage.setItem("cart", JSON.stringify(loadedCart));
+        console.log(loadedCart);
       }
-
-      const loadedCart = JSON.parse(localStorage.getItem("cart"));
-      loadedCart.push({ id: itemId, name: name, price: price, imgSrc: imgSrc });
-      window.localStorage.setItem("cart", JSON.stringify(loadedCart));
     }
   });
