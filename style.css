@@ -177,7 +177,13 @@ h2 {
 /* MAIN CONTENT FOR CHECKOUT.HTML */
 
 .cartItems__div,
-.subtotal__div {
+.subtotal__div,
+.total__div,
+.inputForm__div,
+.paymentForm__div,
+.cashForm__div,
+.creditForm__div,
+.checkoutComplete__div {
   background-color: rgba(205, 200, 63, 0.9);
   margin: 30px 20px;
   border-radius: 5px;

@@ -111,12 +111,18 @@ function calculateTax(subtotal) {
   const taxP = document.querySelector(".tax__p");
   taxP.textContent = `Sales tax: $${salesTax.toFixed([2])}`;
 }
-
-let totalP = document.querySelector(".total__p");
-totalP.textContent = `Total: $${(subtotal + salesTax).toFixed([2])}`;
+// could not get total to update with just changing textContent to subtotal + salesTax.
+// Attempting to write it as a function and store total in a variable.
+// still not working!!! Can't even get it to console log anything. 
+function calculateTotal(subtotal, salesTax){
+  let finalTotal = subtotal + salesTax;
+  const totalP = document.querySelector(".total__p");
+  totalP.textContent = `Total: $${finalTotal.toFixed([2])}`;
+  console.log(finalTotal);
+}
 
 // event listeners
-checkoutButton.addEventListener("click", checkout, calculateTax(subtotal));
+checkoutButton.addEventListener("click", checkout, calculateTax(subtotal), calculateTotal(subtotal, salesTax));
 
 // invoking functions
 updateSubtotals();
