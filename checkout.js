@@ -10,6 +10,10 @@ let salesTax = 0;
 function checkCartTotal() {
   if (cartTotal === 0) {
     document.querySelector(".emptyCart__div").classList.remove("hide");
+    document.querySelector(".subtotal__div").classList.add("hide");
+    document.querySelector(".total__div").classList.add("hide");
+    document.querySelector(".inputForm__div").classList.add("hide");
+    document.querySelector(".paymentForm__div").classList.add("hide");
   }
 }
 
@@ -58,7 +62,7 @@ for (let item of loadedCart) {
   // Set text content for new button
   newBtn.textContent = "Remove Item";
   // Add .cartItemsRemove__button class to button
-  newBtn.classList.add(".cartItemsRemove__button");
+  newBtn.classList.add("cartItemRemove__button");
   // append new h2 to new div
   subDiv.appendChild(newBtn);
   // Add to cart total
@@ -76,7 +80,7 @@ function updateSubtotals() {
 // Add event listener to the parent container for the cart items
 document.querySelector(".cartItems__div").addEventListener("click", (event) => {
   // removes div from page
-  if (event.target.classList.contains(".cartItemsRemove__button")) {
+  if (event.target.classList.contains("cartItemRemove__button")) {
     // remove from local storage...
     const itemName = event.target.parentNode.firstChild.textContent;
     for (let item of loadedCart) {

@@ -121,7 +121,7 @@ h2 {
 .item__div {
   background-color: rgba(205, 200, 63, 0.9);
   border-radius: 5px;
-  margin: 20px;
+  margin: 20px 40px;
   text-align: center;
   padding: 20px;
   display: flex;
@@ -160,17 +160,18 @@ h2 {
 .item__button {
   background-color: #000;
   padding: 5px 10px;
-  color: #ffffff;
+  color: #cec93f;
   border: none;
   box-shadow: 2px 2px 8px #000000;
   margin: 10px 0;
   transition: 0.5s;
+  border-radius: 5px;
 }
 
 .item__button:hover {
   cursor: pointer;
-  background-color: #ffffff;
-  color: #000000;
+  background-color: #000000;
+  color: #ffffff;
   transition: 0.5s;
 }
 
@@ -188,6 +189,12 @@ h2 {
   margin: 30px 20px;
   border-radius: 5px;
   padding: 20px;
+}
+
+.subtotal__div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .emptyCart__div {
@@ -237,15 +244,41 @@ h2 {
   box-shadow: 2px 2px 5px #000000;
 }
 
-.cartItemsId__p {
-  font-size: 14px;
+.cartItemRemove__button {
+  background-color: #000;
+  padding: 5px 10px;
+  color: #cec93f;
+  border: none;
+  box-shadow: 2px 2px 8px #000000;
+  margin: 10px 0;
+  transition: 0.5s;
+  border-radius: 5px;
+}
+
+.cartItemRemove__button:hover {
+  cursor: pointer;
+  background-color: #000000;
+  color: #ffffff;
+  transition: 0.5s;
 }
 
 .checkout__button {
-  background-color: #cdc83f;
-  padding: 5px 10px;
-  border-radius: 8px;
-  border: 2px solid #000000;
+  background-color: #000;
+  padding: 10px 20px;
+  color: #cec93f;
+  border: none;
+  box-shadow: 2px 2px 8px #000000;
+  margin: 10px 0;
+  transition: 0.5s;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.checkout__button:hover {
+  cursor: pointer;
+  background-color: #000000;
+  color: #ffffff;
+  transition: 0.5s;
 }
 
 /* Styling for desktop */
@@ -271,7 +304,12 @@ h2 {
   }
 
   .item__div {
-    width: 33%;
+    margin: 20px;
+    width: 30%;
+  }
+
+  .item__img {
+    width: 75%;
   }
 
   .cartItems__div,
