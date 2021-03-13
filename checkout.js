@@ -180,11 +180,14 @@ function checkout() {
 }
 
 // function calculate sales tax and return it to the sales tax line
-function calculateTax(subtotal) {
+function calculateTax() {
   let salesTax = subtotal * 0.06;
+  console.log(subtotal);
   const taxP = document.querySelector(".tax__p");
   taxP.textContent = `Sales tax: $${salesTax.toFixed([2])}`;
 }
+
+calculateTax();
 // could not get total to update with just changing textContent to subtotal + salesTax.
 // Attempting to write it as a function and store total in a variable.
 // still not working!!! Can't even get it to console log anything.
