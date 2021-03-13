@@ -248,7 +248,7 @@ h2 {
   box-shadow: 2px 2px 5px #000000;
 }
 
-#cartItemQty__input {
+.cartItemQty__input {
   padding: 2px;
   margin: 5px;
   width: 15%;

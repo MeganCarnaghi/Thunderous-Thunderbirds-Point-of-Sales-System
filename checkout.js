@@ -51,15 +51,17 @@ function addItemsToPage() {
     // Add class to label
     newLabel.classList.add("cartItemQty__label");
     // Set for attribute on label
-    newLabel.setAttribute("for", "cartItemQty__input");
+    newLabel.setAttribute("for", item.id);
     // set text content for new P to item id
     newLabel.textContent = `Quantity: `;
     // Append new P to subDiv
     subDiv.appendChild(newLabel);
     // Create new input for the quantity
     const newInput = document.createElement("input");
+    // Add class to new input
+    newInput.classList.add("cartItemQty__input");
     // Set id, type and min attributes for input
-    newInput.setAttribute("id", "cartItemQty__input");
+    newInput.setAttribute("id", item.id);
     newInput.setAttribute("type", "number");
     newInput.setAttribute("min", 0);
     // Set value of input to item quantity
@@ -76,9 +78,11 @@ function addItemsToPage() {
     subDiv.appendChild(updateButton);
     // create new h3 for the price
     const newh3price = document.createElement("h3");
+    // Add class to h3
+    newh3price.classList.add("cartItemPrice__h3");
     // Set text content for new h3
-    newh3price.textContent = `Price: $${item.price * item.quantity}`;
     const itemPrice = item.price * item.quantity;
+    newh3price.textContent = `Price: $${itemPrice}`;
     subtotal += itemPrice;
     // append new h2 to new div
     subDiv.appendChild(newh3price);
@@ -95,7 +99,7 @@ function addItemsToPage() {
   }
 }
 
-// function to update subtotals
+// function to calculate and set subtotals
 function updateSubtotals() {
   const subtotalh1 = document.querySelector(".checkoutPageSubtotal__h1");
   subtotalh1.textContent = `Subtotal: $${subtotal}.00`;
@@ -184,7 +188,24 @@ document.querySelector(".cartItems__div").addEventListener("click", (event) => {
     removeCartItem();
   }
 
-  if (event.target.classList.contains(".cartItemUpdate__button")) {
+  if (event.target.classList.contains("cartItemUpdateQty__button")) {
+    // select the input
+    const itemInput = document.querySelector(".cartItemQty__input");
+    // get the quantity and put it in a variable
+    const itemQuantity = itemInput.value;
+    // get the data id from the parent div
+    const id = event.target.parentNode.parentNode.getAttribute("data-id");
+    // select the price heading
+    const priceH3 = event.target.nextSibling;
+    // find the item with the same id in local storage
+    const cartItem = loadedCart.find((c) => c.id === id);
+    // update the quantity in the loadedCart array
+    cartItem.quantity = itemQuantity;
+    // save loaded cart to local storage
+    window.localStorage.setItem("cart", JSON.stringify(loadedCart));
+    // update price of item based on new quantity
+    const newItemPrice = cartItem.price * cartItem.quantity;
+    priceH3.textContent = `Price: $${newItemPrice}`;
   }
 });
 
