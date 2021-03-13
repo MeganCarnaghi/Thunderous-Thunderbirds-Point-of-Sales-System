@@ -80,10 +80,10 @@ function addItemsToPage() {
     const newh3price = document.createElement("h3");
     // Add class to h3
     newh3price.classList.add("cartItemPrice__h3");
-    // Set text content for new h3
+    // Calculate price for items (item price * quantity)
     const itemPrice = item.price * item.quantity;
+    //Set text content for new h3
     newh3price.textContent = `Price: $${itemPrice}`;
-    subtotal += itemPrice;
     // append new h2 to new div
     subDiv.appendChild(newh3price);
     // Create a button to remove item from cart
@@ -99,7 +99,15 @@ function addItemsToPage() {
   }
 }
 
-// function to calculate and set subtotals
+// A function to calculate the subtotal and update appropriate spots on page
+function calculateSubtotal() {
+  for (let item of loadedCart) {
+    let price = item.price * item.quantity;
+    subtotal += price;
+  }
+}
+
+// function to update the subtotal
 function updateSubtotals() {
   const subtotalh1 = document.querySelector(".checkoutPageSubtotal__h1");
   subtotalh1.textContent = `Subtotal: $${subtotal}.00`;
@@ -189,8 +197,10 @@ document.querySelector(".cartItems__div").addEventListener("click", (event) => {
   }
 
   if (event.target.classList.contains("cartItemUpdateQty__button")) {
+    console.log("clicked");
+    event.stopPropagation();
     // select the input
-    const itemInput = document.querySelector(".cartItemQty__input");
+    const itemInput = event.target.previousSibling;
     // get the quantity and put it in a variable
     const itemQuantity = itemInput.value;
     // get the data id from the parent div
@@ -222,5 +232,6 @@ paymentSubmitButton.addEventListener("click", paymentMethod);
 
 // Invoking functions
 addItemsToPage();
-checkCartTotal();
+calculateSubtotal();
 updateSubtotals();
+checkCartTotal();
