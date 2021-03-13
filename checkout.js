@@ -97,9 +97,11 @@ function addItemsToPage() {
     // Add +1 to cart total
     cartTotal++;
   }
+  calculateSubtotal();
+  updateSubtotals();
 }
 
-// A function to calculate the subtotal and update appropriate spots on page
+// A function to calculate the subtotal
 function calculateSubtotal() {
   for (let item of loadedCart) {
     let price = item.price * item.quantity;
@@ -107,7 +109,7 @@ function calculateSubtotal() {
   }
 }
 
-// function to update the subtotal
+// function to update the subtotal divs
 function updateSubtotals() {
   const subtotalh1 = document.querySelector(".checkoutPageSubtotal__h1");
   subtotalh1.textContent = `Subtotal: $${subtotal}.00`;
@@ -135,6 +137,35 @@ function removeCartItem() {
   cartTotal--;
   // If cartTotal = 0, display message
   checkCartTotal();
+}
+
+// function to update the quantity of items
+function updateItemQuantity() {
+  // select the input
+  const itemInput = event.target.previousSibling;
+  // get the quantity and put it in a variable
+  const itemQuantity = itemInput.value;
+  // if item quantity <= 0 remove item
+  if (itemQuantity <= 0) {
+    removeCartItem();
+  }
+  // get the data id from the parent div
+  else {
+    const id = event.target.parentNode.parentNode.getAttribute("data-id");
+    // select the price heading
+    const priceH3 = event.target.nextSibling;
+    // find the item with the same id in local storage
+    const cartItem = loadedCart.find((c) => c.id === id);
+    // update the quantity in the loadedCart array
+    cartItem.quantity = itemQuantity;
+    // save loaded cart to local storage
+    window.localStorage.setItem("cart", JSON.stringify(loadedCart));
+    // update price of item based on new quantity
+    const newItemPrice = cartItem.price * cartItem.quantity;
+    priceH3.textContent = `Price: $${newItemPrice}`;
+    calculateSubtotal();
+    updateSubtotals();
+  }
 }
 
 // function to checkout and reveal payment and input div:
@@ -197,25 +228,7 @@ document.querySelector(".cartItems__div").addEventListener("click", (event) => {
   }
 
   if (event.target.classList.contains("cartItemUpdateQty__button")) {
-    console.log("clicked");
-    event.stopPropagation();
-    // select the input
-    const itemInput = event.target.previousSibling;
-    // get the quantity and put it in a variable
-    const itemQuantity = itemInput.value;
-    // get the data id from the parent div
-    const id = event.target.parentNode.parentNode.getAttribute("data-id");
-    // select the price heading
-    const priceH3 = event.target.nextSibling;
-    // find the item with the same id in local storage
-    const cartItem = loadedCart.find((c) => c.id === id);
-    // update the quantity in the loadedCart array
-    cartItem.quantity = itemQuantity;
-    // save loaded cart to local storage
-    window.localStorage.setItem("cart", JSON.stringify(loadedCart));
-    // update price of item based on new quantity
-    const newItemPrice = cartItem.price * cartItem.quantity;
-    priceH3.textContent = `Price: $${newItemPrice}`;
+    updateItemQuantity();
   }
 });
 
@@ -232,6 +245,6 @@ paymentSubmitButton.addEventListener("click", paymentMethod);
 
 // Invoking functions
 addItemsToPage();
-calculateSubtotal();
-updateSubtotals();
+// calculateSubtotal();
+// updateSubtotals();
 checkCartTotal();
