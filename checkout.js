@@ -39,32 +39,20 @@ for (let item of loadedCart) {
   newh2.textContent = item.name;
   // append new h2 to new div
   subDiv.appendChild(newh2);
-  // Create a new p element for the item ID
-  const newP = document.createElement("p");
+  // Create a new p element for the item quantity
+  const newh3qty = document.createElement("h3");
   // set text content for new P to item id
-  newP.textContent = `Item ID: ${item.id}`;
-  // Add class to new P
-  newP.classList.add("cartItemsId__p");
+  newh3qty.textContent = `Quantity: ${item.quantity}`;
   // Append new P to subDiv
-  subDiv.appendChild(newP);
-  // Create a new input for the quantity
-  const newInput = document.createElement("input");
-  // Set type attribute as number
-  newInput.setAttribute("type", "number");
-  // Set text content for input
-  newInput.value = item.quantity;
-  // add class to the input
-  newInput.classList.add("cartItemsQty__input");
-  // append type input to sub div
-  subDiv.appendChild(newInput);
+  subDiv.appendChild(newh3qty);
   // create new h3 for the price
-  const newh3 = document.createElement("h3");
+  const newh3price = document.createElement("h3");
   // Set text content for new h3
-  newh3.textContent = `Price: $${item.price * item.quantity}`;
-  // const itemPrice = parseInt(item.price);
-  // subtotal += itemPrice;
+  newh3price.textContent = `Price: $${item.price * item.quantity}`;
+  const itemPrice = item.price * item.quantity;
+  subtotal += itemPrice;
   // append new h2 to new div
-  subDiv.appendChild(newh3);
+  subDiv.appendChild(newh3price);
   // Create a button to remove item from cart
   const newBtn = document.createElement("button");
   // Set text content for new button
@@ -76,9 +64,6 @@ for (let item of loadedCart) {
   // Add to cart total
   cartTotal++;
 }
-
-// function to update price based on quantity and update local storage quantity
-function updateQuantity() {}
 
 // function to update subtotals
 function updateSubtotals() {
@@ -99,7 +84,7 @@ document.querySelector(".cartItems__div").addEventListener("click", (event) => {
         loadedCart.splice(loadedCart.indexOf(item), 1);
         window.localStorage.setItem("cart", JSON.stringify(loadedCart));
         // subtract from subtotal
-        subtotal -= item.price;
+        subtotal -= item.price * item.quantity;
         updateSubtotals();
       }
       // removes div from page
