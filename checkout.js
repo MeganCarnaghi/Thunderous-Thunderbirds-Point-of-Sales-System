@@ -182,16 +182,15 @@ function checkout() {
 // function calculate sales tax and return it to the sales tax line
 function calculateTax() {
   let salesTax = subtotal * 0.06;
-  console.log(subtotal);
+  console.log(salesTax);
   const taxP = document.querySelector(".tax__p");
   taxP.textContent = `Sales tax: $${salesTax.toFixed([2])}`;
 }
 
-calculateTax();
 // could not get total to update with just changing textContent to subtotal + salesTax.
 // Attempting to write it as a function and store total in a variable.
 // still not working!!! Can't even get it to console log anything.
-function calculateTotal(subtotal, salesTax) {
+function calculateTotal() {
   let finalTotal = subtotal + salesTax;
   const totalP = document.querySelector(".total__p");
   totalP.textContent = `Total: $${finalTotal.toFixed([2])}`;
@@ -233,12 +232,7 @@ document.querySelector(".cartItems__div").addEventListener("click", (event) => {
 });
 
 // Checkout button event listener
-checkoutButton.addEventListener(
-  "click",
-  checkout,
-  calculateTax(subtotal),
-  calculateTotal(subtotal, salesTax)
-);
+checkoutButton.addEventListener("click", checkout,);
 
 // Submit payment event listener
 paymentSubmitButton.addEventListener("click", paymentMethod);
@@ -248,3 +242,5 @@ addItemsToPage();
 calculateSubtotal();
 updateSubtotals();
 checkCartTotal();
+calculateTax(),
+calculateTotal();
