@@ -97,8 +97,6 @@ function addItemsToPage() {
     // Add +1 to cart total
     cartTotal++;
   }
-  calculateSubtotal();
-  updateSubtotals();
 }
 
 // A function to calculate the subtotal
@@ -163,8 +161,7 @@ function updateItemQuantity() {
     // update price of item based on new quantity
     const newItemPrice = cartItem.price * cartItem.quantity;
     priceH3.textContent = `Price: $${newItemPrice}`;
-    calculateSubtotal();
-    updateSubtotals();
+    window.location.reload();
   }
 }
 
@@ -245,6 +242,6 @@ paymentSubmitButton.addEventListener("click", paymentMethod);
 
 // Invoking functions
 addItemsToPage();
-// calculateSubtotal();
-// updateSubtotals();
+calculateSubtotal();
+updateSubtotals();
 checkCartTotal();
