@@ -1,4 +1,4 @@
-// Retrieving items from local storage and adding them to page on page load
+// Retrieving items from local storage
 const loadedCart = JSON.parse(window.localStorage.getItem("cart"));
 // variable for cart items
 let cartTotal = 0;
@@ -18,55 +18,81 @@ function checkCartTotal() {
 }
 
 // On page load, add items from local storage to cart.
-for (let item of loadedCart) {
-  // Create a new div for the item
-  const newDiv = document.createElement("div");
-  //Add a class to newDiv
-  newDiv.classList.add("cartItem__div");
-  // Append the div to the cartItems div
-  document.querySelector(".cartItems__div").appendChild(newDiv);
-  // Create a new image element
-  const newImg = document.createElement("img");
-  // Set the source attribute for the image
-  newImg.setAttribute("src", item.imgSrc);
-  // Add class to newImg
-  newImg.classList.add("cartItem__img");
-  // Add image to the new div
-  newDiv.appendChild(newImg);
-  // Create a subdiv for the name, price and quantity
-  const subDiv = document.createElement("div");
-  // Append the sub div to the new div
-  newDiv.append(subDiv);
-  // Create a new h2 for the item name
-  const newh2 = document.createElement("h2");
-  // Set text content for new h2
-  newh2.textContent = item.name;
-  // append new h2 to new div
-  subDiv.appendChild(newh2);
-  // Create a new p element for the item quantity
-  const newh3qty = document.createElement("h3");
-  // set text content for new P to item id
-  newh3qty.textContent = `Quantity: ${item.quantity}`;
-  // Append new P to subDiv
-  subDiv.appendChild(newh3qty);
-  // create new h3 for the price
-  const newh3price = document.createElement("h3");
-  // Set text content for new h3
-  newh3price.textContent = `Price: $${item.price * item.quantity}`;
-  const itemPrice = item.price * item.quantity;
-  subtotal += itemPrice;
-  // append new h2 to new div
-  subDiv.appendChild(newh3price);
-  // Create a button to remove item from cart
-  const newBtn = document.createElement("button");
-  // Set text content for new button
-  newBtn.textContent = "Remove Item";
-  // Add .cartItemsRemove__button class to button
-  newBtn.classList.add("cartItemRemove__button");
-  // append new h2 to new div
-  subDiv.appendChild(newBtn);
-  // Add to cart total
-  cartTotal++;
+function addItemsToPage() {
+  for (let item of loadedCart) {
+    // Create a new div for the item
+    const newDiv = document.createElement("div");
+    // Set the data attribute for the new div as the data-id
+    newDiv.setAttribute("data-id", item.id);
+    //Add a class to newDiv
+    newDiv.classList.add("cartItem__div");
+    // Append the div to the cartItems div
+    document.querySelector(".cartItems__div").appendChild(newDiv);
+    // Create a new image element
+    const newImg = document.createElement("img");
+    // Set the source attribute for the image
+    newImg.setAttribute("src", item.imgSrc);
+    // Add class to newImg
+    newImg.classList.add("cartItem__img");
+    // Add image to the new div
+    newDiv.appendChild(newImg);
+    // Create a subdiv for the name, price and quantity
+    const subDiv = document.createElement("div");
+    // Append the sub div to the new div
+    newDiv.append(subDiv);
+    // Create a new h2 for the item name
+    const newh2 = document.createElement("h2");
+    // Set text content for new h2
+    newh2.textContent = item.name;
+    // append new h2 to new div
+    subDiv.appendChild(newh2);
+    // Create a new label element for the item quantity
+    const newLabel = document.createElement("label");
+    // Add class to label
+    newLabel.classList.add("cartItemQty__label");
+    // Set for attribute on label
+    newLabel.setAttribute("for", "cartItemQty__input");
+    // set text content for new P to item id
+    newLabel.textContent = `Quantity: `;
+    // Append new P to subDiv
+    subDiv.appendChild(newLabel);
+    // Create new input for the quantity
+    const newInput = document.createElement("input");
+    // Set id, type and min attributes for input
+    newInput.setAttribute("id", "cartItemQty__input");
+    newInput.setAttribute("type", "number");
+    newInput.setAttribute("min", 0);
+    // Set value of input to item quantity
+    newInput.value = item.quantity;
+    // Append input to sub div
+    subDiv.appendChild(newInput);
+    // Create update quantity button
+    const updateButton = document.createElement("button");
+    // Set text of button
+    updateButton.textContent = "Update";
+    // Add class to button
+    updateButton.classList.add("cartItemUpdateQty__button");
+    // Append button to sub div
+    subDiv.appendChild(updateButton);
+    // create new h3 for the price
+    const newh3price = document.createElement("h3");
+    // Set text content for new h3
+    newh3price.textContent = `Price: $${item.price * item.quantity}`;
+    const itemPrice = item.price * item.quantity;
+    subtotal += itemPrice;
+    // append new h2 to new div
+    subDiv.appendChild(newh3price);
+    // Create a button to remove item from cart
+    const newBtn = document.createElement("button");
+    // Set text content for new button
+    newBtn.textContent = "Remove Item";
+    // Add .cartItemsRemove__button class to button
+    newBtn.classList.add("cartItemRemove__button");
+    // append new h2 to new div
+    subDiv.appendChild(newBtn);
+    // Add +1 to cart total
+    cartTotal++;
+  }
 }
 
 // function to update subtotals
@@ -77,29 +103,27 @@ function updateSubtotals() {
   subtotalP.textContent = `Subtotal: $${subtotal}.00`;
 }
 
-// Add event listener to the parent container for the cart items
-document.querySelector(".cartItems__div").addEventListener("click", (event) => {
-  // removes div from page
-  if (event.target.classList.contains("cartItemRemove__button")) {
-    // remove from local storage...
-    const itemName = event.target.parentNode.firstChild.textContent;
-    for (let item of loadedCart) {
-      if (item.name === itemName) {
-        loadedCart.splice(loadedCart.indexOf(item), 1);
-        window.localStorage.setItem("cart", JSON.stringify(loadedCart));
-        // subtract from subtotal
-        subtotal -= item.price * item.quantity;
-        updateSubtotals();
-      }
-      // removes div from page
-      event.target.parentNode.parentNode.remove();
+// function to remove an item from the page
+function removeCartItem() {
+  // remove from local storage...
+  const itemName = event.target.parentNode.firstChild.textContent;
+  for (let item of loadedCart) {
+    if (item.name === itemName) {
+      loadedCart.splice(loadedCart.indexOf(item), 1);
+      window.localStorage.setItem("cart", JSON.stringify(loadedCart));
+      // subtract from subtotal
+      subtotal -= item.price * item.quantity;
+      // update subtotals on page
+      updateSubtotals();
     }
-    // subtract from cartTotal
-    cartTotal--;
-    // If cartTotal = 0, display message
-    checkCartTotal();
+    // removes div from page
+    event.target.parentNode.parentNode.remove();
   }
-});
+  // subtract from cartTotal
+  cartTotal--;
+  // If cartTotal = 0, display message
+  checkCartTotal();
+}
 
 // function to checkout and reveal payment and input div:
 const checkoutButton = document.querySelector(".checkout__button");
@@ -143,18 +167,28 @@ function paymentMethod() {
   // variable for the credit payment form div
   const creditForm = document.querySelector("creditForm__div");
   // if statement to change visibility of the cash or credit sections depending
-  // on checked status of radio buttons 
+  // on checked status of radio buttons
   if (radioCash === checked) {
     cashForm.classList.remove("hide");
   }
   if (radioCredit === checked) {
     creditForm.classList.remove("hide");
   }
-
 }
 
+// Event listeners
+// Event listener to the parent container for the cart items
+document.querySelector(".cartItems__div").addEventListener("click", (event) => {
+  // If event target it the Remove Item button...
+  if (event.target.classList.contains("cartItemRemove__button")) {
+    removeCartItem();
+  }
 
-// event listeners
+  if (event.target.classList.contains(".cartItemUpdate__button")) {
+  }
+});
+
+// Checkout button event listener
 checkoutButton.addEventListener(
   "click",
   checkout,
@@ -162,8 +196,10 @@ checkoutButton.addEventListener(
   calculateTotal(subtotal, salesTax)
 );
 
+// Submit payment event listener
 paymentSubmitButton.addEventListener("click", paymentMethod);
 
-// invoking functions
-updateSubtotals();
+// Invoking functions
+addItemsToPage();
 checkCartTotal();
+updateSubtotals();

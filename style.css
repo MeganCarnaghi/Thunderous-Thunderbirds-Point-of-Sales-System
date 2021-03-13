@@ -14,7 +14,9 @@ Body Text "  font-family: "Oswald", sans-serif;" */
 }
 
 p,
-h3 {
+h3,
+label,
+input {
   font-family: "Oswald", sans-serif;
 }
 
@@ -209,14 +211,15 @@ h2 {
   display: none;
 }
 
-.emptyCart__h2 {
-  margin: 20px 0 10px 0;
-}
-
 .cartItem__div {
   display: flex;
   align-items: center;
   margin: 20px 0;
+  border-bottom: 2px solid #000000;
+}
+
+.emptyCart__h2 {
+  margin: 20px 0 10px 0;
 }
 
 .emptyCart__link {
@@ -240,8 +243,37 @@ h2 {
   width: 125px;
   border-radius: 50%;
   margin-right: 40px;
+  margin-bottom: 20px;
   border: 2px solid #000000;
   box-shadow: 2px 2px 5px #000000;
+}
+
+#cartItemQty__input {
+  padding: 2px;
+  margin: 5px;
+  width: 15%;
+}
+
+.cartItemQty__label {
+  font-size: 18px;
+}
+
+.cartItemUpdateQty__button {
+  background-color: #000;
+  padding: 2px 8px;
+  color: #cec93f;
+  border: none;
+  box-shadow: 2px 2px 8px #000000;
+  margin: 10px 0;
+  transition: 0.5s;
+  border-radius: 5px;
+}
+
+.cartItemUpdateQty__button:hover {
+  cursor: pointer;
+  background-color: #000000;
+  color: #ffffff;
+  transition: 0.5s;
 }
 
 .cartItemRemove__button {
@@ -250,7 +282,7 @@ h2 {
   color: #cec93f;
   border: none;
   box-shadow: 2px 2px 8px #000000;
-  margin: 10px 0;
+  margin: 20px 0;
   transition: 0.5s;
   border-radius: 5px;
 }
