@@ -62,14 +62,14 @@
           <input type="radio" id="cash" value="Cash" />
           <label for="credit">Credit</label>
           <input type="radio" id="credit" value="Credit" />
-          <button type="submit">Submit</button>
+          <button type="submit" id="payment-submit">Submit</button>
         </form>
         <!-- This is the cash payment section -->
         <div class="cashForm__div hide">
           <form id="cash__form">
             <label for="tender">Please enter amount tendered: </label>
             <input name="tender" type="text" />
-            <button type="submit">Submit</button>
+            <button type="submit" id="cash-submit">Submit</button>
             <!-- submitting will create a pop up alert in JS -->
           </form>
         </div>
@@ -87,7 +87,7 @@
             <input name="card-cvv" type="text" />
             <label for="card-zip">Billing ZIP: </label>
             <input name="card-zip" type="text" />
-            <button type="submit">Submit</button>
+            <button type="submit" id="credit-submit">Submit</button>
           </form>
         </div>
       </div>

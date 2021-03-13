@@ -128,8 +128,31 @@ function calculateTotal(subtotal, salesTax) {
   let finalTotal = subtotal + salesTax;
   const totalP = document.querySelector(".total__p");
   totalP.textContent = `Total: $${finalTotal.toFixed([2])}`;
-  console.log(finalTotal);
+  console.log(salesTax);
 }
+
+// function to show the cash payment section when the cash radio button is checked
+const paymentSubmitButton = document.getElementById("payment-submit");
+function paymentMethod() {
+  // get the value of the cash radio button in a variable
+  let radioCash = document.getElementById("cash");
+  // variable for the cash payment form div
+  const cashForm = document.querySelector(".cashForm__div");
+  // get the value of the credit radio button in a variable
+  let radioCredit = document.getElementById("credit");
+  // variable for the credit payment form div
+  const creditForm = document.querySelector("creditForm__div");
+  // if statement to change visibility of the cash or credit sections depending
+  // on checked status of radio buttons 
+  if (radioCash === checked) {
+    cashForm.classList.remove("hide");
+  }
+  if (radioCredit === checked) {
+    creditForm.classList.remove("hide");
+  }
+
+}
+
 
 // event listeners
 checkoutButton.addEventListener(
@@ -138,6 +161,8 @@ checkoutButton.addEventListener(
   calculateTax(subtotal),
   calculateTotal(subtotal, salesTax)
 );
+
+paymentSubmitButton.addEventListener("click", paymentMethod);
 
 // invoking functions
 updateSubtotals();
