@@ -183,8 +183,6 @@ h2 {
 .total__div,
 .inputForm__div,
 .paymentForm__div,
-.cashForm__div,
-.creditForm__div,
 .checkoutComplete__div {
   background-color: rgba(205, 200, 63, 0.9);
   margin: 30px 20px;

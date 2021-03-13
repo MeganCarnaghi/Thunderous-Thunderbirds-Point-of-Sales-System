@@ -185,15 +185,18 @@ function calculateTax() {
   console.log(salesTax);
   const taxP = document.querySelector(".tax__p");
   taxP.textContent = `Sales tax: $${salesTax.toFixed([2])}`;
+  let finalTotal = subtotal + salesTax;
+  const totalP = document.querySelector(".total__p");
+  totalP.textContent = `Total: $${finalTotal.toFixed([2])}`;
 }
 
 // could not get total to update with just changing textContent to subtotal + salesTax.
 // Attempting to write it as a function and store total in a variable.
 // still not working!!! Can't even get it to console log anything.
 function calculateTotal() {
-  let finalTotal = subtotal + salesTax;
-  const totalP = document.querySelector(".total__p");
-  totalP.textContent = `Total: $${finalTotal.toFixed([2])}`;
+  // let finalTotal = subtotal + salesTax;
+  // const totalP = document.querySelector(".total__p");
+  // totalP.textContent = `Total: $${finalTotal.toFixed([2])}`;
   console.log(salesTax);
 }
 
@@ -207,13 +210,13 @@ function paymentMethod() {
   // get the value of the credit radio button in a variable
   let radioCredit = document.getElementById("credit");
   // variable for the credit payment form div
-  const creditForm = document.querySelector("creditForm__div");
+  const creditForm = document.querySelector(".creditForm__div");
   // if statement to change visibility of the cash or credit sections depending
   // on checked status of radio buttons
-  if (radioCash === checked) {
+  if (radioCash.checked) {
     cashForm.classList.remove("hide");
   }
-  if (radioCredit === checked) {
+  if (radioCredit.checked) {
     creditForm.classList.remove("hide");
   }
 }
@@ -232,15 +235,21 @@ document.querySelector(".cartItems__div").addEventListener("click", (event) => {
 });
 
 // Checkout button event listener
-checkoutButton.addEventListener("click", checkout,);
+checkoutButton.addEventListener("click", checkout);
 
 // Submit payment event listener
-paymentSubmitButton.addEventListener("click", paymentMethod);
+paymentSubmitButton.addEventListener("click", (event) => {
+  // prevent page from refreshing on submit
+  event.preventDefault();
+  paymentMethod();
+  // hide payment method choice once payment option is selected
+  document.getElementById("payment__form").style.display = "none";
+});
 
 // Invoking functions
 addItemsToPage();
 calculateSubtotal();
 updateSubtotals();
 checkCartTotal();
-calculateTax(),
+calculateTax();
 calculateTotal();
