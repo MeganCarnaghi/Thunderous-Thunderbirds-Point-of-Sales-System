@@ -6,6 +6,8 @@ let cartTotal = 0;
 let subtotal = 0;
 // variable for sales tax
 let salesTax = 0;
+// variable for final total (subtotal + salestax)
+let finalTotal = 0;
 // function to check cartTotal and display message if = 0
 function checkCartTotal() {
   if (cartTotal === 0) {
@@ -188,17 +190,9 @@ function calculateTax() {
   let finalTotal = subtotal + salesTax;
   const totalP = document.querySelector(".total__p");
   totalP.textContent = `Total: $${finalTotal.toFixed([2])}`;
+  return finalTotal;
 }
 
-// could not get total to update with just changing textContent to subtotal + salesTax.
-// Attempting to write it as a function and store total in a variable.
-// still not working!!! Can't even get it to console log anything.
-function calculateTotal() {
-  // let finalTotal = subtotal + salesTax;
-  // const totalP = document.querySelector(".total__p");
-  // totalP.textContent = `Total: $${finalTotal.toFixed([2])}`;
-  console.log(salesTax);
-}
 
 // function to show the cash payment section when the cash radio button is checked
 const paymentSubmitButton = document.getElementById("payment-submit");
@@ -219,6 +213,23 @@ function paymentMethod() {
   if (radioCredit.checked) {
     creditForm.classList.remove("hide");
   }
+}
+
+// function to show change due and cash messages
+// variable for the change due paragraph
+const changeP = document.getElementById("change-message");
+// variable for the cash payment message paragraph
+const cashP = document.getElementById("cash-message");
+// variable for cash payment submit button
+const cashSubmitButton = document.getElementById("cash-submit");
+
+function cashSubmit(event) {
+  // get the value entered in the amount tendered input
+  let amountTendered = document.getElementById("amount-tendered").value;
+  let changeDue = (amountTendered - finalTotal);
+  console.log(changeDue);
+  changeP.textContent = `Change due: $${changeDue.toFixed([2])}`;
+  event.preventDefault();
 }
 
 // Event listeners
@@ -246,10 +257,13 @@ paymentSubmitButton.addEventListener("click", (event) => {
   document.getElementById("payment__form").style.display = "none";
 });
 
+// submit cash payment amount tendered event listener
+cashSubmitButton.addEventListener("click", cashSubmit);
+
 // Invoking functions
 addItemsToPage();
 calculateSubtotal();
 updateSubtotals();
 checkCartTotal();
 calculateTax();
-calculateTotal();
+cashSubmit();

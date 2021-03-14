@@ -72,10 +72,13 @@
         <div class="cashForm__div hide">
           <form id="cash__form">
             <label for="tender">Please enter amount tendered: </label>
-            <input name="tender" type="text" />
-            <button type="submit" id="cash-submit">Submit</button>
-            <!-- submitting will create a pop up alert in JS -->
+            <input name="tender" type="text" id="amount-tendered"/>
+            <button id="cash-submit">Submit</button>
           </form>
+          <div class="message__div">
+            <p class="checkout__p" id="change-message">Change due: </p>
+            <p class="checkout__p" id="cash-message"></p>
+          </div>
         </div>
         <!-- This is the credit payment section -->
         <div class="creditForm__div hide">
