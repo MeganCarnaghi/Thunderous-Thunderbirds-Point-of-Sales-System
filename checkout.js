@@ -229,13 +229,14 @@ const changeP = document.getElementById("change-message");
 const cashP = document.getElementById("cash-message");
 // variable for cash payment submit button
 const cashSubmitButton = document.getElementById("cash-submit");
+// variable for the checkout complete section
+const checkoutComplete = document.querySelector(".checkoutComplete__div");
 
 function cashSubmit(event) {
   // get the value entered in the amount tendered input
   let amountTendered = document.getElementById("amount-tendered").value;
   let changeDue = amountTendered - finalTotal;
   const cashMessage = document.getElementById("cash-message");
-  const checkoutComplete = document.querySelector(".checkoutComplete__div");
   console.log(changeDue);
   // prevent the page from refreshing when clicking on the submit button
   event.preventDefault();
@@ -249,6 +250,14 @@ function cashSubmit(event) {
       "Thanks for shopping with Gus! Your transaction is complete. Happy tail wagging!";
     checkoutComplete.classList.remove("hide");
   }
+}
+
+// variable for credit submit button
+const creditSubmitButton = document.getElementById("credit-submit");
+// function to submit credit info and show the checkout complete section
+function creditSubmit(event) {
+  event.preventDefault();
+  checkoutComplete.classList.remove("hide");
 }
 
 // Event listeners
@@ -293,6 +302,9 @@ checkoutButton.addEventListener("click", checkout);
 
 // submit cash payment amount tendered event listener
 cashSubmitButton.addEventListener("click", cashSubmit);
+
+// submit credit payment event listener
+creditSubmitButton.addEventListener("click", creditSubmit);
 
 // Invoking functions
 addItemsToPage();
