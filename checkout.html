@@ -66,7 +66,6 @@
           <input type="radio" id="cash" name="payment" value="Cash" />
           <label for="credit">Credit</label>
           <input type="radio" id="credit" name="payment" value="Credit" />
-          <!-- <button type="submit" id="payment-submit">Submit</button> -->
         </form>
         <!-- This is the cash payment section -->
         <div class="cashForm__div hide">
@@ -75,6 +74,7 @@
             <input name="tender" type="text" id="amount-tendered"/>
             <button id="cash-submit">Submit</button>
           </form>
+          <!-- This message seciton below changes depending if they paid too little or too much -->
           <div class="message__div">
             <p class="checkout__p" id="change-message">Change due: </p>
             <p class="checkout__p" id="cash-message"></p>
@@ -101,7 +101,6 @@
       <!-- Order complete section -->
       <div class="checkoutComplete__div hide">
               <h1 class="checkoutPage__h1">Order Confirmation</h1>
-
         <p class="checkout__p">Thank you! Your order is complete.</p>
         <button type="submit" id="email-receipt">Email Receipt</button>
         <button type="submit" id="download-receipt">Download Receipt</button>

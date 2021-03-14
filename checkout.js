@@ -190,7 +190,7 @@ function checkout() {
   paymentSection.classList.remove("hide");
 }
 
-// function calculate sales tax and return it to the sales tax line
+// function calculate sales tax and final totals
 function calculateTax() {
   let salesTax = subtotal * 0.06;
   console.log(salesTax);
@@ -208,7 +208,7 @@ function showCash() {
   cashForm.classList.remove("hide");
   creditForm.classList.add("hide");
 }
-
+// function to show the credit payment section when the credit radio button is checked
 function showCredit() {
   const cashForm = document.querySelector(".cashForm__div");
   const creditForm = document.querySelector(".creditForm__div");
@@ -234,9 +234,23 @@ function cashSubmit(event) {
   // get the value entered in the amount tendered input
   let amountTendered = document.getElementById("amount-tendered").value;
   let changeDue = amountTendered - finalTotal;
+  const cashMessage = document.getElementById("cash-message");
+  const checkoutComplete = document.querySelector(".checkoutComplete__div");
   console.log(changeDue);
-  changeP.textContent = `Change due: $${changeDue.toFixed([2])}`;
+  // prevent the page from refreshing when clicking on the submit button
   event.preventDefault();
+  if (amountTendered < finalTotal) {
+    changeP.classList.add("hide");
+    cashMessage.textContent = "Ruh roh! That's not quite enough doggie bones. Please try again.";
+  }
+  if (amountTendered >= finalTotal) {
+    changeP.textContent = `Change due: $${changeDue.toFixed([2])}`;
+    cashMessage.textContent = "Thanks for shopping with Gus! Your transaction is complete. Happy tail wagging!";
+    checkoutComplete.classList.remove("hide");
+  }
+
+  
+
 }
 
 // Event listeners
