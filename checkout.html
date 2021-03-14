@@ -59,13 +59,14 @@
       <!-- The Payment Method Form -->
       <div class="paymentForm__div hide">
               <h1 class="checkoutPage__h1">Payment Information</h1>
+                        <p class="checkout__p">Please select your method of payment:</p>
+
 
         <form id="payment__form">
-          <p class="checkout__p">Please select your method of payment:</p>
-          <label for="cash">Cash</label>
-          <input type="radio" id="cash" name="payment" value="Cash" />
-          <label for="credit">Credit</label>
-          <input type="radio" id="credit" name="payment" value="Credit" />
+                      <label class="paymentCash__label" for="cash">Cash</label>
+          <input class="paymentCash__input" type="radio" id="cash" name="payment" value="Cash" />
+          <label class="paymentCredit__label"  for="credit">Credit</label>
+          <input class="paymentCredit__input" type="radio" id="credit" name="payment" value="Credit" />
         </form>
         <!-- This is the cash payment section -->
         <div class="cashForm__div hide">
