@@ -134,7 +134,7 @@ h2 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 225px;
+  margin-top: 200px;
 }
 
 .item__div {
@@ -409,15 +409,15 @@ h2 {
 
   .headerLink__div {
     width: 225px;
-    background-size: 225px;
+    background-size: 200px;
   }
 
   .headerCartItemsQty__div {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     top: 10%;
     right: 2%;
   }
