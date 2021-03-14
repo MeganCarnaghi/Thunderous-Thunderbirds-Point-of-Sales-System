@@ -240,7 +240,6 @@ function cashSubmit(event) {
   // prevent the page from refreshing when clicking on the submit button
   event.preventDefault();
   if (amountTendered < finalTotal) {
-    changeP.classList.add("hide");
     cashMessage.textContent =
       "Ruh roh! That's not quite enough doggie bones. Please try again.";
   }
@@ -279,6 +278,10 @@ document
     // Show the payment form div
     const paymentSection = document.querySelector(".paymentForm__div");
     paymentSection.classList.remove("hide");
+
+    // updat the payment total p in the payment form
+    let paymentTotalDue = document.getElementById("payment-total");
+    paymentTotalDue.textContent = `Your total payment due is: $${finalTotal.toFixed([2])}`;
 
     // Reset the name and email inputs
     document.querySelector(".inputFullName__input").value = "";
