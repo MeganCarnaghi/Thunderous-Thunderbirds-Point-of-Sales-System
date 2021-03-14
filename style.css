@@ -67,13 +67,12 @@ h2 {
   border-bottom: 5px solid #000000;
 }
 
-.header__img {
+.headerLogo__img {
   width: 60%;
 }
 
 .headerLink__div {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   border: none;
@@ -84,6 +83,22 @@ h2 {
   margin: 0 20px;
   height: 100%;
   width: 100%;
+  position: relative;
+}
+
+.headerCartItemsQty__div {
+  border-radius: 50%;
+  background-color: purple;
+  text-align: center;
+  width: 18%;
+  position: absolute;
+  right: 2%;
+  top: 15%;
+}
+
+.headerCartItems__p {
+  color: #ffffff;
+  padding: 3px;
 }
 
 .header__link {
@@ -332,7 +347,7 @@ h2 {
 
 /* Styling for desktop */
 @media only screen and (min-width: 768px) {
-  .header__img {
+  .headerLogo__img {
     width: 400px;
   }
 
