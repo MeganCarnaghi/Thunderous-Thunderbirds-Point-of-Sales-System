@@ -178,7 +178,6 @@ function checkout() {
   totalSection.classList.remove("hide");
   inputSection.classList.remove("hide");
   paymentSection.classList.remove("hide");
-  // update total:
 }
 
 // function calculate sales tax and return it to the sales tax line
@@ -187,33 +186,32 @@ function calculateTax() {
   console.log(salesTax);
   const taxP = document.querySelector(".tax__p");
   taxP.textContent = `Sales tax: $${salesTax.toFixed([2])}`;
-  let finalTotal = subtotal + salesTax;
+  finalTotal = subtotal + salesTax;
   const totalP = document.querySelector(".total__p");
   totalP.textContent = `Total: $${finalTotal.toFixed([2])}`;
-  return finalTotal;
 }
 
 
 // function to show the cash payment section when the cash radio button is checked
-const paymentSubmitButton = document.getElementById("payment-submit");
-function paymentMethod() {
-  // get the value of the cash radio button in a variable
-  let radioCash = document.getElementById("cash");
-  // variable for the cash payment form div
+function showCash() {
   const cashForm = document.querySelector(".cashForm__div");
-  // get the value of the credit radio button in a variable
-  let radioCredit = document.getElementById("credit");
-  // variable for the credit payment form div
   const creditForm = document.querySelector(".creditForm__div");
-  // if statement to change visibility of the cash or credit sections depending
-  // on checked status of radio buttons
-  if (radioCash.checked) {
-    cashForm.classList.remove("hide");
-  }
-  if (radioCredit.checked) {
-    creditForm.classList.remove("hide");
-  }
+  cashForm.classList.remove("hide");
+  creditForm.classList.add("hide");
 }
+
+function showCredit() {
+  const cashForm = document.querySelector(".cashForm__div");
+  const creditForm = document.querySelector(".creditForm__div");
+  creditForm.classList.remove("hide");
+  cashForm.classList.add("hide");
+}
+
+let radioCash = document.getElementById("cash");
+let radioCredit = document.getElementById("credit");
+
+radioCash.addEventListener("click", showCash);
+radioCredit.addEventListener("click", showCredit);
 
 // function to show change due and cash messages
 // variable for the change due paragraph
@@ -248,15 +246,6 @@ document.querySelector(".cartItems__div").addEventListener("click", (event) => {
 // Checkout button event listener
 checkoutButton.addEventListener("click", checkout);
 
-// Submit payment event listener
-paymentSubmitButton.addEventListener("click", (event) => {
-  // prevent page from refreshing on submit
-  event.preventDefault();
-  paymentMethod();
-  // hide payment method choice once payment option is selected
-  document.getElementById("payment__form").style.display = "none";
-});
-
 // submit cash payment amount tendered event listener
 cashSubmitButton.addEventListener("click", cashSubmit);
 
@@ -266,4 +255,3 @@ calculateSubtotal();
 updateSubtotals();
 checkCartTotal();
 calculateTax();
-cashSubmit();
