@@ -125,10 +125,10 @@ function removeCartItem() {
     if (item.name === itemName) {
       loadedCart.splice(loadedCart.indexOf(item), 1);
       window.localStorage.setItem("cart", JSON.stringify(loadedCart));
-      // subtract from subtotal
-      subtotal -= item.price * item.quantity;
-      // update subtotals on page
-      updateSubtotals();
+      // // subtract from subtotal
+      // subtotal -= item.price * item.quantity;
+      // // update subtotals on page
+      // updateSubtotals();
     }
     // removes div from page
     event.target.parentNode.parentNode.remove();
@@ -137,6 +137,7 @@ function removeCartItem() {
   cartTotal--;
   // If cartTotal = 0, display message
   checkCartTotal();
+  window.location.reload();
 }
 
 // function to update the quantity of items
@@ -163,6 +164,7 @@ function updateItemQuantity() {
     // update price of item based on new quantity
     const newItemPrice = cartItem.price * cartItem.quantity;
     priceH3.textContent = `Price: $${newItemPrice}`;
+    // reload window to update qty and pricing
     window.location.reload();
   }
 }
@@ -190,7 +192,6 @@ function calculateTax() {
   const totalP = document.querySelector(".total__p");
   totalP.textContent = `Total: $${finalTotal.toFixed([2])}`;
 }
-
 
 // function to show the cash payment section when the cash radio button is checked
 function showCash() {
@@ -224,7 +225,7 @@ const cashSubmitButton = document.getElementById("cash-submit");
 function cashSubmit(event) {
   // get the value entered in the amount tendered input
   let amountTendered = document.getElementById("amount-tendered").value;
-  let changeDue = (amountTendered - finalTotal);
+  let changeDue = amountTendered - finalTotal;
   console.log(changeDue);
   changeP.textContent = `Change due: $${changeDue.toFixed([2])}`;
   event.preventDefault();
