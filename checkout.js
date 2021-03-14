@@ -197,7 +197,7 @@ function calculateTax() {
   const taxP = document.querySelector(".tax__p");
   taxP.textContent = `Sales tax: $${salesTax.toFixed([2])}`;
   finalTotal = subtotal + salesTax;
-  const totalP = document.querySelector(".total__p");
+  const totalP = document.querySelector(".total__h2");
   totalP.textContent = `Total: $${finalTotal.toFixed([2])}`;
 }
 
@@ -288,17 +288,24 @@ document
     const paymentSection = document.querySelector(".paymentForm__div");
     paymentSection.classList.remove("hide");
 
-    // updat the payment total p in the payment form
+    // update the payment total h2 in the payment form
     let paymentTotalDue = document.getElementById("payment-total");
-    paymentTotalDue.textContent = `Your total payment due is: $${finalTotal.toFixed([2])}`;
+    paymentTotalDue.textContent = `Your total payment due is: $${finalTotal.toFixed(
+      [2]
+    )}`;
 
     // Reset the name and email inputs
     document.querySelector(".inputFullName__input").value = "";
     document.querySelector(".inputEmail__input").value = "";
+    // Scroll to payment method div
+    document.querySelector(".paymentForm__div").scrollIntoView();
   });
 
 // Checkout button event listener
-checkoutButton.addEventListener("click", checkout);
+checkoutButton.addEventListener("click", () => {
+  checkout();
+  document.querySelector(".total__div").scrollIntoView();
+});
 
 // submit cash payment amount tendered event listener
 cashSubmitButton.addEventListener("click", cashSubmit);
