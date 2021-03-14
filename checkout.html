@@ -25,7 +25,7 @@
       <div class="cartItems__div">
         <h1 class="checkoutPage__h1">Cart Items</h1>
         <!-- Empty Cart Div (hidden if items in cart)-->
-      <div class="emptyCart__div hide">
+      <div class="emptyCart__div removed">
           <img src="images/sadpuppy.png" alt="sad puppy">
      <h2 class="emptyCart__h2">Ruh roh! It looks like your cart is empty!</h2>
           <p class="emptyCart__p">Go back to the <a class="emptyCart__link" href="index.html"><strong>homepage</strong></a> and add some items.</p>
@@ -48,14 +48,20 @@
       </div>
       <!-- The User Input Form -->
       <div class="inputForm__div hide">
-      <h1 class="checkoutPage__h1">Contact Information</h1>
         <form id="input__form">
+                <h1 class="checkoutPage__h1">Contact Information</h1>
+
           <label class="inputFullName__label" for="fullName">Please enter your full name: </label>
           <input class="inputFullName__input" name="fullName" type="text" required/>
           <label class="inputEmail__label" for="email">Please enter your email address: </label>
           <input class="inputEmail__input" name="email" type="email" required/>
           <button class="inputForm__button" type="submit">Submit</button>
         </form>
+        <div class="inputFormMissingInfo__div hide">
+          <h2 class="inputFormMissingInfo__h2">Ruh Roh! It looks like you forgot something.</h2>
+          <img class="inputFormMissingInfo__img" src="images/forgotsomething.png" alt="questioning dog">
+          <p class="inputFormMissingInfo__p">Please enter both your name and email address.</p>
+        </div>
       </div>
       <!-- The Payment Method Form -->
       <div class="paymentForm__div hide">

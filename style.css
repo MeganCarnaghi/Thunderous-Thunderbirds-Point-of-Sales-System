@@ -239,6 +239,10 @@ h2 {
 }
 
 .hide {
+  visibility: hidden;
+}
+
+.removed {
   display: none;
 }
 
@@ -359,9 +363,25 @@ h2 {
   margin-top: 20px;
 }
 
+.inputForm__div {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputFormMissingInfo__div {
+  text-align: center;
+  padding-top: 40px;
+}
+
+.inputFormMissingInfo__img {
+  width: 200px;
+  margin: 20px 0;
+}
+
 #input__form {
   display: flex;
   flex-direction: column;
+  padding-right: ;
 }
 
 .inputFullName__label,
@@ -476,5 +496,16 @@ h2 {
     margin-right: 40px;
     border: 5px solid #000000;
     box-shadow: 2px 2px 8px #000000;
+  }
+
+  .inputForm__div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .inputFormMissingInfo__div {
+    text-align: center;
+    width: 60%;
   }
 }

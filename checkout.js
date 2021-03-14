@@ -11,7 +11,7 @@ let finalTotal = 0;
 // function to check cartTotal and display message if = 0
 function checkCartTotal() {
   if (cartTotal === 0) {
-    document.querySelector(".emptyCart__div").classList.remove("hide");
+    document.querySelector(".emptyCart__div").classList.remove("removed");
     document.querySelector(".subtotal__div").classList.add("hide");
     document.querySelector(".total__div").classList.add("hide");
     document.querySelector(".inputForm__div").classList.add("hide");
@@ -284,21 +284,31 @@ document
     userFullName = document.querySelector(".inputFullName__input").value;
     userEmail = document.querySelector(".inputEmail__input").value;
 
-    // Show the payment form div
-    const paymentSection = document.querySelector(".paymentForm__div");
-    paymentSection.classList.remove("hide");
+    if (userFullName === "" || userEmail === "") {
+      const missingInfoDiv = document.querySelector(
+        ".inputFormMissingInfo__div"
+      );
+      missingInfoDiv.classList.remove("hide");
+    } else {
+      document
+        .querySelector(".inputFormMissingInfo__div")
+        .classList.add("hide");
+      // Show the payment form div
+      const paymentSection = document.querySelector(".paymentForm__div");
+      paymentSection.classList.remove("hide");
 
-    // update the payment total h2 in the payment form
-    let paymentTotalDue = document.getElementById("payment-total");
-    paymentTotalDue.textContent = `Your total payment due is: $${finalTotal.toFixed(
-      [2]
-    )}`;
+      // update the payment total h2 in the payment form
+      let paymentTotalDue = document.getElementById("payment-total");
+      paymentTotalDue.textContent = `Your total payment due is: $${finalTotal.toFixed(
+        [2]
+      )}`;
 
-    // Reset the name and email inputs
-    document.querySelector(".inputFullName__input").value = "";
-    document.querySelector(".inputEmail__input").value = "";
-    // Scroll to payment method div
-    document.querySelector(".paymentForm__div").scrollIntoView();
+      // Reset the name and email inputs
+      document.querySelector(".inputFullName__input").value = "";
+      document.querySelector(".inputEmail__input").value = "";
+      // Scroll to payment method div
+      document.querySelector(".paymentForm__div").scrollIntoView();
+    }
   });
 
 // Checkout button event listener
