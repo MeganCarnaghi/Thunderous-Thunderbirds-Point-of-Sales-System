@@ -203,7 +203,7 @@ h2 {
   background-color: rgba(205, 200, 63, 0.9);
   margin: 30px 20px;
   border-radius: 5px;
-  padding: 20px;
+  padding: 30px;
 }
 
 .cartItems__div {
@@ -212,7 +212,7 @@ h2 {
   margin-left: 20px;
   margin-right: 20px;
   border-radius: 5px;
-  padding: 20px;
+  padding: 30px;
 }
 
 .checkoutPage__h1 {
@@ -339,6 +339,44 @@ h2 {
 }
 
 .checkout__button:hover {
+  cursor: pointer;
+  background-color: #000000;
+  color: #ffffff;
+  transition: 0.5s;
+}
+
+#input__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputFullName__label,
+.inputEmail__label {
+  font-size: 20px;
+}
+
+.inputFullName__input,
+.inputEmail__input {
+  padding: 5px;
+  width: 400px;
+  margin: 10px 0 20px 0;
+  font-size: 20px;
+}
+
+.inputForm__button {
+  background-color: #000;
+  padding: 10px 20px;
+  color: #cec93f;
+  border: none;
+  box-shadow: 2px 2px 8px #000000;
+  margin: 10px 0;
+  transition: 0.5s;
+  border-radius: 5px;
+  font-size: 20px;
+  width: 100px;
+}
+
+.inputForm__button:hover {
   cursor: pointer;
   background-color: #000000;
   color: #ffffff;

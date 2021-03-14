@@ -183,11 +183,11 @@ function checkout() {
   // get the divs for the total, input and payment sections:
   let totalSection = document.querySelector(".total__div");
   let inputSection = document.querySelector(".inputForm__div");
-  let paymentSection = document.querySelector(".paymentForm__div");
+  // let paymentSection = document.querySelector(".paymentForm__div");
   // change the total, input, and payment sections to be visible:
   totalSection.classList.remove("hide");
   inputSection.classList.remove("hide");
-  paymentSection.classList.remove("hide");
+  // paymentSection.classList.remove("hide");
 }
 
 // function calculate sales tax and final totals
@@ -241,16 +241,15 @@ function cashSubmit(event) {
   event.preventDefault();
   if (amountTendered < finalTotal) {
     changeP.classList.add("hide");
-    cashMessage.textContent = "Ruh roh! That's not quite enough doggie bones. Please try again.";
+    cashMessage.textContent =
+      "Ruh roh! That's not quite enough doggie bones. Please try again.";
   }
   if (amountTendered >= finalTotal) {
     changeP.textContent = `Change due: $${changeDue.toFixed([2])}`;
-    cashMessage.textContent = "Thanks for shopping with Gus! Your transaction is complete. Happy tail wagging!";
+    cashMessage.textContent =
+      "Thanks for shopping with Gus! Your transaction is complete. Happy tail wagging!";
     checkoutComplete.classList.remove("hide");
   }
-
-  
-
 }
 
 // Event listeners
@@ -265,6 +264,26 @@ document.querySelector(".cartItems__div").addEventListener("click", (event) => {
     updateItemQuantity();
   }
 });
+
+// Event listener for submit button on contact information
+let userFullName = null;
+let userEmail = null;
+document
+  .querySelector(".inputForm__button")
+  .addEventListener("click", (event) => {
+    event.preventDefault();
+    // Store user's name and email address in a variable
+    userFullName = document.querySelector(".inputFullName__input").value;
+    userEmail = document.querySelector(".inputEmail__input").value;
+
+    // Show the payment form div
+    const paymentSection = document.querySelector(".paymentForm__div");
+    paymentSection.classList.remove("hide");
+
+    // Reset the name and email inputs
+    document.querySelector(".inputFullName__input").value = "";
+    document.querySelector(".inputEmail__input").value = "";
+  });
 
 // Checkout button event listener
 checkoutButton.addEventListener("click", checkout);
