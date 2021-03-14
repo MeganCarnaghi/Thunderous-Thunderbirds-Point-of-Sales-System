@@ -18,6 +18,7 @@ h3,
 label,
 input {
   font-family: "Oswald", sans-serif;
+  color: #000000;
 }
 
 p {
@@ -226,6 +227,10 @@ h2 {
   align-items: center;
   margin: 20px 0;
   border-bottom: 2px solid #000000;
+}
+
+.cartItemName__h2 {
+  margin-bottom: 10px;
 }
 
 .emptyCart__h2 {

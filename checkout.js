@@ -44,10 +44,18 @@ function addItemsToPage() {
     newDiv.append(subDiv);
     // Create a new h2 for the item name
     const newh2 = document.createElement("h2");
+    // add class to new h2
+    newh2.classList.add("cartItemName__h2");
     // Set text content for new h2
     newh2.textContent = item.name;
     // append new h2 to new div
     subDiv.appendChild(newh2);
+    // Add new h3 for unit price
+    const newh3UnitPrice = document.createElement("h3");
+    // Set text content for new h3
+    newh3UnitPrice.textContent = `Unit Price: $${item.price}`;
+    // Append to sub div
+    subDiv.appendChild(newh3UnitPrice);
     // Create a new label element for the item quantity
     const newLabel = document.createElement("label");
     // Add class to label
@@ -78,16 +86,16 @@ function addItemsToPage() {
     updateButton.classList.add("cartItemUpdateQty__button");
     // Append button to sub div
     subDiv.appendChild(updateButton);
-    // create new h3 for the price
-    const newh3price = document.createElement("h3");
+    // create new h3 for the total price
+    const newh3TotalPrice = document.createElement("h3");
     // Add class to h3
-    newh3price.classList.add("cartItemPrice__h3");
+    newh3TotalPrice.classList.add("cartItemPrice__h3");
     // Calculate price for items (item price * quantity)
-    const itemPrice = item.price * item.quantity;
+    const itemTotalPrice = item.price * item.quantity;
     //Set text content for new h3
-    newh3price.textContent = `Price: $${itemPrice}`;
+    newh3TotalPrice.textContent = `Total Price: $${itemTotalPrice}`;
     // append new h2 to new div
-    subDiv.appendChild(newh3price);
+    subDiv.appendChild(newh3TotalPrice);
     // Create a button to remove item from cart
     const newBtn = document.createElement("button");
     // Set text content for new button
