@@ -278,8 +278,10 @@ const creditSubmitButton = document.getElementById("credit-submit");
 // function to submit credit info and show the checkout complete section
 function creditSubmit(event) {
   event.preventDefault();
+  const creditMessage = document.getElementById("credit-message");
+  creditMessage.textContent = "Credit card transaction successful!";
   // Show success message
-  paymentMessageh2.textContent = "Your transaction is complete!";
+  paymentMessageh2.textContent = "Your purchse is complete!";
   paymentMessageImg.setAttribute("src", "images/coolpup.png");
   paymentMessageImg.setAttribute("alt", "dog with sunglasses");
   paymentMessageP.textContent =
