@@ -406,7 +406,6 @@ h2 {
   transition: 0.5s;
   border-radius: 5px;
   font-size: 20px;
-  /* width: 100px; */
 }
 
 .inputForm__button:hover {
@@ -417,6 +416,23 @@ h2 {
 }
 
 /* payment information div */
+.paymentForm__div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.paymentMethodMessage__div {
+  text-align: center;
+  margin: 40px 20px;
+}
+
+.paymentMethodFail__img,
+.paymentMethodSuccess__img {
+  width: 200px;
+  margin: 20px 0;
+}
+
 #payment__form {
   display: flex;
   align-items: center;
@@ -581,15 +597,19 @@ h2 {
     box-shadow: 2px 2px 8px #000000;
   }
 
-  .inputForm__div {
+  .inputForm__div,
+  .paymentForm__div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
 
   .inputFormMissingInfo__div {
-    text-align: center;
-    width: 60%;
+    width: 50%;
+  }
+
+  .paymentMethodMessage__div {
+    width: 50%;
   }
 
   #cash-submit,

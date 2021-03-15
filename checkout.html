@@ -70,6 +70,7 @@
       </div>
       <!-- The Payment Method Form -->
       <div class="paymentForm__div hide">
+        <div>
               <h1 class="checkoutPage__h1">Payment Information</h1>
               <h2 class="checkout__h2" id="payment-total"></h2>
                         <p class="checkout__p">Please select your method of payment:</p>
@@ -94,7 +95,7 @@
           <!-- This message seciton below changes depending if they paid too little or too much -->
           <div class="message__div">
             <h2 class="checkout__p" id="change-message"></h2>
-            <p class="checkout__p" id="cash-message"></p>
+            <!-- <p class="checkout__p" id="cash-message"></p> -->
           </div>
         </div>
         <!-- This is the credit payment section -->
@@ -116,12 +117,16 @@
           </form>
         </div>
       </div>
+
+      <!-- Div where message goes when there is not enough cash or they paid enough via cash or credit card -->
+          <div class="paymentMethodMessage__div">
+          </div>
+      </div>
       <!-- Order complete section -->
       <div class="checkoutComplete__div hide">
               <h1 class="checkoutPage__h1">Order Confirmation</h1>
         <p class="checkout__p">Thank you! Your order is complete.</p>
-        <button type="submit" id="email-receipt">Email Receipt</button>
-        <button type="submit" id="download-receipt">Download Receipt</button>
+        <button type="submit" id="print-receipt">Print Receipt</button>
       </div>
     </main>
     <!-- Link to JavaScript -->

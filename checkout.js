@@ -133,10 +133,6 @@ function removeCartItem() {
     if (item.name === itemName) {
       loadedCart.splice(loadedCart.indexOf(item), 1);
       window.localStorage.setItem("cart", JSON.stringify(loadedCart));
-      // // subtract from subtotal
-      // subtotal -= item.price * item.quantity;
-      // // update subtotals on page
-      // updateSubtotals();
     }
     // removes div from page
     event.target.parentNode.parentNode.remove();
@@ -236,18 +232,50 @@ function cashSubmit(event) {
   // get the value entered in the amount tendered input
   let amountTendered = document.getElementById("amount-tendered").value;
   let changeDue = amountTendered - finalTotal;
-  const cashMessage = document.getElementById("cash-message");
-  console.log(changeDue);
+  const paymentMessageDiv = document.querySelector(
+    ".paymentMethodMessage__div"
+  );
   // prevent the page from refreshing when clicking on the submit button
   event.preventDefault();
   if (amountTendered < finalTotal) {
-    cashMessage.textContent =
-      "Ruh roh! That's not quite enough doggie bones. Please try again.";
+    const h2 = document.createElement("h2");
+    h2.classList.add("paymentMethodFail__h2");
+    h2.textContent = "Ruh Roh! That's not quite enough doggy bones.";
+    const img = document.createElement("img");
+    img.setAttribute("src", "images/dogbones.png");
+    img.setAttribute("alt", "dog bone");
+    img.style.width = "200px";
+    img.classList.add("paymentMethodFail__img");
+    const p = document.createElement("p");
+    p.textContent =
+      "Please try again with enough cash to cover the cost of your order.";
+    p.classList.add("paymentMethodFail__p");
+    paymentMessageDiv.appendChild(h2);
+    paymentMessageDiv.appendChild(img);
+    paymentMessageDiv.appendChild(p);
   }
   if (amountTendered >= finalTotal) {
     changeP.textContent = `Change due: $${changeDue.toFixed([2])}`;
-    cashMessage.textContent =
-      "Thank you for shopping at Fancy Paws Puppy Boutique! Your transaction is complete. Happy tail wagging!";
+    document.querySelector(".paymentMethodFail__h2").remove();
+    document.querySelector(".paymentMethodFail__img").remove();
+    document.querySelector(".paymentMethodFail__p").remove();
+
+    const h2 = document.createElement("h2");
+    h2.classList.add("paymentMethodSuccess__h2");
+
+    h2.textContent = "Your Transaction is complete!";
+    const img = document.createElement("img");
+    img.setAttribute("src", "images/coolpup.png");
+    img.setAttribute("alt", "dog with sunglasses");
+    img.style.width = "200px";
+    img.classList.add("paymentMethodSuccess__img");
+    const p = document.createElement("p");
+    p.textContent =
+      "Thank you for your order. You can view your purchase summary and print your receipt below.";
+    p.classList.add("paymentMethodSuccess__p");
+    paymentMessageDiv.appendChild(h2);
+    paymentMessageDiv.appendChild(img);
+    paymentMessageDiv.appendChild(p);
     checkoutComplete.classList.remove("hide");
   }
 }
