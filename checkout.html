@@ -105,18 +105,49 @@
         <!-- This is the credit payment section -->
         <div class="creditForm__div removed">
  
-          <form id="credit__form">
+          <form id="credit__form" novalidate>
                                  <p class="checkout__p">
               Please enter your credit card information below:
             </p>
-            <label class="creditForm__label" for="card-number">Card number: </label>
-            <input class="creditForm__input"  name="card-number" type="text" />
-            <label class="creditForm__label" for="card-exp">Expiration date: </label>
-            <input class="creditForm__input"  name="card-exp" type="text" />
+            <label class="creditForm__label" for="card-number">Card number (no spaces): </label>
+            <input placeholder="123456789012" class="creditForm__input" pattern="[0-9]+" minlength="16" maxlength="16" name="card-number" type="text" required/>
+                <p>Expiration Date: </p>
+   <div class="creditFormDateField__div">
+ 
+      <div class="month">
+        <select name="Month">
+          <option value="january">January</option>
+          <option value="february">February</option>
+          <option value="march">March</option>
+          <option value="april">April</option>
+          <option value="may">May</option>
+          <option value="june">June</option>
+          <option value="july">July</option>
+          <option value="august">August</option>
+          <option value="september">September</option>
+          <option value="october">October</option>
+          <option value="november">November</option>
+          <option value="december">December</option>
+        </select>
+      </div>
+      <div class="year">
+        <select name="Year">
+          <option value="2016">2016</option>
+          <option value="2017">2017</option>
+          <option value="2018">2018</option>
+          <option value="2019">2019</option>
+          <option value="2020">2020</option>
+          <option value="2021">2021</option>
+          <option value="2022">2022</option>
+          <option value="2023">2023</option>
+          <option value="2024">2024</option>
+        </select>
+      </div>
+    </div>
             <label class="creditForm__label" for="card-cvv">CVV: </label>
-            <input class="creditForm__input"  name="card-cvv" type="text" />
+            <input class="creditForm__input" pattern="[0-9]+" minlength="3" maxlength="4" name="card-cvv" type="text" required/>
             <label class="creditForm__label" for="card-zip">Billing ZIP: </label>
-            <input class="creditForm__input"  name="card-zip" type="text" />
+            <input class="creditForm__input" minlength="5" maxlength="5"  name="card-zip" type="text" required/>
             <button type="submit" id="credit-submit">Submit</button>
           </form>
         </div>

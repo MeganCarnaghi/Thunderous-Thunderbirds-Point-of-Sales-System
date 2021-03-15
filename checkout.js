@@ -276,8 +276,14 @@ function cashSubmit(event) {
 // variable for credit submit button
 const creditSubmitButton = document.getElementById("credit-submit");
 // function to submit credit info and show the checkout complete section
-function creditSubmit(event) {
-  event.preventDefault();
+// credit card form validation
+function validateCreditCardFields() {
+  // get elements
+  const cardNumber = document.getElementsByName("card-number");
+  const cvv = document.getElementsByName("card-cvv");
+  const zipCode = document.getElementsByName("card-zip");
+}
+function creditSubmit() {
   const creditMessage = document.getElementById("credit-message");
   creditMessage.textContent = "Credit card transaction successful!";
   // Show success message
