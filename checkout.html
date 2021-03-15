@@ -125,7 +125,15 @@
       <!-- Order complete section -->
       <div class="checkoutComplete__div hide">
               <h1 class="checkoutPage__h1">Order Confirmation</h1>
-        <p class="checkout__p">Thank you! Your order is complete.</p>
+        <p class="checkout__p">Thank you! Your order is complete. Below are your order details: </p>
+        <div class="checkout__p" id="receipt-div">
+              <p class="checkout__p" id="receipt message">Fancy Paws Puppy Boutique</p>
+              <p class="checkout__p" id="receipt-cart"></p>
+              <p class="checkout__p" id="receipt-subtotal"></p>
+              <p class="checkout__p" id="receipt-salestax"></p>
+              <p class="checkout__p" id="receipt-final-total"></p>
+              <p class="checkout__p" id="receipt-payment-method"></p>
+        </div>
         <button type="submit" id="print-receipt">Print Receipt</button>
       </div>
     </main>

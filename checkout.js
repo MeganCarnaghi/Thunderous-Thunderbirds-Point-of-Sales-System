@@ -188,7 +188,7 @@ function checkout() {
 
 // function calculate sales tax and final totals
 function calculateTax() {
-  let salesTax = subtotal * 0.06;
+  salesTax = subtotal * 0.06;
   console.log(salesTax);
   const taxP = document.querySelector(".tax__p");
   taxP.textContent = `Sales tax: $${salesTax.toFixed([2])}`;
@@ -288,7 +288,33 @@ function creditSubmit(event) {
   checkoutComplete.classList.remove("hide");
 }
 
+// function to view receipt when clicking the print receipt button
+function printDiv() {
+  let showReceipt = document.getElementById("receipt-div");
+  let receiptCart = document.getElementById("receipt-cart");
+  let receiptSubtotal = document.getElementById("receipt-subtotal");
+  let receiptSalesTax = document.getElementById("receipt-salestax");
+  let receiptFinalTotal = document.getElementById("receipt-final-total");
+  // let receiptPaymentMethod = document.getElementById("receipt-payment-method");
+  receiptCart.textContent = loadedCart;
+  receiptSubtotal.textContent = `Subtotal: $${subtotal.toFixed([2])}`;
+  receiptSalesTax.textContent = `Sales tax: $${salesTax.toFixed([2])}`;
+  receiptFinalTotal.textContent = `Total: $${finalTotal.toFixed([2])}`;
+
+  showReceipt.classList.remove("hide");
+  
+  let printContents = showReceipt.innerHTML;
+  let originalContents = document.body.innerHTML;
+  document.body.innerHTML = printContents;
+  window.print();
+  document.body.innerHTML = originalContents;
+}
+
 // Event listeners
+
+// Event listener to view receipt details
+document.getElementById("print-receipt").addEventListener("click", printDiv);
+
 // Event listener to the parent container for the cart items
 document.querySelector(".cartItems__div").addEventListener("click", (event) => {
   // If event target it the Remove Item button...
