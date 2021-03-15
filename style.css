@@ -427,8 +427,7 @@ h2 {
   margin: 40px 20px;
 }
 
-.paymentMethodFail__img,
-.paymentMethodSuccess__img {
+.paymentMethodMessage__img {
   width: 200px;
   margin: 20px 0;
 }

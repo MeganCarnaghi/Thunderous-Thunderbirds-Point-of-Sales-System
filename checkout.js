@@ -228,54 +228,37 @@ const cashSubmitButton = document.getElementById("cash-submit");
 // variable for the checkout complete section
 const checkoutComplete = document.querySelector(".checkoutComplete__div");
 
+// Select the elements for the Payment Method Message Div to set
+const paymentMessageh2 = document.querySelector(".paymentMethodMessage__h2");
+const paymentMessageImg = document.querySelector(".paymentMethodMessage__img");
+const paymentMessageP = document.querySelector(".paymentMethodMessage__p");
+
 function cashSubmit(event) {
+  // prevent the page from refreshing when clicking on the submit button
+  event.preventDefault();
   // get the value entered in the amount tendered input
   let amountTendered = document.getElementById("amount-tendered").value;
   let changeDue = amountTendered - finalTotal;
-  const paymentMessageDiv = document.querySelector(
-    ".paymentMethodMessage__div"
-  );
-  // prevent the page from refreshing when clicking on the submit button
-  event.preventDefault();
+
   if (amountTendered < finalTotal) {
-    const h2 = document.createElement("h2");
-    h2.classList.add("paymentMethodFail__h2");
-    h2.textContent = "Ruh Roh! That's not quite enough doggy bones.";
-    const img = document.createElement("img");
-    img.setAttribute("src", "images/dogbones.png");
-    img.setAttribute("alt", "dog bone");
-    img.style.width = "200px";
-    img.classList.add("paymentMethodFail__img");
-    const p = document.createElement("p");
-    p.textContent =
+    // Show fail message
+    paymentMessageh2.textContent =
+      "Ruh Roh! That's not quite enough doggy bones.";
+    paymentMessageImg.setAttribute("src", "images/dogbones.png");
+    paymentMessageImg.setAttribute("alt", "dog bone");
+    paymentMessageP.textContent =
       "Please try again with enough cash to cover the cost of your order.";
-    p.classList.add("paymentMethodFail__p");
-    paymentMessageDiv.appendChild(h2);
-    paymentMessageDiv.appendChild(img);
-    paymentMessageDiv.appendChild(p);
   }
   if (amountTendered >= finalTotal) {
+    // Show change due
     changeP.textContent = `Change due: $${changeDue.toFixed([2])}`;
-    document.querySelector(".paymentMethodFail__h2").remove();
-    document.querySelector(".paymentMethodFail__img").remove();
-    document.querySelector(".paymentMethodFail__p").remove();
-
-    const h2 = document.createElement("h2");
-    h2.classList.add("paymentMethodSuccess__h2");
-
-    h2.textContent = "Your Transaction is complete!";
-    const img = document.createElement("img");
-    img.setAttribute("src", "images/coolpup.png");
-    img.setAttribute("alt", "dog with sunglasses");
-    img.style.width = "200px";
-    img.classList.add("paymentMethodSuccess__img");
-    const p = document.createElement("p");
-    p.textContent =
+    // Show success message
+    paymentMessageh2.textContent = "Your transaction is complete!";
+    paymentMessageImg.setAttribute("src", "images/coolpup.png");
+    paymentMessageImg.setAttribute("alt", "dog with sunglasses");
+    paymentMessageP.textContent =
       "Thank you for your order. You can view your purchase summary and print your receipt below.";
-    p.classList.add("paymentMethodSuccess__p");
-    paymentMessageDiv.appendChild(h2);
-    paymentMessageDiv.appendChild(img);
-    paymentMessageDiv.appendChild(p);
+    // Show checkout complete div
     checkoutComplete.classList.remove("hide");
   }
 }
@@ -285,6 +268,12 @@ const creditSubmitButton = document.getElementById("credit-submit");
 // function to submit credit info and show the checkout complete section
 function creditSubmit(event) {
   event.preventDefault();
+  // Show success message
+  paymentMessageh2.textContent = "Your transaction is complete!";
+  paymentMessageImg.setAttribute("src", "images/coolpup.png");
+  paymentMessageImg.setAttribute("alt", "dog with sunglasses");
+  paymentMessageP.textContent =
+    "Thank you for your order. You can view your purchase summary and print your receipt below.";
   checkoutComplete.classList.remove("hide");
 }
 
@@ -302,7 +291,7 @@ function printDiv() {
   receiptFinalTotal.textContent = `Total: $${finalTotal.toFixed([2])}`;
 
   showReceipt.classList.remove("hide");
-  
+
   let printContents = showReceipt.innerHTML;
   let originalContents = document.body.innerHTML;
   document.body.innerHTML = printContents;
