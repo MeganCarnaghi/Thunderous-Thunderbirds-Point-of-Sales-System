@@ -80,6 +80,8 @@ function calculateCartItemTotal() {
       "hidden";
   } else {
     // set the text content for the quantity
+    document.querySelector(".headerCartItemsQty__div").style.visibility =
+      "visible";
     const cartItemsTotalP = document.querySelector(".headerCartItems__p");
     cartItemsTotalP.textContent = cartItemTotal;
   }

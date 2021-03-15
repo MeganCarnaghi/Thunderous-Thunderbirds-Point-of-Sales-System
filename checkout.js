@@ -286,7 +286,6 @@ function validateCreditCardFields() {
   console.log(typeof cardNumber);
 }
 function creditSubmit() {
-  validateCreditCardFields();
   const creditMessage = document.getElementById("credit-message");
   creditMessage.textContent = "Credit card transaction successful!";
   // Show success message
