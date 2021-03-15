@@ -233,6 +233,12 @@ const paymentMessageh2 = document.querySelector(".paymentMethodMessage__h2");
 const paymentMessageImg = document.querySelector(".paymentMethodMessage__img");
 const paymentMessageP = document.querySelector(".paymentMethodMessage__p");
 
+// select elements from the cash/credit payment type to hide after payment submitted
+const cashFormDiv = document.querySelector(".cashForm__div");
+const paymentForm = document.getElementById("payment__form");
+const creditFormDiv = document.querySelector(".creditForm__div");
+const paymentTotalDue = document.getElementById("payment-total");
+
 function cashSubmit(event) {
   // prevent the page from refreshing when clicking on the submit button
   event.preventDefault();
@@ -252,6 +258,10 @@ function cashSubmit(event) {
   if (amountTendered >= finalTotal) {
     // Show change due
     changeP.textContent = `Change due: $${changeDue.toFixed([2])}`;
+    // Hide payment options
+    cashFormDiv.classList.add("removed");
+    paymentForm.classList.add("removed");
+    paymentTotalDue.classList.add("removed");
     // Show success message
     paymentMessageh2.textContent = "Your transaction is complete!";
     paymentMessageImg.setAttribute("src", "images/coolpup.png");
@@ -275,6 +285,10 @@ function creditSubmit(event) {
   paymentMessageP.textContent =
     "Thank you for your order. You can view your purchase summary and print your receipt below.";
   checkoutComplete.classList.remove("hide");
+  // Remove credit card and payment form div
+  creditFormDiv.classList.add("removed");
+  paymentForm.classList.add("removed");
+  paymentTotalDue.classList.add("removed");
 }
 
 // function to view receipt when clicking the print receipt button

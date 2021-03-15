@@ -432,9 +432,10 @@ h2 {
   margin: 20px 0;
 }
 
-#payment__form {
+.paymentTypes {
   display: flex;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 .checkout__h2 {
@@ -496,7 +497,7 @@ h2 {
 }
 
 .checkout__p {
-  margin: 10px 0 20px 0;
+  margin: 10px 0;
 }
 
 .creditForm__label {

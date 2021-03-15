@@ -70,20 +70,27 @@
       </div>
       <!-- The Payment Method Form -->
       <div class="paymentForm__div hide">
-        <div>
-              <h1 class="checkoutPage__h1">Payment Information</h1>
-              <h2 class="checkout__h2" id="payment-total"></h2>
-                        <p class="checkout__p">Please select your method of payment:</p>
 
+        <div>
+                        <h1 class="checkoutPage__h1">Payment Information</h1>
+
+              <h2 class="checkout__h2" id="payment-total"></h2>
+                                <!-- This message seciton below changes depending if they paid too little or too much -->
+          <div class="message__div">
+            <h2 class="checkout__p" id="change-message"></h2>
+          </div>
 
         <form id="payment__form">
-          
-          <label class="paymentCash__label" for="cash"><i class="fa fa-money" style="font-size:24px"></i>
+        <p class="checkout__p">Please select your method of payment:</p>
+          <div class="paymentTypes">
+                     <label class="paymentCash__label" for="cash"><i class="fa fa-money" style="font-size:24px"></i>
 &nbsp;Cash</label>
           <input class="paymentCash__input" type="radio" id="cash" name="payment" value="Cash" />
           <label class="paymentCredit__label"  for="credit"><i class="fa fa-credit-card" style="font-size:24px"></i>
 &nbsp;Credit</label>
           <input class="paymentCredit__input" type="radio" id="credit" name="payment" value="Credit" />
+          </div>
+ 
         </form>
         <!-- This is the cash payment section -->
         <div class="cashForm__div removed">
@@ -92,12 +99,8 @@
             <input class="cashForm__input" name="tender" type="text" id="amount-tendered"/>
             <button id="cash-submit">Submit Payment</button>
           </form>
-          <!-- This message seciton below changes depending if they paid too little or too much -->
-          <div class="message__div">
-            <h2 class="checkout__p" id="change-message"></h2>
-            <!-- <p class="checkout__p" id="cash-message"></p> -->
-          </div>
         </div>
+
         <!-- This is the credit payment section -->
         <div class="creditForm__div removed">
  
