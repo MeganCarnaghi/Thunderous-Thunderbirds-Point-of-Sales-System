@@ -205,15 +205,15 @@ function calculateTax() {
 function showCash() {
   const cashForm = document.querySelector(".cashForm__div");
   const creditForm = document.querySelector(".creditForm__div");
-  cashForm.classList.remove("hide");
-  creditForm.classList.add("hide");
+  cashForm.classList.remove("removed");
+  creditForm.classList.add("removed");
 }
 // function to show the credit payment section when the credit radio button is checked
 function showCredit() {
   const cashForm = document.querySelector(".cashForm__div");
   const creditForm = document.querySelector(".creditForm__div");
-  creditForm.classList.remove("hide");
-  cashForm.classList.add("hide");
+  creditForm.classList.remove("removed");
+  cashForm.classList.add("removed");
 }
 
 let radioCash = document.getElementById("cash");
@@ -247,7 +247,7 @@ function cashSubmit(event) {
   if (amountTendered >= finalTotal) {
     changeP.textContent = `Change due: $${changeDue.toFixed([2])}`;
     cashMessage.textContent =
-      "Thanks for shopping with Gus! Your transaction is complete. Happy tail wagging!";
+      "Thank you for shopping at Fancy Paws Puppy Boutique! Your transaction is complete. Happy tail wagging!";
     checkoutComplete.classList.remove("hide");
   }
 }
@@ -283,17 +283,14 @@ document
     // Store user's name and email address in a variable
     userFullName = document.querySelector(".inputFullName__input").value;
     userEmail = document.querySelector(".inputEmail__input").value;
+    const missingInfoFlexDiv = document.querySelector(
+      ".inputFormMissingInfo_flexDiv"
+    );
 
     if (userFullName === "" || userEmail === "") {
-      const missingInfoDiv = document.querySelector(
-        ".inputFormMissingInfo__div"
-      );
-      missingInfoDiv.classList.remove("hide");
+      missingInfoFlexDiv.classList.remove("removed");
     } else {
-      document
-        .querySelector(".inputFormMissingInfo__div")
-        .classList.add("hide");
-      // Show the payment form div
+      missingInfoFlexDiv.classList.add("removed"); // Show the payment form div
       const paymentSection = document.querySelector(".paymentForm__div");
       paymentSection.classList.remove("hide");
 

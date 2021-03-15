@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fancy Paws - Checkout</title>
+    <!-- Link to Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Links to Google Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
@@ -48,62 +50,68 @@
       </div>
       <!-- The User Input Form -->
       <div class="inputForm__div hide">
-        <form id="input__form">
-                <h1 class="checkoutPage__h1">Contact Information</h1>
 
+        <form id="input__form">
+        <h1 class="checkoutPage__h1">Contact Information</h1>
           <label class="inputFullName__label" for="fullName">Please enter your full name: </label>
           <input class="inputFullName__input" name="fullName" type="text" required/>
           <label class="inputEmail__label" for="email">Please enter your email address: </label>
           <input class="inputEmail__input" name="email" type="email" required/>
           <button class="inputForm__button" type="submit">Submit</button>
         </form>
-        <div class="inputFormMissingInfo__div hide">
-          <h2 class="inputFormMissingInfo__h2">Ruh Roh! It looks like you forgot something.</h2>
+        <div class="inputFormMissingInfo__div">
+          <div class="inputFormMissingInfo_flexDiv removed">
+                     <h2 class="inputFormMissingInfo__h2">Ruh Roh! It looks like you forgot something.</h2>
           <img class="inputFormMissingInfo__img" src="images/forgotsomething.png" alt="questioning dog">
           <p class="inputFormMissingInfo__p">Please enter both your name and email address.</p>
+          </div>
+ 
         </div>
       </div>
       <!-- The Payment Method Form -->
       <div class="paymentForm__div hide">
               <h1 class="checkoutPage__h1">Payment Information</h1>
-              <h2 class="checkout__p" id="payment-total"></h2>
+              <h2 class="checkout__h2" id="payment-total"></h2>
                         <p class="checkout__p">Please select your method of payment:</p>
 
 
         <form id="payment__form">
           
-          <label class="paymentCash__label" for="cash">Cash</label>
+          <label class="paymentCash__label" for="cash"><i class="fa fa-money" style="font-size:24px"></i>
+&nbsp;Cash</label>
           <input class="paymentCash__input" type="radio" id="cash" name="payment" value="Cash" />
-          <label class="paymentCredit__label"  for="credit">Credit</label>
+          <label class="paymentCredit__label"  for="credit"><i class="fa fa-credit-card" style="font-size:24px"></i>
+&nbsp;Credit</label>
           <input class="paymentCredit__input" type="radio" id="credit" name="payment" value="Credit" />
         </form>
         <!-- This is the cash payment section -->
-        <div class="cashForm__div hide">
+        <div class="cashForm__div removed">
           <form id="cash__form">
-            <label for="tender">Please enter amount tendered: </label>
-            <input name="tender" type="text" id="amount-tendered"/>
-            <button id="cash-submit">Submit</button>
+            <label class="cashForm__label" for="tender">Please enter amount tendered: </label>
+            <input class="cashForm__input" name="tender" type="text" id="amount-tendered"/>
+            <button id="cash-submit">Submit Payment</button>
           </form>
           <!-- This message seciton below changes depending if they paid too little or too much -->
           <div class="message__div">
-            <p class="checkout__p" id="change-message">Change due: </p>
+            <h2 class="checkout__p" id="change-message"></h2>
             <p class="checkout__p" id="cash-message"></p>
           </div>
         </div>
         <!-- This is the credit payment section -->
-        <div class="creditForm__div hide">
+        <div class="creditForm__div removed">
+ 
           <form id="credit__form">
-            <p class="checkout__p">
+                                 <p class="checkout__p">
               Please enter your credit card information below:
             </p>
-            <label for="card-number">Card number: </label>
-            <input name="card-number" type="text" />
-            <label for="card-exp">Expiration date: </label>
-            <input name="card-exp" type="text" />
-            <label for="card-cvv">CVV: </label>
-            <input name="card-cvv" type="text" />
-            <label for="card-zip">Billing ZIP: </label>
-            <input name="card-zip" type="text" />
+            <label class="creditForm__label" for="card-number">Card number: </label>
+            <input class="creditForm__input"  name="card-number" type="text" />
+            <label class="creditForm__label" for="card-exp">Expiration date: </label>
+            <input class="creditForm__input"  name="card-exp" type="text" />
+            <label class="creditForm__label" for="card-cvv">CVV: </label>
+            <input class="creditForm__input"  name="card-cvv" type="text" />
+            <label class="creditForm__label" for="card-zip">Billing ZIP: </label>
+            <input class="creditForm__input"  name="card-zip" type="text" />
             <button type="submit" id="credit-submit">Submit</button>
           </form>
         </div>
