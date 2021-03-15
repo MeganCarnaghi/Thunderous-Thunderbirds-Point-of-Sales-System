@@ -279,11 +279,14 @@ const creditSubmitButton = document.getElementById("credit-submit");
 // credit card form validation
 function validateCreditCardFields() {
   // get elements
-  const cardNumber = document.getElementsByName("card-number");
-  const cvv = document.getElementsByName("card-cvv");
-  const zipCode = document.getElementsByName("card-zip");
+  const cardNumber = document.getElementById("card-number").value;
+  const cvv = document.getElementById("card-cvv").value;
+  const zipCode = document.getElementById("card-zip").value;
+  console.log(cardNumber);
+  console.log(typeof cardNumber);
 }
 function creditSubmit() {
+  validateCreditCardFields();
   const creditMessage = document.getElementById("credit-message");
   creditMessage.textContent = "Credit card transaction successful!";
   // Show success message
@@ -383,7 +386,10 @@ checkoutButton.addEventListener("click", () => {
 cashSubmitButton.addEventListener("click", cashSubmit);
 
 // submit credit payment event listener
-creditSubmitButton.addEventListener("click", creditSubmit);
+creditSubmitButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  creditSubmit();
+});
 
 // Invoking functions
 addItemsToPage();
