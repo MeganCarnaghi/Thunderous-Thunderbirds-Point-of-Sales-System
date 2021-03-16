@@ -321,7 +321,7 @@ function addItemsToReceipt() {
     // Create a new div for the item
     const receiptDiv = document.createElement("div");
     // Append the div to the receipt cart div
-    const parentDiv = document.getElementById("receiptItems-div")
+    const parentDiv = document.getElementById("receiptItems-div");
     parentDiv.appendChild(receiptDiv);
     // Create a new h2 for the item name
     const receipth2 = document.createElement("h2");
@@ -352,7 +352,6 @@ function setReceiptInfo() {
   const receiptSalesTax = document.getElementById("receipt-salestax");
   const receiptFinalTotal = document.getElementById("receipt-final-total");
 
-
   receiptSubtotal.textContent = `Subtotal: $${subtotal.toFixed([2])}`;
   receiptSalesTax.textContent = `Sales tax: $${salesTax.toFixed([2])}`;
   receiptFinalTotal.textContent = `Total: $${finalTotal.toFixed([2])}`;
@@ -372,7 +371,6 @@ function setReceiptInfo() {
 
   const receiptDate = document.getElementById("receipt-date");
   receiptDate.textContent = `Transaction date: ${date}`;
-
 }
 
 function printReceipt() {
@@ -387,7 +385,9 @@ function printReceipt() {
 // Event listeners
 
 // Event listener to view receipt details
-document.getElementById("print-receipt").addEventListener("click", printReceipt);
+document
+  .getElementById("print-receipt")
+  .addEventListener("click", printReceipt);
 
 // Event listener to the parent container for the cart items
 document.querySelector(".cartItems__div").addEventListener("click", (event) => {
@@ -411,12 +411,12 @@ document
     userFullName = document.querySelector(".inputFullName__input").value;
     userEmail = document.querySelector(".inputEmail__input").value;
 
-     // store in a variable for later use in the receipt
-     const receiptUser = document.getElementById("receipt-user");
-     const receiptEmail = document.getElementById("receipt-email");
-     receiptUser.textContent = `Customer name: ${userFullName}`;
-     receiptEmail.textContent = `Customer email: ${userEmail}`;
-    
+    // store in a variable for later use in the receipt
+    const receiptUser = document.getElementById("receipt-user");
+    const receiptEmail = document.getElementById("receipt-email");
+    receiptUser.textContent = `Customer name: ${userFullName}`;
+    receiptEmail.textContent = `Customer email: ${userEmail}`;
+
     const missingInfoFlexDiv = document.querySelector(
       ".inputFormMissingInfo_flexDiv"
     );
@@ -451,7 +451,7 @@ checkoutButton.addEventListener("click", () => {
 // submit cash payment amount tendered event listener
 cashSubmitButton.addEventListener("click", (event) => {
   event.preventDefault();
-  cashSubmit(); 
+  cashSubmit();
   setReceiptInfo();
   addItemsToReceipt();
 });
@@ -463,6 +463,32 @@ creditSubmitButton.addEventListener("click", (event) => {
   setReceiptInfo();
   addItemsToReceipt();
 });
+
+// FUNCTIONALITY FOR SHOPPING CART ITEM COUNTER
+// function to calculate cart item total on view cart button
+function calculateCartItemTotal() {
+  // Variable for cart item total
+  let cartItemTotal = 0;
+
+  // loop through loadedCart array and figure out how many items there are in local storage
+  for (let item of loadedCart) {
+    cartItemTotal += parseInt(item.quantity);
+  }
+  if (cartItemTotal === 0) {
+    // hide the div if there are no items in the cart
+    document.querySelector(".headerCartItemsQty__div").style.visibility =
+      "hidden";
+  } else {
+    // set the text content for the quantity
+    document.querySelector(".headerCartItemsQty__div").style.visibility =
+      "visible";
+    const cartItemsTotalP = document.querySelector(".headerCartItems__p");
+    cartItemsTotalP.textContent = cartItemTotal;
+  }
+}
+
+// Invoking functions
+calculateCartItemTotal();
 
 // Invoking functions
 addItemsToPage();
