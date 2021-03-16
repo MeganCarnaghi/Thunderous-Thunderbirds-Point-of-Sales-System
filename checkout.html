@@ -44,7 +44,7 @@
         <button class="checkout__button">Checkout</button>
       </div>
       <!-- Total Section -->
-      <div class="total__div hide">
+      <div class="total__div removed">
                 <h1 class="checkoutPage__h1">Final Price</h1>
         <p class="subtotal__p">Subtotal</p>
         <p class="tax__p">Sales Tax</p>
@@ -52,9 +52,8 @@
         <h2 class="total__h2">Total</h2>
       </div>
       <!-- The User Input Form -->
-      <div class="inputForm__div hide">
-
-        <form id="input__form">
+      <div class="inputForm__div removed">
+<div class="inputForm__flexDiv">        <form id="input__form">
         <h1 class="checkoutPage__h1">Contact Information</h1>
           <label class="inputFullName__label" for="fullName">Please enter your full name: </label>
           <input class="inputFullName__input" name="fullName" type="text" required/>
@@ -69,10 +68,12 @@
           <p class="inputFormMissingInfo__p">Please enter both your name and email address.</p>
           </div>
  
-        </div>
+        </div></div>
+
       </div>
       <!-- The Payment Method Form -->
-      <div class="paymentForm__div hide">
+      <div class="paymentForm__div removed">
+        <div class="paymentForm__flexDiv">
 
         <div>
                         <h1 class="checkoutPage__h1">Payment Information</h1>
@@ -163,8 +164,9 @@
             <p class="paymentMethodMessage__p"></p>
           </div>
       </div>
+      </div>
       <!-- Order complete section -->
-      <div class="checkoutComplete__div hide">
+      <div class="checkoutComplete__div removed">
               <h1 class="checkoutPage__h1">Order Confirmation</h1>
         <div id="receipt-div">
               <h2 class="removed" id="receipt-message">Fancy Paws Puppy Boutique</h2>

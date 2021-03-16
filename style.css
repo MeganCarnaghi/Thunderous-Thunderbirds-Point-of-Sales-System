@@ -43,6 +43,7 @@ h2 {
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
+  position: relative;
 }
 
 .main {
@@ -262,6 +263,10 @@ h2 {
   display: none;
 }
 
+.hide {
+  display: none;
+}
+
 .cartItem__div {
   display: flex;
   align-items: center;
@@ -380,7 +385,7 @@ h2 {
 }
 
 /* user information div */
-.inputForm__div {
+.inputForm__flexDiv {
   display: flex;
   flex-direction: column;
 }
@@ -432,7 +437,7 @@ h2 {
 }
 
 /* payment information div */
-.paymentForm__div {
+.paymentForm__flexDiv {
   display: flex;
   flex-direction: column;
 }
@@ -583,7 +588,7 @@ h2 {
     align-items: center;
     width: 35px;
     height: 35px;
-    top: 8%;
+    top: 7%;
     right: 7%;
   }
 
@@ -629,9 +634,8 @@ h2 {
     box-shadow: 2px 2px 8px #000000;
   }
 
-  .inputForm__div,
-  .paymentForm__div {
-    display: flex;
+  .inputForm__flexDiv,
+  .paymentForm__flexDiv {
     flex-direction: row;
     justify-content: space-between;
   }

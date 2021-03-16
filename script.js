@@ -1,9 +1,11 @@
+// GLOBAL VARIABLES
 // Select all the Add to Cart buttons
 const addToCartButton = document.querySelectorAll(".item__button");
 // Initialize an empty array for the shopping cart items
 const shoppingCart = [];
 // Create a variable for pulling the array from local storage
 const loadedCart = JSON.parse(localStorage.getItem("cart"));
+const ItemsQuantity = document.querySelector(".headerCartItemsQty__div");
 
 function addToLocalStorage() {
   // select the data-id attribute of the item selected, store it in a variable
@@ -75,19 +77,17 @@ document
 function calculateCartItemTotal() {
   // Variable for cart item total
   let cartItemTotal = 0;
-
   // loop through loadedCart array and figure out how many items there are in local storage
   for (let item of loadedCart) {
     cartItemTotal += parseInt(item.quantity);
   }
   if (cartItemTotal === 0) {
     // hide the div if there are no items in the cart
-    document.querySelector(".headerCartItemsQty__div").style.visibility =
-      "hidden";
+    ItemsQuantity.classList.add("hide");
   } else {
     // set the text content for the quantity
-    document.querySelector(".headerCartItemsQty__div").style.visibility =
-      "visible";
+    ItemsQuantity.classList.remove("hide");
+
     const cartItemsTotalP = document.querySelector(".headerCartItems__p");
     cartItemsTotalP.textContent = cartItemTotal;
   }

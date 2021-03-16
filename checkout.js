@@ -1,6 +1,8 @@
 // GLOBAL VARIABLES
 // Retrieving items from local storage
 const loadedCart = JSON.parse(window.localStorage.getItem("cart"));
+// Cart Item Quantity counter
+const ItemsQuantity = document.querySelector(".headerCartItemsQty__div");
 // variable for cart items
 let cartTotal = 0;
 // variable for subtotal
@@ -31,16 +33,21 @@ const paymentForm = document.getElementById("payment__form");
 const creditFormDiv = document.querySelector(".creditForm__div");
 const paymentTotalDue = document.getElementById("payment-total");
 const checkoutButton = document.querySelector(".checkout__button");
+const subtotalDiv = document.querySelector(".subtotal__div");
+const totalDiv = document.querySelector(".total__div");
+const inputFormDiv = document.querySelector(".inputForm__div");
+const paymentFormDiv = document.querySelector(".paymentForm__div");
+const cartItemsDiv = document.querySelector(".cartItems__div");
 
 // FUNCTIONS
 // function to check cartTotal and display message if = 0
 function checkCartTotal() {
   if (cartTotal === 0) {
     document.querySelector(".emptyCart__div").classList.remove("removed");
-    document.querySelector(".subtotal__div").classList.add("hide");
-    document.querySelector(".total__div").classList.add("hide");
-    document.querySelector(".inputForm__div").classList.add("hide");
-    document.querySelector(".paymentForm__div").classList.add("hide");
+    subtotalDiv.classList.add("removed");
+    totalDiv.classList.add("removed");
+    inputFormDiv.classList.add("removed");
+    paymentFormDiv.classList.add("removed");
   }
 }
 
@@ -54,7 +61,7 @@ function addItemsToPage() {
     //Add a class to newDiv
     newDiv.classList.add("cartItem__div");
     // Append the div to the cartItems div
-    document.querySelector(".cartItems__div").appendChild(newDiv);
+    cartItemsDiv.appendChild(newDiv);
     // Create a new image element
     const newImg = document.createElement("img");
     // Set the source and alt tags attribute for the image
@@ -201,12 +208,9 @@ function updateItemQuantity() {
 
 // Function to checkout and reveal payment and input div:
 function checkout() {
-  // get the divs for the total, input and payment sections:
-  let totalSection = document.querySelector(".total__div");
-  let inputSection = document.querySelector(".inputForm__div");
   // change the total, input, and payment sections to be visible:
-  totalSection.classList.remove("hide");
-  inputSection.classList.remove("hide");
+  totalDiv.classList.remove("removed");
+  inputFormDiv.classList.remove("removed");
 }
 
 // function calculate sales tax and final totals
@@ -264,7 +268,7 @@ function cashSubmit() {
     paymentMessageP.textContent =
       "Thank you for your order. You can view your purchase summary and print your receipt below.";
     // Show checkout complete div
-    checkoutComplete.classList.remove("hide");
+    checkoutComplete.classList.remove("removed");
   }
 }
 
@@ -290,7 +294,7 @@ function creditSubmit() {
   paymentMessageImg.setAttribute("alt", "dog with sunglasses");
   paymentMessageP.textContent =
     "Thank you for your order. You can view your purchase summary and print your receipt below.";
-  checkoutComplete.classList.remove("hide");
+  checkoutComplete.classList.remove("removed");
   // Remove credit card and payment form div
   creditFormDiv.classList.add("removed");
   paymentForm.classList.add("removed");
@@ -368,23 +372,29 @@ function setReceiptInfo() {
   }
 }
 
+// function to hide specific divs when order is complete
+function hideDivs() {
+  subtotalDiv.classList.add("removed");
+  totalDiv.classList.add("removed");
+  inputFormDiv.style.display = "none";
+  cartItemsDiv.classList.add("removed");
+}
+
 // function to calculate cart item total on view cart button
 function calculateCartItemTotal() {
   // Variable for cart item total
   let cartItemTotal = 0;
-
   // loop through loadedCart array and figure out how many items there are in local storage
   for (let item of loadedCart) {
     cartItemTotal += parseInt(item.quantity);
   }
   if (cartItemTotal === 0) {
     // hide the div if there are no items in the cart
-    document.querySelector(".headerCartItemsQty__div").style.visibility =
-      "hidden";
+    ItemsQuantity.classList.add("hide");
   } else {
     // set the text content for the quantity
-    document.querySelector(".headerCartItemsQty__div").style.visibility =
-      "visible";
+    ItemsQuantity.classList.remove("hide");
+
     const cartItemsTotalP = document.querySelector(".headerCartItems__p");
     cartItemsTotalP.textContent = cartItemTotal;
   }
@@ -406,7 +416,7 @@ document
   .addEventListener("click", printReceipt);
 
 // Event listener to the parent container for the cart items
-document.querySelector(".cartItems__div").addEventListener("click", (event) => {
+cartItemsDiv.addEventListener("click", (event) => {
   // If event target it the Remove Item button...
   if (event.target.classList.contains("cartItemRemove__button")) {
     removeCartItem();
@@ -441,8 +451,7 @@ document
       missingInfoFlexDiv.classList.remove("removed");
     } else {
       missingInfoFlexDiv.classList.add("removed"); // Show the payment form div
-      const paymentSection = document.querySelector(".paymentForm__div");
-      paymentSection.classList.remove("hide");
+      paymentFormDiv.classList.remove("removed");
 
       // update the payment total h2 in the payment form
       let paymentTotalDue = document.getElementById("payment-total");
@@ -459,7 +468,6 @@ document
 // Checkout button event listener
 checkoutButton.addEventListener("click", () => {
   checkout();
-  document.querySelector(".total__div").scrollIntoView();
 });
 
 // submit cash payment amount tendered event listener
@@ -468,6 +476,9 @@ cashSubmitButton.addEventListener("click", (event) => {
   cashSubmit();
   setReceiptInfo();
   addItemsToReceipt();
+  hideDivs();
+  // window.localStorage.removeItem("cart");
+  ItemsQuantity.classList.add("hide");
 });
 
 // submit credit payment event listener
@@ -476,6 +487,9 @@ creditSubmitButton.addEventListener("click", (event) => {
   validateCreditCardForm();
   setReceiptInfo();
   addItemsToReceipt();
+  hideDivs();
+  // window.localStorage.removeItem("cart");
+  ItemsQuantity.classList.add("hide");
 });
 
 // INVOKING FUNCTIONS
