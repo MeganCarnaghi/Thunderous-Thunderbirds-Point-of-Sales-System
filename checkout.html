@@ -163,9 +163,10 @@
       <!-- Order complete section -->
       <div class="checkoutComplete__div hide">
               <h1 class="checkoutPage__h1">Order Confirmation</h1>
-        <p class="checkout__p">Thank you! Your order is complete. Below are your order details: </p>
         <div class="checkout__p" id="receipt-div">
-              <p class="checkout__p" id="receipt message">Fancy Paws Puppy Boutique</p>
+              <p class="checkout__p removed" id="receipt message">Fancy Paws Puppy Boutique</p>
+              <p class="checkout__p" id="receipt-user"></p>
+              <p class="checkout__p" id="receipt-email"></p>
               <p class="checkout__p" id="receipt-cart"></p>
               <p class="checkout__p" id="receipt-subtotal"></p>
               <p class="checkout__p" id="receipt-salestax"></p>
@@ -175,6 +176,23 @@
         <button type="submit" id="print-receipt">Print Receipt</button>
       </div>
     </main>
+        <footer class="footer">
+      <a
+        href="https://twitter.com/intent/tweet?button_hashtag=ThunderousThunderbirds&ref_src=twsrc%5Etfw"
+        class="twitter-hashtag-button"
+        data-show-count="false"
+        >Tweet #ThunderousThunderbirds</a
+      >
+      <p class="footer__p">
+        © 2021 Thunderous Thunderbird. All rights reserved.
+      </p>
+    </footer>
+
+    <script
+      async
+      src="https://platform.twitter.com/widgets.js"
+      charset="utf-8"
+    ></script>
     <!-- Link to JavaScript -->
     <script src="checkout.js"></script>
   </body>
