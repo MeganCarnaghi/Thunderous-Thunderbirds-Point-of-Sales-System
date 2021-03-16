@@ -377,12 +377,7 @@ function setReceiptInfo() {
 }
 
 function printReceipt() {
-  const showReceipt = document.getElementById("receipt-div");
-  let printContents = showReceipt.innerHTML;
-  let originalContents = document.body.innerHTML;
-  document.body.innerHTML = printContents;
   window.print();
-  document.body.innerHTML = originalContents;
 }
 
 // Event listeners

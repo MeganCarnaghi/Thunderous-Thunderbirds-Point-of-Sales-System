@@ -655,3 +655,24 @@ h2 {
     width: 310px;
   }
 }
+
+/* Print Receipt styling */
+@media only print {
+  .header,
+  .footer,
+  .cartItems__div,
+  .subtotal__div,
+  .total__div,
+  .inputForm__div,
+  .paymentForm__div {
+    display: none;
+  }
+
+  #print-receipt {
+    display: none;
+  }
+
+  #receipt-div {
+    display: block;
+  }
+}
