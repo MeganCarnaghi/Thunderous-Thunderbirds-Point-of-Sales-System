@@ -358,6 +358,10 @@ function printDiv() {
 
   showReceipt.classList.remove("hide");
 
+  // show Fancy Paws Puppy Boutique name on print receipt only
+  const receiptTitle = document.getElementById("receipt-message");
+  receiptTitle.classList.remove("removed");
+
   let printContents = showReceipt.innerHTML;
   let originalContents = document.body.innerHTML;
   document.body.innerHTML = printContents;
@@ -383,8 +387,7 @@ document.querySelector(".cartItems__div").addEventListener("click", (event) => {
 });
 
 // Event listener for submit button on contact information
-let userFullName = null;
-let userEmail = null;
+
 document
   .querySelector(".inputForm__button")
   .addEventListener("click", (event) => {
@@ -392,6 +395,13 @@ document
     // Store user's name and email address in a variable
     userFullName = document.querySelector(".inputFullName__input").value;
     userEmail = document.querySelector(".inputEmail__input").value;
+
+     // store in a variable for later use in the receipt
+     const receiptUser = document.getElementById("receipt-user");
+     const receiptEmail = document.getElementById("receipt-email");
+     receiptUser.textContent = `Customer name: ${userFullName}`;
+     receiptEmail.textContent = `Customer email: ${userEmail}`;
+    
     const missingInfoFlexDiv = document.querySelector(
       ".inputFormMissingInfo_flexDiv"
     );
