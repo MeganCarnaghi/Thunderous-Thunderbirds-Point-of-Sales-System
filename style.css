@@ -675,4 +675,8 @@ h2 {
   #receipt-div {
     display: block;
   }
+
+  .main {
+    margin: 0;
+  }
 }
