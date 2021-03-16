@@ -204,19 +204,25 @@ function showCash() {
   const creditForm = document.querySelector(".creditForm__div");
   cashForm.classList.remove("removed");
   creditForm.classList.add("removed");
+
 }
+
+
 // function to show the credit payment section when the credit radio button is checked
 function showCredit() {
   const cashForm = document.querySelector(".cashForm__div");
   const creditForm = document.querySelector(".creditForm__div");
   creditForm.classList.remove("removed");
   cashForm.classList.add("removed");
+
 }
 
-let radioCash = document.getElementById("cash");
+let radioCash = document.getElementById("cash") 
 let radioCredit = document.getElementById("credit");
 
+// event listeners for payment radio buttons
 radioCash.addEventListener("click", showCash);
+
 radioCredit.addEventListener("click", showCredit);
 
 // function to show change due and cash messages
@@ -344,6 +350,7 @@ function addItemsToReceipt() {
     receiptQuantity.textContent = `Quantity: ${item.quantity}`;
     // Append to receipt div
     receiptDiv.appendChild(receiptQuantity);
+    
   }
 }
 
@@ -374,6 +381,17 @@ function setReceiptInfo() {
 
   const receiptDate = document.getElementById("receipt-date");
   receiptDate.textContent = `Transaction date: ${date}`;
+
+  // add payment method to receipt
+  const paymentMethod = document.getElementById("receipt-payment-method");
+  const creditCheck = document.getElementById("credit");
+  const cashCheck = document.getElementById("cash");
+    if (creditCheck.checked) {
+      paymentMethod.textContent = `Payment method: credit`;
+    }
+    if (cashCheck.checked) {
+      paymentMethod.textContent = `Payment method: cash`;
+    }
 }
 
 function printReceipt() {
