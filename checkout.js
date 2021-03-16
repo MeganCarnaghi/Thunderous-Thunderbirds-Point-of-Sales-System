@@ -239,9 +239,7 @@ const paymentForm = document.getElementById("payment__form");
 const creditFormDiv = document.querySelector(".creditForm__div");
 const paymentTotalDue = document.getElementById("payment-total");
 
-function cashSubmit(event) {
-  // prevent the page from refreshing when clicking on the submit button
-  event.preventDefault();
+function cashSubmit() {
   // get the value entered in the amount tendered input
   let amountTendered = document.getElementById("amount-tendered").value;
   let changeDue = amountTendered - finalTotal;
@@ -323,7 +321,8 @@ function addItemsToReceipt() {
     // Create a new div for the item
     const receiptDiv = document.createElement("div");
     // Append the div to the receipt cart div
-    document.getElementById("receipt-cart").appendChild(receiptDiv);
+    const parentDiv = document.getElementById("receiptItems-div")
+    parentDiv.appendChild(receiptDiv);
     // Create a new h2 for the item name
     const receipth2 = document.createElement("h2");
     // Set text content for new h2
@@ -346,12 +345,14 @@ function addItemsToReceipt() {
 }
 
 // function to view receipt when clicking the print receipt button
-function printDiv() {
-  let showReceipt = document.getElementById("receipt-div");
-  let receiptCart = document.getElementById("receipt-cart");
-  let receiptSubtotal = document.getElementById("receipt-subtotal");
-  let receiptSalesTax = document.getElementById("receipt-salestax");
-  let receiptFinalTotal = document.getElementById("receipt-final-total");
+function setReceiptInfo() {
+  const showReceipt = document.getElementById("receipt-div");
+  // let receiptCart = document.getElementById("receipt-cart");
+  const receiptSubtotal = document.getElementById("receipt-subtotal");
+  const receiptSalesTax = document.getElementById("receipt-salestax");
+  const receiptFinalTotal = document.getElementById("receipt-final-total");
+
+
   receiptSubtotal.textContent = `Subtotal: $${subtotal.toFixed([2])}`;
   receiptSalesTax.textContent = `Sales tax: $${salesTax.toFixed([2])}`;
   receiptFinalTotal.textContent = `Total: $${finalTotal.toFixed([2])}`;
@@ -362,6 +363,20 @@ function printDiv() {
   const receiptTitle = document.getElementById("receipt-message");
   receiptTitle.classList.remove("removed");
 
+  // set receipt date
+  const currentDate = new Date();
+  const cDay = currentDate.getDate();
+  const cMonth = currentDate.getMonth() + 1;
+  const cYear = currentDate.getFullYear();
+  const date = `${cMonth}/${cDay}/${cYear}`;
+
+  const receiptDate = document.getElementById("receipt-date");
+  receiptDate.textContent = `Transaction date: ${date}`;
+
+}
+
+function printReceipt() {
+  const showReceipt = document.getElementById("receipt-div");
   let printContents = showReceipt.innerHTML;
   let originalContents = document.body.innerHTML;
   document.body.innerHTML = printContents;
@@ -372,7 +387,7 @@ function printDiv() {
 // Event listeners
 
 // Event listener to view receipt details
-document.getElementById("print-receipt").addEventListener("click", printDiv);
+document.getElementById("print-receipt").addEventListener("click", printReceipt);
 
 // Event listener to the parent container for the cart items
 document.querySelector(".cartItems__div").addEventListener("click", (event) => {
@@ -434,12 +449,19 @@ checkoutButton.addEventListener("click", () => {
 });
 
 // submit cash payment amount tendered event listener
-cashSubmitButton.addEventListener("click", cashSubmit);
+cashSubmitButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  cashSubmit(); 
+  setReceiptInfo();
+  addItemsToReceipt();
+});
 
 // submit credit payment event listener
 creditSubmitButton.addEventListener("click", (event) => {
   event.preventDefault();
   validateCreditCardForm();
+  setReceiptInfo();
+  addItemsToReceipt();
 });
 
 // Invoking functions
@@ -448,4 +470,3 @@ calculateSubtotal();
 updateSubtotals();
 checkCartTotal();
 calculateTax();
-addItemsToReceipt();
