@@ -204,9 +204,7 @@ function showCash() {
   const creditForm = document.querySelector(".creditForm__div");
   cashForm.classList.remove("removed");
   creditForm.classList.add("removed");
-
 }
-
 
 // function to show the credit payment section when the credit radio button is checked
 function showCredit() {
@@ -214,10 +212,9 @@ function showCredit() {
   const creditForm = document.querySelector(".creditForm__div");
   creditForm.classList.remove("removed");
   cashForm.classList.add("removed");
-
 }
 
-let radioCash = document.getElementById("cash") 
+let radioCash = document.getElementById("cash");
 let radioCredit = document.getElementById("credit");
 
 // event listeners for payment radio buttons
@@ -302,7 +299,9 @@ function validateCreditCardForm() {
   if (form.checkValidity()) {
     creditSubmit();
   } else {
-    alert("There is still an empty field");
+    alert(
+      "Please make sure all fields are filled out and your credit card information is accurate."
+    );
   }
 }
 
@@ -328,7 +327,7 @@ function addItemsToReceipt() {
     // Create a new div for the item
     const receiptDiv = document.createElement("div");
     // add class to items div for styling
-    receiptDiv.classList.add("receipt-items")
+    receiptDiv.classList.add("receipt-items");
     // Append the div to the receipt cart div
     const parentDiv = document.getElementById("receiptItems-div");
     parentDiv.appendChild(receiptDiv);
@@ -350,7 +349,6 @@ function addItemsToReceipt() {
     receiptQuantity.textContent = `Quantity: ${item.quantity}`;
     // Append to receipt div
     receiptDiv.appendChild(receiptQuantity);
-    
   }
 }
 
@@ -386,20 +384,20 @@ function setReceiptInfo() {
   const paymentMethod = document.getElementById("receipt-payment-method");
   const creditCheck = document.getElementById("credit");
   const cashCheck = document.getElementById("cash");
-    if (creditCheck.checked) {
-      paymentMethod.textContent = `Payment method: credit`;
-    }
-    if (cashCheck.checked) {
-      paymentMethod.textContent = `Payment method: cash`;
-    }
+  if (creditCheck.checked) {
+    paymentMethod.textContent = `Payment method: credit`;
+  }
+  if (cashCheck.checked) {
+    paymentMethod.textContent = `Payment method: cash`;
+  }
 }
 
+// function for print receipt button
 function printReceipt() {
   window.print();
 }
 
 // Event listeners
-
 // Event listener to view receipt details
 document
   .getElementById("print-receipt")
@@ -453,8 +451,6 @@ document
       // Reset the name and email inputs
       document.querySelector(".inputFullName__input").value = "";
       document.querySelector(".inputEmail__input").value = "";
-      // Scroll to payment method div
-      document.querySelector(".paymentForm__div").scrollIntoView();
     }
   });
 
