@@ -178,9 +178,9 @@ h2 {
 }
 
 .item__button {
-  background-color: #000;
+  background-color: transparent;
   padding: 5px 10px;
-  color: #cec93f;
+  color: #000;
   border: none;
   box-shadow: 2px 2px 8px #000000;
   margin: 10px 0;
@@ -321,7 +321,7 @@ h2 {
   padding: 5px 10px;
   color: #cec93f;
   border: none;
-  box-shadow: 2px 2px 8px #000000;
+  box-shadow: 2px 2px 8px #000;
   margin: 20px 0;
   transition: 0.5s;
   border-radius: 5px;
