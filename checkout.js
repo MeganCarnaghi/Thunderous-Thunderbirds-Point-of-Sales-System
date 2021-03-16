@@ -9,14 +9,16 @@ let subtotal = 0;
 let salesTax = 0;
 // variable for final total (subtotal + salestax)
 let finalTotal = 0;
-let radioCash = document.getElementById("cash");
-let radioCredit = document.getElementById("credit");
+const radioCash = document.getElementById("cash");
+const radioCredit = document.getElementById("credit");
 // variable for the change due paragraph
 const changeP = document.getElementById("change-message");
 // variable for the cash payment message paragraph
 const cashP = document.getElementById("cash-message");
 // variable for cash payment submit button
 const cashSubmitButton = document.getElementById("cash-submit");
+// variable for credit submit button
+const creditSubmitButton = document.getElementById("credit-submit");
 // variable for the checkout complete section
 const checkoutComplete = document.querySelector(".checkoutComplete__div");
 // Select the elements for the Payment Method Message Div to set
@@ -42,7 +44,7 @@ function checkCartTotal() {
   }
 }
 
-// On page load, add items from local storage to cart.
+// Function to add items from local storage to cart on page load
 function addItemsToPage() {
   for (let item of loadedCart) {
     // Create a new div for the item
@@ -197,7 +199,7 @@ function updateItemQuantity() {
   }
 }
 
-// function to checkout and reveal payment and input div:
+// Function to checkout and reveal payment and input div:
 function checkout() {
   // get the divs for the total, input and payment sections:
   let totalSection = document.querySelector(".total__div");
@@ -236,8 +238,8 @@ function showCredit() {
 
 function cashSubmit() {
   // get the value entered in the amount tendered input
-  let amountTendered = document.getElementById("amount-tendered").value;
-  let changeDue = amountTendered - finalTotal;
+  const amountTendered = document.getElementById("amount-tendered").value;
+  const changeDue = amountTendered - finalTotal;
 
   if (amountTendered < finalTotal) {
     // Show fail message
@@ -278,6 +280,7 @@ function validateCreditCardForm() {
   }
 }
 
+// Function for successful credit card submission
 function creditSubmit() {
   const creditMessage = document.getElementById("credit-message");
   creditMessage.textContent = "Credit card transaction successful!";
@@ -294,7 +297,7 @@ function creditSubmit() {
   paymentTotalDue.classList.add("removed");
 }
 
-//function to create receipt items div
+// Function to create receipt items div
 function addItemsToReceipt() {
   for (let item of loadedCart) {
     // Create a new div for the item
@@ -325,7 +328,7 @@ function addItemsToReceipt() {
   }
 }
 
-// function to view receipt when clicking the print receipt button
+// Function to view receipt when clicking the print receipt button
 function setReceiptInfo() {
   const showReceipt = document.getElementById("receipt-div");
   // let receiptCart = document.getElementById("receipt-cart");
@@ -365,11 +368,6 @@ function setReceiptInfo() {
   }
 }
 
-// function for print receipt button
-function printReceipt() {
-  window.print();
-}
-
 // function to calculate cart item total on view cart button
 function calculateCartItemTotal() {
   // Variable for cart item total
@@ -390,6 +388,11 @@ function calculateCartItemTotal() {
     const cartItemsTotalP = document.querySelector(".headerCartItems__p");
     cartItemsTotalP.textContent = cartItemTotal;
   }
+}
+
+// function for print receipt button
+function printReceipt() {
+  window.print();
 }
 
 // EVENT LISTENERS
