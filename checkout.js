@@ -321,6 +321,8 @@ function addItemsToReceipt() {
   for (let item of loadedCart) {
     // Create a new div for the item
     const receiptDiv = document.createElement("div");
+    // add class to items div for styling
+    receiptDiv.classList.add("receipt-items")
     // Append the div to the receipt cart div
     const parentDiv = document.getElementById("receiptItems-div");
     parentDiv.appendChild(receiptDiv);

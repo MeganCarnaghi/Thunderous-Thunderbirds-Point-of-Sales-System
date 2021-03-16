@@ -499,7 +499,8 @@ h2 {
   width: 100%;
 }
 
-#cash-submit:hover {
+#cash-submit:hover,
+#print-receipt:hover {
   cursor: pointer;
   background-color: #000000;
   color: #ffffff;
@@ -559,6 +560,10 @@ h2 {
 .checkoutComplete__h2 {
   text-decoration: underline;
   margin: 20px 0;
+}
+
+.receipt-items {
+  margin-top: 20px;
 }
 
 /* Styling for tablets+ larger devices */
@@ -640,7 +645,8 @@ h2 {
   }
 
   #cash-submit,
-  #credit-submit {
+  #credit-submit,
+  #print-receipt {
     width: 319px;
   }
 
