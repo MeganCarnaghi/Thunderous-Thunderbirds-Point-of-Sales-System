@@ -277,21 +277,22 @@ function cashSubmit(event) {
 const creditSubmitButton = document.getElementById("credit-submit");
 // function to submit credit info and show the checkout complete section
 // credit card form validation
-const cvv = document.getElementById("card-cvv").value;
-const zipCode = document.getElementById("card-zip").value;
-function validateCreditCardNumber() {
-  // get elements
-  const cardNumberString = document
-    .getElementById("card-number")
-    .value.replace(/\s/g, "");
-  const cardNumber = parseInt(cardNumberString);
+// const cvv = document.getElementById("card-cvv").value;
+// const zipCode = document.getElementById("card-zip").value;
+// function validateCreditCardNumber() {
+//   // get elements
+//   const cardNumberString = document
+//     .getElementById("card-number")
+//     .value.replace(/\s/g, "");
+//   const cardNumber = parseInt(cardNumberString);
 
-  if (cardNumberString.length < 16) {
-    alert("Please enter a valid credit card number.");
-  }
-}
+//   if (cardNumberString.length < 16) {
+//     alert("Please enter a valid credit card number.");
+//   }
+// }
 
-function formValidation() {
+// Function to validate all fields of credit card form are filled out
+function validateCreditCardForm() {
   const form = document.getElementById("credit__form");
   if (form.checkValidity()) {
     creditSubmit();
@@ -351,8 +352,6 @@ function printDiv() {
   let receiptSubtotal = document.getElementById("receipt-subtotal");
   let receiptSalesTax = document.getElementById("receipt-salestax");
   let receiptFinalTotal = document.getElementById("receipt-final-total");
-  // let receiptPaymentMethod = document.getElementById("receipt-payment-method");
-  receiptCart.textContent = loadedCart;
   receiptSubtotal.textContent = `Subtotal: $${subtotal.toFixed([2])}`;
   receiptSalesTax.textContent = `Sales tax: $${salesTax.toFixed([2])}`;
   receiptFinalTotal.textContent = `Total: $${finalTotal.toFixed([2])}`;
@@ -430,8 +429,7 @@ cashSubmitButton.addEventListener("click", cashSubmit);
 // submit credit payment event listener
 creditSubmitButton.addEventListener("click", (event) => {
   event.preventDefault();
-  submitForm();
-  // creditSubmit();
+  validateCreditCardForm();
 });
 
 // Invoking functions
@@ -440,3 +438,4 @@ calculateSubtotal();
 updateSubtotals();
 checkCartTotal();
 calculateTax();
+addItemsToReceipt();
