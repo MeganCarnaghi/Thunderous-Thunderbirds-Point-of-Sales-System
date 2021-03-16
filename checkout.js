@@ -277,14 +277,29 @@ function cashSubmit(event) {
 const creditSubmitButton = document.getElementById("credit-submit");
 // function to submit credit info and show the checkout complete section
 // credit card form validation
-function validateCreditCardFields() {
+const cvv = document.getElementById("card-cvv").value;
+const zipCode = document.getElementById("card-zip").value;
+function validateCreditCardNumber() {
   // get elements
-  const cardNumber = document.getElementById("card-number").value;
-  const cvv = document.getElementById("card-cvv").value;
-  const zipCode = document.getElementById("card-zip").value;
-  console.log(cardNumber);
-  console.log(typeof cardNumber);
+  const cardNumberString = document
+    .getElementById("card-number")
+    .value.replace(/\s/g, "");
+  const cardNumber = parseInt(cardNumberString);
+
+  if (cardNumberString.length < 16) {
+    alert("Please enter a valid credit card number.");
+  }
 }
+
+function formValidation() {
+  const form = document.getElementById("credit__form");
+  if (form.checkValidity()) {
+    creditSubmit();
+  } else {
+    alert("There is still an empty field");
+  }
+}
+
 function creditSubmit() {
   const creditMessage = document.getElementById("credit-message");
   creditMessage.textContent = "Credit card transaction successful!";
@@ -299,6 +314,34 @@ function creditSubmit() {
   creditFormDiv.classList.add("removed");
   paymentForm.classList.add("removed");
   paymentTotalDue.classList.add("removed");
+}
+
+//function to create receipt items div
+function addItemsToReceipt() {
+  for (let item of loadedCart) {
+    // Create a new div for the item
+    const receiptDiv = document.createElement("div");
+    // Append the div to the receipt cart div
+    document.getElementById("receipt-cart").appendChild(receiptDiv);
+    // Create a new h2 for the item name
+    const receipth2 = document.createElement("h2");
+    // Set text content for new h2
+    receipth2.textContent = item.name;
+    // append new h2 to receipt div
+    receiptDiv.appendChild(receipth2);
+    // Add new h3 for unit price
+    const receipth3UnitPrice = document.createElement("h3");
+    // Set text content for new h3
+    receipth3UnitPrice.textContent = `Unit Price: $${item.price}`;
+    // Append to receipt div
+    receiptDiv.appendChild(receipth3UnitPrice);
+    // Create a new h3 for item quantity
+    const receiptQuantity = document.createElement("h3");
+    // Set quantity
+    receiptQuantity.textContent = `Quantity: ${item.quantity}`;
+    // Append to receipt div
+    receiptDiv.appendChild(receiptQuantity);
+  }
 }
 
 // function to view receipt when clicking the print receipt button
@@ -387,7 +430,8 @@ cashSubmitButton.addEventListener("click", cashSubmit);
 // submit credit payment event listener
 creditSubmitButton.addEventListener("click", (event) => {
   event.preventDefault();
-  creditSubmit();
+  submitForm();
+  // creditSubmit();
 });
 
 // Invoking functions
