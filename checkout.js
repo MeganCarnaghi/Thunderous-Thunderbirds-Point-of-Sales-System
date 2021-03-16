@@ -32,8 +32,9 @@ function addItemsToPage() {
     document.querySelector(".cartItems__div").appendChild(newDiv);
     // Create a new image element
     const newImg = document.createElement("img");
-    // Set the source attribute for the image
+    // Set the source and alt tags attribute for the image
     newImg.setAttribute("src", item.imgSrc);
+    newImg.setAttribute("alt", item.imgAlt);
     // Add class to newImg
     newImg.classList.add("cartItem__img");
     // Add image to the new div

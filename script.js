@@ -29,12 +29,18 @@ function addToLocalStorage() {
   );
   // Get the src attribute of the imgElement, store in variable
   const imgSrc = imgElement.getAttribute("src");
+
+  // Get the img alt tage attribute, store in variable
+  const imgAlt = imgElement.getAttribute("alt");
+  console.log(imgAlt);
+
   // create a variable for the new item
   const newItem = {
     id: itemId,
     name: name,
     price: price,
     imgSrc: imgSrc,
+    imgAlt: imgAlt,
     quantity: 1,
   };
 
