@@ -1,3 +1,4 @@
+// GLOBAL VARIABLES
 // Retrieving items from local storage
 const loadedCart = JSON.parse(window.localStorage.getItem("cart"));
 // variable for cart items
@@ -8,6 +9,28 @@ let subtotal = 0;
 let salesTax = 0;
 // variable for final total (subtotal + salestax)
 let finalTotal = 0;
+let radioCash = document.getElementById("cash");
+let radioCredit = document.getElementById("credit");
+// variable for the change due paragraph
+const changeP = document.getElementById("change-message");
+// variable for the cash payment message paragraph
+const cashP = document.getElementById("cash-message");
+// variable for cash payment submit button
+const cashSubmitButton = document.getElementById("cash-submit");
+// variable for the checkout complete section
+const checkoutComplete = document.querySelector(".checkoutComplete__div");
+// Select the elements for the Payment Method Message Div to set
+const paymentMessageh2 = document.querySelector(".paymentMethodMessage__h2");
+const paymentMessageImg = document.querySelector(".paymentMethodMessage__img");
+const paymentMessageP = document.querySelector(".paymentMethodMessage__p");
+// select elements from the cash/credit payment type to hide after payment submitted
+const cashFormDiv = document.querySelector(".cashForm__div");
+const paymentForm = document.getElementById("payment__form");
+const creditFormDiv = document.querySelector(".creditForm__div");
+const paymentTotalDue = document.getElementById("payment-total");
+const checkoutButton = document.querySelector(".checkout__button");
+
+// FUNCTIONS
 // function to check cartTotal and display message if = 0
 function checkCartTotal() {
   if (cartTotal === 0) {
@@ -175,16 +198,13 @@ function updateItemQuantity() {
 }
 
 // function to checkout and reveal payment and input div:
-const checkoutButton = document.querySelector(".checkout__button");
 function checkout() {
   // get the divs for the total, input and payment sections:
   let totalSection = document.querySelector(".total__div");
   let inputSection = document.querySelector(".inputForm__div");
-  // let paymentSection = document.querySelector(".paymentForm__div");
   // change the total, input, and payment sections to be visible:
   totalSection.classList.remove("hide");
   inputSection.classList.remove("hide");
-  // paymentSection.classList.remove("hide");
 }
 
 // function calculate sales tax and final totals
@@ -213,35 +233,6 @@ function showCredit() {
   creditForm.classList.remove("removed");
   cashForm.classList.add("removed");
 }
-
-let radioCash = document.getElementById("cash");
-let radioCredit = document.getElementById("credit");
-
-// event listeners for payment radio buttons
-radioCash.addEventListener("click", showCash);
-
-radioCredit.addEventListener("click", showCredit);
-
-// function to show change due and cash messages
-// variable for the change due paragraph
-const changeP = document.getElementById("change-message");
-// variable for the cash payment message paragraph
-const cashP = document.getElementById("cash-message");
-// variable for cash payment submit button
-const cashSubmitButton = document.getElementById("cash-submit");
-// variable for the checkout complete section
-const checkoutComplete = document.querySelector(".checkoutComplete__div");
-
-// Select the elements for the Payment Method Message Div to set
-const paymentMessageh2 = document.querySelector(".paymentMethodMessage__h2");
-const paymentMessageImg = document.querySelector(".paymentMethodMessage__img");
-const paymentMessageP = document.querySelector(".paymentMethodMessage__p");
-
-// select elements from the cash/credit payment type to hide after payment submitted
-const cashFormDiv = document.querySelector(".cashForm__div");
-const paymentForm = document.getElementById("payment__form");
-const creditFormDiv = document.querySelector(".creditForm__div");
-const paymentTotalDue = document.getElementById("payment-total");
 
 function cashSubmit() {
   // get the value entered in the amount tendered input
@@ -274,24 +265,6 @@ function cashSubmit() {
     checkoutComplete.classList.remove("hide");
   }
 }
-
-// variable for credit submit button
-const creditSubmitButton = document.getElementById("credit-submit");
-// function to submit credit info and show the checkout complete section
-// credit card form validation
-// const cvv = document.getElementById("card-cvv").value;
-// const zipCode = document.getElementById("card-zip").value;
-// function validateCreditCardNumber() {
-//   // get elements
-//   const cardNumberString = document
-//     .getElementById("card-number")
-//     .value.replace(/\s/g, "");
-//   const cardNumber = parseInt(cardNumberString);
-
-//   if (cardNumberString.length < 16) {
-//     alert("Please enter a valid credit card number.");
-//   }
-// }
 
 // Function to validate all fields of credit card form are filled out
 function validateCreditCardForm() {
@@ -397,7 +370,33 @@ function printReceipt() {
   window.print();
 }
 
-// Event listeners
+// function to calculate cart item total on view cart button
+function calculateCartItemTotal() {
+  // Variable for cart item total
+  let cartItemTotal = 0;
+
+  // loop through loadedCart array and figure out how many items there are in local storage
+  for (let item of loadedCart) {
+    cartItemTotal += parseInt(item.quantity);
+  }
+  if (cartItemTotal === 0) {
+    // hide the div if there are no items in the cart
+    document.querySelector(".headerCartItemsQty__div").style.visibility =
+      "hidden";
+  } else {
+    // set the text content for the quantity
+    document.querySelector(".headerCartItemsQty__div").style.visibility =
+      "visible";
+    const cartItemsTotalP = document.querySelector(".headerCartItems__p");
+    cartItemsTotalP.textContent = cartItemTotal;
+  }
+}
+
+// EVENT LISTENERS
+// event listeners for payment radio buttons
+radioCash.addEventListener("click", showCash);
+radioCredit.addEventListener("click", showCredit);
+
 // Event listener to view receipt details
 document
   .getElementById("print-receipt")
@@ -476,33 +475,8 @@ creditSubmitButton.addEventListener("click", (event) => {
   addItemsToReceipt();
 });
 
-// FUNCTIONALITY FOR SHOPPING CART ITEM COUNTER
-// function to calculate cart item total on view cart button
-function calculateCartItemTotal() {
-  // Variable for cart item total
-  let cartItemTotal = 0;
-
-  // loop through loadedCart array and figure out how many items there are in local storage
-  for (let item of loadedCart) {
-    cartItemTotal += parseInt(item.quantity);
-  }
-  if (cartItemTotal === 0) {
-    // hide the div if there are no items in the cart
-    document.querySelector(".headerCartItemsQty__div").style.visibility =
-      "hidden";
-  } else {
-    // set the text content for the quantity
-    document.querySelector(".headerCartItemsQty__div").style.visibility =
-      "visible";
-    const cartItemsTotalP = document.querySelector(".headerCartItems__p");
-    cartItemsTotalP.textContent = cartItemTotal;
-  }
-}
-
-// Invoking functions
+// INVOKING FUNCTIONS
 calculateCartItemTotal();
-
-// Invoking functions
 addItemsToPage();
 calculateSubtotal();
 updateSubtotals();
