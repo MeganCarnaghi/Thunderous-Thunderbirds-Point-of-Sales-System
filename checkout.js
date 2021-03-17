@@ -373,12 +373,13 @@ function setReceiptInfo() {
   }
 }
 
-// function to hide specific divs when order is complete
+// function to hide specific divs when order is complete and scroll payment div
 function hideDivs() {
   subtotalDiv.classList.add("removed");
   totalDiv.classList.add("removed");
   inputFormDiv.style.display = "none";
   cartItemsDiv.classList.add("removed");
+  paymentFormDiv.scrollIntoView();
 }
 
 // function to calculate cart item total on view cart button
@@ -480,6 +481,7 @@ cashSubmitButton.addEventListener("click", (event) => {
   hideDivs();
   // window.localStorage.removeItem("cart");
   ItemsQuantity.classList.add("hide");
+  paymentFormDiv.style.marginTop = "200px";
 });
 
 // submit credit payment event listener
