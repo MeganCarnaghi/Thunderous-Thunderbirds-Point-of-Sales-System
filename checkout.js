@@ -472,10 +472,12 @@ document
       ".inputFormMissingInfo_flexDiv"
     );
 
+    const missingInfoDiv = document.querySelector(".inputFormMissingInfo__div");
+
     if (userFullName === "" || userEmail === "") {
-      missingInfoFlexDiv.classList.remove("removed");
+      missingInfoDiv.classList.remove("removed");
     } else {
-      missingInfoFlexDiv.classList.add("removed"); // Show the payment form div
+      missingInfoDiv.classList.add("removed");
       paymentFormDiv.classList.remove("removed");
 
       // update the payment total h2 in the payment form
