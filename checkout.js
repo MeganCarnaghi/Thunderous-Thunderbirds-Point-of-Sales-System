@@ -48,6 +48,7 @@ function checkCartTotal() {
   if (cartTotal === 0) {
     document.querySelector(".emptyCart__div").classList.remove("removed");
     subtotalDiv.classList.add("removed");
+    cartItemsDiv.style.margin = "225px 40px 220px 40px";
     totalDiv.classList.add("removed");
     inputFormDiv.classList.add("removed");
     paymentFormDiv.classList.add("removed");

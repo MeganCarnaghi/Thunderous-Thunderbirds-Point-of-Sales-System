@@ -135,7 +135,6 @@ h2 {
   height: 100px;
   background-color: #cec93f;
   border-top: 5px solid #000000;
-  margin-bottom: 0;
 }
 
 .footer__p {
@@ -631,7 +630,7 @@ h2 {
   }
 
   .cartItem__img {
-    width: 250px;
+    width: 225px;
     border-radius: 50%;
     margin-right: 40px;
     border: 5px solid #000000;
