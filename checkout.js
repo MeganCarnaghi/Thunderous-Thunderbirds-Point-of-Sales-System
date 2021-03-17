@@ -24,6 +24,9 @@ const creditSubmitButton = document.getElementById("credit-submit");
 // variable for the checkout complete section
 const checkoutComplete = document.querySelector(".checkoutComplete__div");
 // Select the elements for the Payment Method Message Div to set
+const paymentMethodMessageDiv = document.querySelector(
+  ".paymentMethodMessage__div"
+);
 const paymentMessageh2 = document.querySelector(".paymentMethodMessage__h2");
 const paymentMessageImg = document.querySelector(".paymentMethodMessage__img");
 const paymentMessageP = document.querySelector(".paymentMethodMessage__p");
@@ -247,6 +250,7 @@ function cashSubmit() {
 
   if (amountTendered < finalTotal) {
     // Show fail message
+    paymentMethodMessageDiv.classList.remove("removed");
     paymentMessageh2.textContent =
       "Ruh Roh! That's not quite enough doggy bones.";
     paymentMessageImg.setAttribute("src", "images/dogbones.png");
@@ -255,6 +259,8 @@ function cashSubmit() {
       "Please try again with enough cash to cover the cost of your order.";
   }
   if (amountTendered >= finalTotal) {
+    paymentMethodMessageDiv.classList.remove("removed");
+
     hideDivs();
     resetLocalStorage();
     // Show change due
