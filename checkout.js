@@ -405,6 +405,13 @@ function calculateCartItemTotal() {
   }
 }
 
+// function to reset items in localstorage and itemcounter div
+function resetLocalStorage() {
+  window.localStorage.removeItem("cart");
+  window.localStorage.setItem("cart", JSON.stringify([]));
+  ItemsQuantity.classList.add("hide");
+}
+
 // function for print receipt button
 function printReceipt() {
   window.print();
@@ -482,8 +489,7 @@ cashSubmitButton.addEventListener("click", (event) => {
   setReceiptInfo();
   addItemsToReceipt();
   hideDivs();
-  // window.localStorage.removeItem("cart");
-  // ItemsQuantity.classList.add("hide");
+  resetLocalStorage();
 });
 
 // submit credit payment event listener
@@ -493,8 +499,7 @@ creditSubmitButton.addEventListener("click", (event) => {
   setReceiptInfo();
   addItemsToReceipt();
   hideDivs();
-  // window.localStorage.removeItem("cart");
-  // ItemsQuantity.classList.add("hide");
+  resetLocalStorage();
 });
 
 // INVOKING FUNCTIONS
