@@ -303,7 +303,7 @@ function creditSubmit() {
   const creditMessage = document.getElementById("credit-message");
   creditMessage.textContent = "Credit card transaction successful!";
   // Show success message
-  paymentMessageh2.textContent = "Your purchse is complete!";
+  paymentMessageh2.textContent = "Your purchase is complete!";
   paymentMessageImg.setAttribute("src", "images/coolpup.png");
   paymentMessageImg.setAttribute("alt", "dog with sunglasses");
   paymentMessageP.textContent =
