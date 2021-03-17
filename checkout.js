@@ -289,9 +289,12 @@ function validateCreditCardForm() {
     hideDivs();
     resetLocalStorage();
   } else {
-    alert(
-      "Please make sure all fields are filled out and your credit card information is accurate."
-    );
+    paymentMethodMessageDiv.classList.remove("removed");
+    paymentMessageh2.textContent = "Ruh Roh! Something's not quite right.";
+    paymentMessageImg.setAttribute("src", "images/sadpuppy.png");
+    paymentMessageImg.setAttribute("alt", "sad puppy");
+    paymentMessageP.textContent =
+      "Please make sure all fields are filled out and your credit card information is accurate.";
   }
 }
 

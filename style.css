@@ -440,6 +440,10 @@ h2 {
 }
 
 .paymentMethodMessage__div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   margin: 40px 20px 0px 20px;
 }
