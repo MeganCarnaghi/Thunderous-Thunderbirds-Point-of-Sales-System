@@ -380,6 +380,9 @@ function hideDivs() {
   inputFormDiv.style.display = "none";
   cartItemsDiv.classList.add("removed");
   paymentFormDiv.scrollIntoView();
+
+  //update formatting of paymentformdiv
+  paymentFormDiv.classList.add("paymentForm__divCheckout");
 }
 
 // function to calculate cart item total on view cart button
@@ -480,8 +483,7 @@ cashSubmitButton.addEventListener("click", (event) => {
   addItemsToReceipt();
   hideDivs();
   // window.localStorage.removeItem("cart");
-  ItemsQuantity.classList.add("hide");
-  paymentFormDiv.style.marginTop = "200px";
+  // ItemsQuantity.classList.add("hide");
 });
 
 // submit credit payment event listener
@@ -492,7 +494,7 @@ creditSubmitButton.addEventListener("click", (event) => {
   addItemsToReceipt();
   hideDivs();
   // window.localStorage.removeItem("cart");
-  ItemsQuantity.classList.add("hide");
+  // ItemsQuantity.classList.add("hide");
 });
 
 // INVOKING FUNCTIONS

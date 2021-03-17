@@ -563,7 +563,7 @@ h2 {
   margin: 20px 0;
 }
 
-/* Styling for Order Confirmation div */
+/* Styling for Order Confirmation div and paymentformdiv on checkout */
 .checkoutComplete__h2 {
   text-decoration: underline;
   margin: 20px 0;
@@ -571,6 +571,10 @@ h2 {
 
 .receipt-items {
   margin-top: 20px;
+}
+
+.paymentForm__divCheckout {
+  margin-top: 200px;
 }
 
 /* Styling for tablets+ larger devices */
@@ -659,6 +663,9 @@ h2 {
   .cashForm__input,
   .creditForm__input {
     width: 310px;
+  }
+  .paymentForm__divCheckout {
+    margin-top: 200px;
   }
 }
 
