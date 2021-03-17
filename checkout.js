@@ -24,9 +24,7 @@ const creditSubmitButton = document.getElementById("credit-submit");
 // variable for the checkout complete section
 const checkoutComplete = document.querySelector(".checkoutComplete__div");
 // Select the elements for the Payment Method Message Div to set
-const paymentMethodMessageDiv = document.querySelector(
-  ".paymentMethodMessage__div"
-);
+const paymentMethodMessageDiv = document.querySelector(".paymentMethodMessage__div");
 const paymentMessageh2 = document.querySelector(".paymentMethodMessage__h2");
 const paymentMessageImg = document.querySelector(".paymentMethodMessage__img");
 const paymentMessageP = document.querySelector(".paymentMethodMessage__p");
@@ -62,7 +60,7 @@ function addItemsToPage() {
     const newDiv = document.createElement("div");
     // Set the data attribute for the new div as the data-id
     newDiv.setAttribute("data-id", item.id);
-    //Add a class to newDiv
+    // Add a class to newDiv
     newDiv.classList.add("cartItem__div");
     // Append the div to the cartItems div
     cartItemsDiv.appendChild(newDiv);
@@ -129,7 +127,7 @@ function addItemsToPage() {
     newh3TotalPrice.classList.add("cartItemPrice__h3");
     // Calculate price for items (item price * quantity)
     const itemTotalPrice = item.price * item.quantity;
-    //Set text content for new h3
+    // Set text content for new h3
     newh3TotalPrice.textContent = `Total Price: $${itemTotalPrice}`;
     // append new h2 to new div
     subDiv.appendChild(newh3TotalPrice);
@@ -149,7 +147,7 @@ function addItemsToPage() {
 // A function to calculate the subtotal
 function calculateSubtotal() {
   for (let item of loadedCart) {
-    let price = item.price * item.quantity;
+    const price = item.price * item.quantity;
     subtotal += price;
   }
 }
@@ -298,7 +296,7 @@ function validateCreditCardForm() {
   }
 }
 
-// Function for successful credit card submission
+// Function for successful credit card submission:
 function creditSubmit() {
   const creditMessage = document.getElementById("credit-message");
   creditMessage.textContent = "Credit card transaction successful!";

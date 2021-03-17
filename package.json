@@ -1,0 +1,25 @@
+{
+  "name": "thunderous-thunderbirds-point-of-sales-system",
+  "version": "1.0.0",
+  "description": "A group project for [Grand Circus](https://www.grandcircus.co/bootcamps/) Front-End Bootcamp. Fancy Paws Puppy Botique is a point of sale system where dog owners can shop online for clothing items for their beloved pups.",
+  "main": "checkout.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint *.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MeganCarnaghi/Thunderous-Thunderbirds-Point-of-Sales-System.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MeganCarnaghi/Thunderous-Thunderbirds-Point-of-Sales-System/issues"
+  },
+  "homepage": "https://github.com/MeganCarnaghi/Thunderous-Thunderbirds-Point-of-Sales-System#readme",
+  "devDependencies": {
+    "eslint": "^7.22.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1"
+  }
+}
