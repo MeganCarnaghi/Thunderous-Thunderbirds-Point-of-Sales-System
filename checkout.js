@@ -1,6 +1,6 @@
 // GLOBAL VARIABLES
 // Retrieving items from local storage
-const loadedCart = JSON.parse(window.localStorage.getItem("cart"));
+let loadedCart = JSON.parse(localStorage.getItem("cart"));
 // Cart Item Quantity counter
 const ItemsQuantity = document.querySelector(".headerCartItemsQty__div");
 // variable for cart items
@@ -255,6 +255,8 @@ function cashSubmit() {
       "Please try again with enough cash to cover the cost of your order.";
   }
   if (amountTendered >= finalTotal) {
+    hideDivs();
+    resetLocalStorage();
     // Show change due
     changeP.textContent = `Change due: $${changeDue.toFixed([2])}`;
     // Hide payment options
@@ -277,6 +279,8 @@ function validateCreditCardForm() {
   const form = document.getElementById("credit__form");
   if (form.checkValidity()) {
     creditSubmit();
+    hideDivs();
+    resetLocalStorage();
   } else {
     alert(
       "Please make sure all fields are filled out and your credit card information is accurate."
@@ -389,6 +393,10 @@ function calculateCartItemTotal() {
   // Variable for cart item total
   let cartItemTotal = 0;
   // loop through loadedCart array and figure out how many items there are in local storage
+  if (!loadedCart) {
+    loadedCart = [];
+    window.localStorage.setItem("cart", JSON.stringify(loadedCart));
+  }
   for (let item of loadedCart) {
     cartItemTotal += parseInt(item.quantity);
   }
@@ -407,7 +415,7 @@ function calculateCartItemTotal() {
 // function to reset items in localstorage and itemcounter div
 function resetLocalStorage() {
   window.localStorage.removeItem("cart");
-  window.localStorage.setItem("cart", JSON.stringify([]));
+  // window.localStorage.setItem("cart", JSON.stringify([]));
   ItemsQuantity.classList.add("hide");
 }
 
@@ -487,8 +495,6 @@ cashSubmitButton.addEventListener("click", (event) => {
   cashSubmit();
   setReceiptInfo();
   addItemsToReceipt();
-  hideDivs();
-  resetLocalStorage();
 });
 
 // submit credit payment event listener
@@ -497,8 +503,6 @@ creditSubmitButton.addEventListener("click", (event) => {
   validateCreditCardForm();
   setReceiptInfo();
   addItemsToReceipt();
-  hideDivs();
-  resetLocalStorage();
 });
 
 // INVOKING FUNCTIONS

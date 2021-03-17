@@ -4,7 +4,7 @@ const addToCartButton = document.querySelectorAll(".item__button");
 // Initialize an empty array for the shopping cart items
 const shoppingCart = [];
 // Create a variable for pulling the array from local storage
-const loadedCart = JSON.parse(localStorage.getItem("cart"));
+let loadedCart = JSON.parse(localStorage.getItem("cart"));
 const ItemsQuantity = document.querySelector(".headerCartItemsQty__div");
 
 function addToLocalStorage() {
@@ -78,6 +78,10 @@ function calculateCartItemTotal() {
   // Variable for cart item total
   let cartItemTotal = 0;
   // loop through loadedCart array and figure out how many items there are in local storage
+  if (!loadedCart) {
+    loadedCart = [];
+    window.localStorage.setItem("cart", JSON.stringify(loadedCart));
+  }
   for (let item of loadedCart) {
     cartItemTotal += parseInt(item.quantity);
   }

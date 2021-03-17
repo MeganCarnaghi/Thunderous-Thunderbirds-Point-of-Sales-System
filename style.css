@@ -572,7 +572,7 @@ h2 {
 }
 
 /* Styling for tablets+ devices */
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) and (max-width: 1920px) {
   .header__img {
     width: 400px;
   }
@@ -588,7 +588,7 @@ h2 {
     align-items: center;
     width: 35px;
     height: 35px;
-    top: 3%;
+    top: 12%;
     right: 6%;
   }
 
