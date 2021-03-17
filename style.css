@@ -42,12 +42,8 @@ h2 {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
-  position: relative;
-}
-
-.main {
-  margin-top: 200px;
+  height: 100%;
+  /* position: relative; */
 }
 
 /* Mobile first styling */
@@ -146,6 +142,12 @@ h2 {
   margin: 10px 0;
 }
 
+.checkoutFooter {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 0;
+}
+
 /* MAIN CONTENT FOR INDEX.HTML */
 .itemsContainer__div {
   display: flex;
@@ -213,9 +215,9 @@ h2 {
 }
 
 /* MAIN CONTENT FOR CHECKOUT.HTML */
-.main {
+/* .main {
   padding-bottom: 25px;
-}
+} */
 
 .subtotal__div,
 .total__div,
@@ -619,7 +621,7 @@ h2 {
   .paymentForm__div,
   .checkoutComplete__div,
   .inputForm__div {
-    margin: 40px 80px;
+    margin: 40px 40px;
   }
 
   .cartItems__div {
@@ -678,10 +680,6 @@ h2 {
 
   #receipt-div {
     display: block;
-  }
-
-  .main {
-    margin: 0;
   }
 
   .checkoutComplete__div {

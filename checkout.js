@@ -44,6 +44,7 @@ const cartItemsDiv = document.querySelector(".cartItems__div");
 function checkCartTotal() {
   if (cartTotal === 0) {
     document.querySelector(".emptyCart__div").classList.remove("removed");
+    document.getElementById("checkoutFooter").classList.add("checkoutFooter");
     subtotalDiv.classList.add("removed");
     totalDiv.classList.add("removed");
     inputFormDiv.classList.add("removed");
