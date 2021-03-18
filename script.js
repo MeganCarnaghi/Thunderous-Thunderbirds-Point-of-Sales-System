@@ -1,6 +1,4 @@
 // GLOBAL VARIABLES
-// Select all the Add to Cart buttons
-const addToCartButton = document.querySelectorAll(".item__button");
 // Initialize an empty array for the shopping cart items
 const shoppingCart = [];
 // Create a variable for pulling the array from local storage
@@ -34,7 +32,6 @@ function addToLocalStorage() {
 
   // Get the img alt tage attribute, store in variable
   const imgAlt = imgElement.getAttribute("alt");
-  console.log(imgAlt);
 
   // create a variable for the new item
   const newItem = {
@@ -47,12 +44,14 @@ function addToLocalStorage() {
   };
 
   // add items to local storage
-  // Check to see if local storage is empty, if it is, push the new item to shopping cart and set to local storage
+  /*Check to see if local storage is empty, if it is, 
+  push the new item to shopping cart and set to local storage*/
   if (localStorage.getItem("cart") === null) {
     shoppingCart.push(newItem);
     window.localStorage.setItem("cart", JSON.stringify(shoppingCart));
   } else {
-    // Otherwise, check local storage to see if the item already exists, if it does, increase the quantity by 1, otherwise added it to existing items and push to local storage
+    /*Otherwise, check local storage to see if the item already exists, if it does, 
+    increase the quantity by 1, otherwise added it to existing items and push to local storage*/
     const cartItem = loadedCart.find((c) => c.id === newItem.id);
     if (cartItem) {
       cartItem.quantity++;
@@ -62,16 +61,6 @@ function addToLocalStorage() {
     window.localStorage.setItem("cart", JSON.stringify(loadedCart));
   }
 }
-
-// Add event listener to the parent container for the items divs
-document
-  .querySelector(".itemsContainer__div")
-  .addEventListener("click", (event) => {
-    if (event.target.classList.contains("item__button")) {
-      addToLocalStorage();
-      calculateCartItemTotal();
-    }
-  });
 
 // function to calculate cart item total on view cart button
 function calculateCartItemTotal() {
@@ -83,7 +72,7 @@ function calculateCartItemTotal() {
     window.localStorage.setItem("cart", JSON.stringify(loadedCart));
   }
   for (let item of loadedCart) {
-    cartItemTotal += parseInt(item.quantity);
+    cartItemTotal += parseInt(item.quantity, 10);
   }
   if (cartItemTotal === 0) {
     // hide the div if there are no items in the cart
@@ -96,6 +85,16 @@ function calculateCartItemTotal() {
     cartItemsTotalP.textContent = cartItemTotal;
   }
 }
+
+// Add event listener to the parent container for the items divs
+document
+  .querySelector(".itemsContainer__div")
+  .addEventListener("click", (event) => {
+    if (event.target.classList.contains("item__button")) {
+      addToLocalStorage();
+      calculateCartItemTotal();
+    }
+  });
 
 // Invoking functions
 calculateCartItemTotal();
