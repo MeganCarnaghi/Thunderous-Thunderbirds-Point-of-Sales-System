@@ -22,9 +22,7 @@ const creditSubmitButton = document.getElementById("credit-submit");
 // variable for the checkout complete section
 const checkoutComplete = document.querySelector(".checkoutComplete__div");
 // Select the elements for the Payment Method Message Div to set
-const paymentMethodMessageDiv = document.querySelector(
-  ".paymentMethodMessage__div"
-);
+const paymentMethodMessageDiv = document.querySelector(".paymentMethodMessage__div");
 const paymentMessageh2 = document.querySelector(".paymentMethodMessage__h2");
 const paymentMessageImg = document.querySelector(".paymentMethodMessage__img");
 const paymentMessageP = document.querySelector(".paymentMethodMessage__p");
@@ -279,7 +277,7 @@ function hideDivs() {
   cartItemsDiv.classList.add("removed");
   paymentFormDiv.scrollIntoView();
 
-  //update formatting of paymentformdiv
+  // update formatting of paymentformdiv
   paymentFormDiv.classList.add("paymentForm__divCheckout");
 }
 
@@ -298,12 +296,10 @@ function cashSubmit() {
   if (amountTendered < finalTotal) {
     // Show fail message
     paymentMethodMessageDiv.classList.remove("removed");
-    paymentMessageh2.textContent =
-      "Ruh Roh! That's not quite enough doggy bones.";
+    paymentMessageh2.textContent = "Ruh Roh! That's not quite enough doggy bones.";
     paymentMessageImg.setAttribute("src", "images/dogbones.png");
     paymentMessageImg.setAttribute("alt", "dog bone");
-    paymentMessageP.textContent =
-      "Please try again with enough cash to cover the cost of your order.";
+    paymentMessageP.textContent = "Please try again with enough cash to cover the cost of your order.";
   }
   if (amountTendered >= finalTotal) {
     paymentMethodMessageDiv.classList.remove("removed");
@@ -327,6 +323,22 @@ function cashSubmit() {
   }
 }
 
+// Function for successful credit card submission:
+function creditSubmit() {
+  const creditMessage = document.getElementById("credit-message");
+  creditMessage.textContent = "Credit card transaction successful!";
+  // Show success message
+  paymentMessageh2.textContent = "Your purchase is complete!";
+  paymentMessageImg.setAttribute("src", "images/coolpup.png");
+  paymentMessageImg.setAttribute("alt", "dog with sunglasses");
+  paymentMessageP.textContent = "Thank you for your order. You can view your purchase summary and print your receipt below.";
+  checkoutComplete.classList.remove("removed");
+  // Remove credit card and payment form div
+  creditFormDiv.classList.add("removed");
+  paymentForm.classList.add("removed");
+  paymentTotalDue.classList.add("removed");
+}
+
 // Function to validate all fields of credit card form are filled out
 function validateCreditCardForm() {
   const form = document.getElementById("credit__form");
@@ -343,23 +355,6 @@ function validateCreditCardForm() {
     paymentMessageP.textContent =
       "Please make sure all fields are filled out and your credit card information is accurate.";
   }
-}
-
-// Function for successful credit card submission:
-function creditSubmit() {
-  const creditMessage = document.getElementById("credit-message");
-  creditMessage.textContent = "Credit card transaction successful!";
-  // Show success message
-  paymentMessageh2.textContent = "Your purchase is complete!";
-  paymentMessageImg.setAttribute("src", "images/coolpup.png");
-  paymentMessageImg.setAttribute("alt", "dog with sunglasses");
-  paymentMessageP.textContent =
-    "Thank you for your order. You can view your purchase summary and print your receipt below.";
-  checkoutComplete.classList.remove("removed");
-  // Remove credit card and payment form div
-  creditFormDiv.classList.add("removed");
-  paymentForm.classList.add("removed");
-  paymentTotalDue.classList.add("removed");
 }
 
 // Function to view receipt when clicking the print receipt button
@@ -460,18 +455,14 @@ document
   .addEventListener("click", (event) => {
     event.preventDefault();
     // Store user's name and email address in a variable
-    userFullName = document.querySelector(".inputFullName__input").value;
-    userEmail = document.querySelector(".inputEmail__input").value;
+    const userFullName = document.querySelector(".inputFullName__input").value;
+    const userEmail = document.querySelector(".inputEmail__input").value;
 
     // store in a variable for later use in the receipt
     const receiptUser = document.getElementById("receipt-user");
     const receiptEmail = document.getElementById("receipt-email");
     receiptUser.textContent = `Customer name: ${userFullName}`;
     receiptEmail.textContent = `Customer email: ${userEmail}`;
-
-    const missingInfoFlexDiv = document.querySelector(
-      ".inputFormMissingInfo_flexDiv"
-    );
 
     const missingInfoDiv = document.querySelector(".inputFormMissingInfo__div");
 
@@ -482,7 +473,6 @@ document
       paymentFormDiv.classList.remove("removed");
 
       // update the payment total h2 in the payment form
-      let paymentTotalDue = document.getElementById("payment-total");
       paymentTotalDue.textContent = `Your total payment due is: $${finalTotal.toFixed(
         [2]
       )}`;
