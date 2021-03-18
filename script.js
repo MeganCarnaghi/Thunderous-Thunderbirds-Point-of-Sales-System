@@ -44,13 +44,13 @@ function addToLocalStorage() {
   };
 
   // add items to local storage
-  /*Check to see if local storage is empty, if it is, 
+  /* Check to see if local storage is empty, if it is, 
   push the new item to shopping cart and set to local storage*/
   if (localStorage.getItem("cart") === null) {
     shoppingCart.push(newItem);
     window.localStorage.setItem("cart", JSON.stringify(shoppingCart));
   } else {
-    /*Otherwise, check local storage to see if the item already exists, if it does, 
+    /* Otherwise, check local storage to see if the item already exists, if it does, 
     increase the quantity by 1, otherwise added it to existing items and push to local storage*/
     const cartItem = loadedCart.find((c) => c.id === newItem.id);
     if (cartItem) {

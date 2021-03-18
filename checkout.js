@@ -316,8 +316,7 @@ function cashSubmit() {
     paymentMessageh2.textContent = "Your transaction is complete!";
     paymentMessageImg.setAttribute("src", "images/coolpup.png");
     paymentMessageImg.setAttribute("alt", "dog with sunglasses");
-    paymentMessageP.textContent =
-      "Thank you for your order. You can view your purchase summary and print your receipt below.";
+    paymentMessageP.textContent = "Thank you for your order. You can view your purchase summary and print your receipt below.";
     // Show checkout complete div
     checkoutComplete.classList.remove("removed");
   }
