@@ -15,8 +15,6 @@ const radioCash = document.getElementById("cash");
 const radioCredit = document.getElementById("credit");
 // variable for the change due paragraph
 const changeP = document.getElementById("change-message");
-// variable for the cash payment message paragraph
-const cashP = document.getElementById("cash-message");
 // variable for cash payment submit button
 const cashSubmitButton = document.getElementById("cash-submit");
 // variable for credit submit button
@@ -218,7 +216,6 @@ function checkout() {
 // function calculate sales tax and final totals
 function calculateTax() {
   salesTax = subtotal * 0.06;
-  console.log(salesTax);
   const taxP = document.querySelector(".tax__p");
   taxP.textContent = `Sales tax: $${salesTax.toFixed([2])}`;
   finalTotal = subtotal + salesTax;
@@ -242,6 +239,25 @@ function showCredit() {
   cashForm.classList.add("removed");
 }
 
+// function to hide specific divs when order is complete and scroll payment div
+function hideDivs() {
+  subtotalDiv.classList.add("removed");
+  totalDiv.classList.add("removed");
+  inputFormDiv.style.display = "none";
+  cartItemsDiv.classList.add("removed");
+  paymentFormDiv.scrollIntoView();
+
+  //update formatting of paymentformdiv
+  paymentFormDiv.classList.add("paymentForm__divCheckout");
+}
+
+// function to reset items in localstorage and itemcounter div
+function resetLocalStorage() {
+  window.localStorage.removeItem("cart");
+  // window.localStorage.setItem("cart", JSON.stringify([]));
+  ItemsQuantity.classList.add("hide");
+}
+
 function cashSubmit() {
   // get the value entered in the amount tendered input
   const amountTendered = document.getElementById("amount-tendered").value;
@@ -250,12 +266,10 @@ function cashSubmit() {
   if (amountTendered < finalTotal) {
     // Show fail message
     paymentMethodMessageDiv.classList.remove("removed");
-    paymentMessageh2.textContent =
-      "Ruh Roh! That's not quite enough doggy bones.";
+    paymentMessageh2.textContent = "Ruh Roh! That's not quite enough doggy bones.";
     paymentMessageImg.setAttribute("src", "images/dogbones.png");
     paymentMessageImg.setAttribute("alt", "dog bone");
-    paymentMessageP.textContent =
-      "Please try again with enough cash to cover the cost of your order.";
+    paymentMessageP.textContent = "Please try again with enough cash to cover the cost of your order.";
   }
   if (amountTendered >= finalTotal) {
     paymentMethodMessageDiv.classList.remove("removed");
@@ -384,18 +398,6 @@ function setReceiptInfo() {
   }
 }
 
-// function to hide specific divs when order is complete and scroll payment div
-function hideDivs() {
-  subtotalDiv.classList.add("removed");
-  totalDiv.classList.add("removed");
-  inputFormDiv.style.display = "none";
-  cartItemsDiv.classList.add("removed");
-  paymentFormDiv.scrollIntoView();
-
-  //update formatting of paymentformdiv
-  paymentFormDiv.classList.add("paymentForm__divCheckout");
-}
-
 // function to calculate cart item total on view cart button
 function calculateCartItemTotal() {
   // Variable for cart item total
@@ -406,7 +408,7 @@ function calculateCartItemTotal() {
     window.localStorage.setItem("cart", JSON.stringify(loadedCart));
   }
   for (let item of loadedCart) {
-    cartItemTotal += parseInt(item.quantity);
+    cartItemTotal += parseInt(item.quantity, 10);
   }
   if (cartItemTotal === 0) {
     // hide the div if there are no items in the cart
@@ -418,13 +420,6 @@ function calculateCartItemTotal() {
     const cartItemsTotalP = document.querySelector(".headerCartItems__p");
     cartItemsTotalP.textContent = cartItemTotal;
   }
-}
-
-// function to reset items in localstorage and itemcounter div
-function resetLocalStorage() {
-  window.localStorage.removeItem("cart");
-  // window.localStorage.setItem("cart", JSON.stringify([]));
-  ItemsQuantity.classList.add("hide");
 }
 
 // function for print receipt button
