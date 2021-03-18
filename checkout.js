@@ -22,7 +22,9 @@ const creditSubmitButton = document.getElementById("credit-submit");
 // variable for the checkout complete section
 const checkoutComplete = document.querySelector(".checkoutComplete__div");
 // Select the elements for the Payment Method Message Div to set
-const paymentMethodMessageDiv = document.querySelector(".paymentMethodMessage__div");
+const paymentMethodMessageDiv = document.querySelector(
+  ".paymentMethodMessage__div"
+);
 const paymentMessageh2 = document.querySelector(".paymentMethodMessage__h2");
 const paymentMessageImg = document.querySelector(".paymentMethodMessage__img");
 const paymentMessageP = document.querySelector(".paymentMethodMessage__p");
@@ -44,7 +46,6 @@ function checkCartTotal() {
   if (cartTotal === 0) {
     document.querySelector(".emptyCart__div").classList.remove("removed");
     subtotalDiv.classList.add("removed");
-    cartItemsDiv.style.margin = "225px 40px 220px 40px";
     totalDiv.classList.add("removed");
     inputFormDiv.classList.add("removed");
     paymentFormDiv.classList.add("removed");
@@ -239,95 +240,7 @@ function showCredit() {
   cashForm.classList.add("removed");
 }
 
-// function to hide specific divs when order is complete and scroll payment div
-function hideDivs() {
-  subtotalDiv.classList.add("removed");
-  totalDiv.classList.add("removed");
-  inputFormDiv.style.display = "none";
-  cartItemsDiv.classList.add("removed");
-  paymentFormDiv.scrollIntoView();
-
-  //update formatting of paymentformdiv
-  paymentFormDiv.classList.add("paymentForm__divCheckout");
-}
-
-// function to reset items in localstorage and itemcounter div
-function resetLocalStorage() {
-  window.localStorage.removeItem("cart");
-  // window.localStorage.setItem("cart", JSON.stringify([]));
-  ItemsQuantity.classList.add("hide");
-}
-
-function cashSubmit() {
-  // get the value entered in the amount tendered input
-  const amountTendered = document.getElementById("amount-tendered").value;
-  const changeDue = amountTendered - finalTotal;
-
-  if (amountTendered < finalTotal) {
-    // Show fail message
-    paymentMethodMessageDiv.classList.remove("removed");
-    paymentMessageh2.textContent = "Ruh Roh! That's not quite enough doggy bones.";
-    paymentMessageImg.setAttribute("src", "images/dogbones.png");
-    paymentMessageImg.setAttribute("alt", "dog bone");
-    paymentMessageP.textContent = "Please try again with enough cash to cover the cost of your order.";
-  }
-  if (amountTendered >= finalTotal) {
-    paymentMethodMessageDiv.classList.remove("removed");
-
-    hideDivs();
-    resetLocalStorage();
-    // Show change due
-    changeP.textContent = `Change due: $${changeDue.toFixed([2])}`;
-    // Hide payment options
-    cashFormDiv.classList.add("removed");
-    paymentForm.classList.add("removed");
-    paymentTotalDue.classList.add("removed");
-    // Show success message
-    paymentMessageh2.textContent = "Your transaction is complete!";
-    paymentMessageImg.setAttribute("src", "images/coolpup.png");
-    paymentMessageImg.setAttribute("alt", "dog with sunglasses");
-    paymentMessageP.textContent =
-      "Thank you for your order. You can view your purchase summary and print your receipt below.";
-    // Show checkout complete div
-    checkoutComplete.classList.remove("removed");
-  }
-}
-
-// Function to validate all fields of credit card form are filled out
-function validateCreditCardForm() {
-  const form = document.getElementById("credit__form");
-  if (form.checkValidity()) {
-    creditSubmit();
-    hideDivs();
-    resetLocalStorage();
-  } else {
-    paymentMethodMessageDiv.classList.remove("removed");
-    paymentMessageh2.textContent = "Ruh Roh! Something's not quite right.";
-    paymentMessageImg.setAttribute("src", "images/sadpuppy.png");
-    paymentMessageImg.setAttribute("alt", "sad puppy");
-    paymentMessageP.textContent =
-      "Please make sure all fields are filled out and your credit card information is accurate.";
-  }
-}
-
-// Function for successful credit card submission:
-function creditSubmit() {
-  const creditMessage = document.getElementById("credit-message");
-  creditMessage.textContent = "Credit card transaction successful!";
-  // Show success message
-  paymentMessageh2.textContent = "Your purchase is complete!";
-  paymentMessageImg.setAttribute("src", "images/coolpup.png");
-  paymentMessageImg.setAttribute("alt", "dog with sunglasses");
-  paymentMessageP.textContent =
-    "Thank you for your order. You can view your purchase summary and print your receipt below.";
-  checkoutComplete.classList.remove("removed");
-  // Remove credit card and payment form div
-  creditFormDiv.classList.add("removed");
-  paymentForm.classList.add("removed");
-  paymentTotalDue.classList.add("removed");
-}
-
-// Function to create receipt items div
+// Function to add items purchased to receipt
 function addItemsToReceipt() {
   for (let item of loadedCart) {
     // Create a new div for the item
@@ -356,6 +269,97 @@ function addItemsToReceipt() {
     // Append to receipt div
     receiptDiv.appendChild(receiptQuantity);
   }
+}
+
+// function to hide specific divs when order is complete and scroll payment div
+function hideDivs() {
+  subtotalDiv.classList.add("removed");
+  totalDiv.classList.add("removed");
+  inputFormDiv.style.display = "none";
+  cartItemsDiv.classList.add("removed");
+  paymentFormDiv.scrollIntoView();
+
+  //update formatting of paymentformdiv
+  paymentFormDiv.classList.add("paymentForm__divCheckout");
+}
+
+// function to reset items in localstorage and itemcounter div
+function resetLocalStorage() {
+  window.localStorage.removeItem("cart");
+  // window.localStorage.setItem("cart", JSON.stringify([]));
+  ItemsQuantity.classList.add("hide");
+}
+
+function cashSubmit() {
+  // get the value entered in the amount tendered input
+  const amountTendered = document.getElementById("amount-tendered").value;
+  const changeDue = amountTendered - finalTotal;
+
+  if (amountTendered < finalTotal) {
+    // Show fail message
+    paymentMethodMessageDiv.classList.remove("removed");
+    paymentMessageh2.textContent =
+      "Ruh Roh! That's not quite enough doggy bones.";
+    paymentMessageImg.setAttribute("src", "images/dogbones.png");
+    paymentMessageImg.setAttribute("alt", "dog bone");
+    paymentMessageP.textContent =
+      "Please try again with enough cash to cover the cost of your order.";
+  }
+  if (amountTendered >= finalTotal) {
+    paymentMethodMessageDiv.classList.remove("removed");
+    addItemsToReceipt();
+    hideDivs();
+    resetLocalStorage();
+    // Show change due
+    changeP.textContent = `Change due: $${changeDue.toFixed([2])}`;
+    // Hide payment options
+    cashFormDiv.classList.add("removed");
+    paymentForm.classList.add("removed");
+    paymentTotalDue.classList.add("removed");
+    // Show success message
+    paymentMessageh2.textContent = "Your transaction is complete!";
+    paymentMessageImg.setAttribute("src", "images/coolpup.png");
+    paymentMessageImg.setAttribute("alt", "dog with sunglasses");
+    paymentMessageP.textContent =
+      "Thank you for your order. You can view your purchase summary and print your receipt below.";
+    // Show checkout complete div
+    checkoutComplete.classList.remove("removed");
+  }
+}
+
+// Function to validate all fields of credit card form are filled out
+function validateCreditCardForm() {
+  const form = document.getElementById("credit__form");
+  if (form.checkValidity()) {
+    addItemsToReceipt();
+    creditSubmit();
+    hideDivs();
+    resetLocalStorage();
+  } else {
+    paymentMethodMessageDiv.classList.remove("removed");
+    paymentMessageh2.textContent = "Ruh Roh! Something's not quite right.";
+    paymentMessageImg.setAttribute("src", "images/sadpuppy.png");
+    paymentMessageImg.setAttribute("alt", "sad puppy");
+    paymentMessageP.textContent =
+      "Please make sure all fields are filled out and your credit card information is accurate.";
+  }
+}
+
+// Function for successful credit card submission:
+function creditSubmit() {
+  const creditMessage = document.getElementById("credit-message");
+  creditMessage.textContent = "Credit card transaction successful!";
+  // Show success message
+  paymentMessageh2.textContent = "Your purchase is complete!";
+  paymentMessageImg.setAttribute("src", "images/coolpup.png");
+  paymentMessageImg.setAttribute("alt", "dog with sunglasses");
+  paymentMessageP.textContent =
+    "Thank you for your order. You can view your purchase summary and print your receipt below.";
+  checkoutComplete.classList.remove("removed");
+  // Remove credit card and payment form div
+  creditFormDiv.classList.add("removed");
+  paymentForm.classList.add("removed");
+  paymentTotalDue.classList.add("removed");
 }
 
 // Function to view receipt when clicking the print receipt button
@@ -499,7 +503,6 @@ cashSubmitButton.addEventListener("click", (event) => {
   event.preventDefault();
   cashSubmit();
   setReceiptInfo();
-  addItemsToReceipt();
 });
 
 // submit credit payment event listener
@@ -507,7 +510,6 @@ creditSubmitButton.addEventListener("click", (event) => {
   event.preventDefault();
   validateCreditCardForm();
   setReceiptInfo();
-  addItemsToReceipt();
 });
 
 // INVOKING FUNCTIONS
