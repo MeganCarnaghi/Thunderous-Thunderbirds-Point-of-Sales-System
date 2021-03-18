@@ -5,6 +5,7 @@ const shoppingCart = [];
 let loadedCart = JSON.parse(localStorage.getItem("cart"));
 const ItemsQuantity = document.querySelector(".headerCartItemsQty__div");
 
+//IMPORTANT
 function addToLocalStorage() {
   // select the data-id attribute of the item selected, store it in a variable
   const itemId = event.target.parentNode.parentNode.getAttribute("data-id");
@@ -46,10 +47,12 @@ function addToLocalStorage() {
   // add items to local storage
   /* Check to see if local storage is empty, if it is, 
   push the new item to shopping cart and set to local storage*/
+  //IMPORTANT
   if (localStorage.getItem("cart") === null) {
     shoppingCart.push(newItem);
     window.localStorage.setItem("cart", JSON.stringify(shoppingCart));
   } else {
+    //IMPORTANT
     /* Otherwise, check local storage to see if the item already exists, if it does, 
     increase the quantity by 1, otherwise added it to existing items and push to local storage*/
     const cartItem = loadedCart.find((c) => c.id === newItem.id);
@@ -62,6 +65,7 @@ function addToLocalStorage() {
   }
 }
 
+//IMPORTANT
 // function to calculate cart item total on view cart button
 function calculateCartItemTotal() {
   // Variable for cart item total

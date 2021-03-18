@@ -1,3 +1,4 @@
+//IMPORTANT
 // GLOBAL VARIABLES
 // Retrieving items from local storage
 let loadedCart = JSON.parse(localStorage.getItem("cart"));
@@ -40,6 +41,7 @@ const inputFormDiv = document.querySelector(".inputForm__div");
 const paymentFormDiv = document.querySelector(".paymentForm__div");
 const cartItemsDiv = document.querySelector(".cartItems__div");
 
+//IMPORTANT
 // FUNCTIONS
 // function to check cartTotal and display message if = 0
 function checkCartTotal() {
@@ -431,6 +433,7 @@ function printReceipt() {
   window.print();
 }
 
+//IMPORTANT
 // EVENT LISTENERS
 // event listeners for payment radio buttons
 radioCash.addEventListener("click", showCash);
