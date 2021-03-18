@@ -22,7 +22,9 @@ const creditSubmitButton = document.getElementById("credit-submit");
 // variable for the checkout complete section
 const checkoutComplete = document.querySelector(".checkoutComplete__div");
 // Select the elements for the Payment Method Message Div to set
-const paymentMethodMessageDiv = document.querySelector(".paymentMethodMessage__div");
+const paymentMethodMessageDiv = document.querySelector(
+  ".paymentMethodMessage__div"
+);
 const paymentMessageh2 = document.querySelector(".paymentMethodMessage__h2");
 const paymentMessageImg = document.querySelector(".paymentMethodMessage__img");
 const paymentMessageP = document.querySelector(".paymentMethodMessage__p");
@@ -296,10 +298,12 @@ function cashSubmit() {
   if (amountTendered < finalTotal) {
     // Show fail message
     paymentMethodMessageDiv.classList.remove("removed");
-    paymentMessageh2.textContent = "Ruh Roh! That's not quite enough doggy bones.";
+    paymentMessageh2.textContent =
+      "Ruh Roh! That's not quite enough doggy bones.";
     paymentMessageImg.setAttribute("src", "images/dogbones.png");
     paymentMessageImg.setAttribute("alt", "dog bone");
-    paymentMessageP.textContent = "Please try again with enough cash to cover the cost of your order.";
+    paymentMessageP.textContent =
+      "Please try again with enough cash to cover the cost of your order.";
   }
   if (amountTendered >= finalTotal) {
     paymentMethodMessageDiv.classList.remove("removed");
@@ -316,7 +320,8 @@ function cashSubmit() {
     paymentMessageh2.textContent = "Your transaction is complete!";
     paymentMessageImg.setAttribute("src", "images/coolpup.png");
     paymentMessageImg.setAttribute("alt", "dog with sunglasses");
-    paymentMessageP.textContent = "Thank you for your order. You can view your purchase summary and print your receipt below.";
+    paymentMessageP.textContent =
+      "Thank you for your order. You can view your purchase summary and print your receipt below.";
     // Show checkout complete div
     checkoutComplete.classList.remove("removed");
   }
@@ -330,7 +335,8 @@ function creditSubmit() {
   paymentMessageh2.textContent = "Your purchase is complete!";
   paymentMessageImg.setAttribute("src", "images/coolpup.png");
   paymentMessageImg.setAttribute("alt", "dog with sunglasses");
-  paymentMessageP.textContent = "Thank you for your order. You can view your purchase summary and print your receipt below.";
+  paymentMessageP.textContent =
+    "Thank you for your order. You can view your purchase summary and print your receipt below.";
   checkoutComplete.classList.remove("removed");
   // Remove credit card and payment form div
   creditFormDiv.classList.add("removed");
